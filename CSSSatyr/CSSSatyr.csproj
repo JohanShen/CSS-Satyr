@@ -11,6 +11,7 @@
     <AssemblyName>CSSSatyr</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <HockeyAppResourceId>9ad5a631d4fa4c72ba2965cf8352107c</HockeyAppResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>APP.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -40,14 +44,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Extends\CommonLib.cs" />
+    <Compile Include="Extends\CommonLibLanguage.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlignMode.cs" />
+    <Compile Include="Models\ImageItem.cs" />
+    <Compile Include="Models\ImageType.cs" />
+    <Compile Include="MyControls\PicturePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyControls\PropertyAttibute.cs" />
+    <Compile Include="MyControls\PropertyBase.cs" />
+    <Compile Include="MyControls\PropertyStub.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -56,6 +75,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -66,6 +86,71 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\100001.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_choose_32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_choose_321.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_page_32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picture_add_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_add_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_open_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_save_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_side_tree_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog_32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\infomation_32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_refresh_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_edit_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bullet_error_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world_link_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_side_expand_32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="APP.ico" />
+    <Content Include="Lang\en_US.txt" />
+    <Content Include="Lang\zh_CN.txt" />
+    <None Include="LICENSE" />
+    <None Include="Resources\export_16.ico" />
+    <None Include="Resources\close_16_2.ico" />
+    <None Include="Resources\close_16.ico" />
+    <None Include="Resources\Order_16.ico" />
+    <None Include="Resources\china_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="docs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
