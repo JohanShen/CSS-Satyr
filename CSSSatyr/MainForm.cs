@@ -259,6 +259,7 @@ namespace CSSSatyr
             MainPictureBox.AutoScrollPosition = new Point(0, 0);
             foreach (PictureBox button in this.MainPictureBox.Controls)
             {
+                //TODO: 优化算法，合理排列，防止图片重叠
                 if (x < 0)
                 {
                     x = 0;
