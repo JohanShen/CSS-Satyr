@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extends\CommonLib.cs" />
     <Compile Include="Extends\CommonLibLanguage.cs" />
     <Compile Include="Global.cs" />
@@ -56,6 +62,12 @@
     <Compile Include="Models\AlignMode.cs" />
     <Compile Include="Models\ImageItem.cs" />
     <Compile Include="Models\ImageType.cs" />
+    <Compile Include="MyControls\EasyTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyControls\ToolStripEasyTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MyControls\PicturePanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,6 +76,9 @@
     <Compile Include="MyControls\PropertyStub.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

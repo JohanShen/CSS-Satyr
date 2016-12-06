@@ -46,6 +46,7 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reOrderImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.showGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoSorptionGridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showSiderTreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -63,10 +64,13 @@
             this.LeftSplitContainer = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.MainPictureBox = new CSSSatyr.MyControls.PicturePanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.easyTrackBar1 = new CSSSatyr.MyControls.EasyTrackBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsStatusLangLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStatusAutoSorption = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MainPictureBox = new CSSSatyr.MyControls.PicturePanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
@@ -78,6 +82,8 @@
             this.LeftSplitContainer.Panel1.SuspendLayout();
             this.LeftSplitContainer.Panel2.SuspendLayout();
             this.LeftSplitContainer.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,7 +111,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1045, 701);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(845, 501);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // MainSplitContainer
@@ -126,7 +132,7 @@
             // MainSplitContainer.Panel2
             // 
             this.MainSplitContainer.Panel2.Controls.Add(this.BodyContainer);
-            this.MainSplitContainer.Size = new System.Drawing.Size(1045, 673);
+            this.MainSplitContainer.Size = new System.Drawing.Size(845, 473);
             this.MainSplitContainer.SplitterDistance = 67;
             this.MainSplitContainer.SplitterWidth = 2;
             this.MainSplitContainer.TabIndex = 1;
@@ -144,7 +150,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1045, 67);
+            this.menuStrip1.Size = new System.Drawing.Size(845, 67);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -243,6 +249,7 @@
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reOrderImagesToolStripMenuItem,
             this.toolStripSeparator3,
+            this.showGridToolStripMenuItem,
             this.autoSorptionGridToolStripMenuItem,
             this.showSiderTreeToolStripMenuItem,
             this.toolStripSeparator4,
@@ -273,9 +280,22 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(311, 6);
             // 
+            // showGridToolStripMenuItem
+            // 
+            this.showGridToolStripMenuItem.Checked = true;
+            this.showGridToolStripMenuItem.CheckOnClick = true;
+            this.showGridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showGridToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.showGridToolStripMenuItem.Name = "showGridToolStripMenuItem";
+            this.showGridToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.G)));
+            this.showGridToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
+            this.showGridToolStripMenuItem.Text = "ShowGrid";
+            // 
             // autoSorptionGridToolStripMenuItem
             // 
             this.autoSorptionGridToolStripMenuItem.CheckOnClick = true;
+            this.autoSorptionGridToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.autoSorptionGridToolStripMenuItem.Name = "autoSorptionGridToolStripMenuItem";
             this.autoSorptionGridToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
@@ -288,6 +308,7 @@
             this.showSiderTreeToolStripMenuItem.Checked = true;
             this.showSiderTreeToolStripMenuItem.CheckOnClick = true;
             this.showSiderTreeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showSiderTreeToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.showSiderTreeToolStripMenuItem.Name = "showSiderTreeToolStripMenuItem";
             this.showSiderTreeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.L)));
@@ -420,11 +441,10 @@
             // 
             // BodyContainer.Panel2
             // 
-            this.BodyContainer.Panel2.Controls.Add(this.MainPictureBox);
-            this.BodyContainer.Panel2.Padding = new System.Windows.Forms.Padding(4);
+            this.BodyContainer.Panel2.Controls.Add(this.tableLayoutPanel2);
             this.BodyContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.BodyContainer.Panel2MinSize = 100;
-            this.BodyContainer.Size = new System.Drawing.Size(1045, 604);
+            this.BodyContainer.Size = new System.Drawing.Size(845, 404);
             this.BodyContainer.SplitterDistance = 250;
             this.BodyContainer.SplitterWidth = 3;
             this.BodyContainer.TabIndex = 0;
@@ -451,8 +471,8 @@
             this.LeftSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(4);
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.LeftSplitContainer.Size = new System.Drawing.Size(250, 604);
-            this.LeftSplitContainer.SplitterDistance = 436;
+            this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
+            this.LeftSplitContainer.SplitterDistance = 244;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -463,7 +483,7 @@
             this.listView1.Location = new System.Drawing.Point(4, 4);
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 428);
+            this.listView1.Size = new System.Drawing.Size(242, 236);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -476,10 +496,79 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 158);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 150);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.MainPictureBox, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(592, 404);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // MainPictureBox
+            // 
+            this.MainPictureBox.AllowDrop = true;
+            this.MainPictureBox.AutoScroll = true;
+            this.MainPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutPanel2.SetColumnSpan(this.MainPictureBox, 2);
+            this.MainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPictureBox.Location = new System.Drawing.Point(4, 34);
+            this.MainPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.MainPictureBox.Name = "MainPictureBox";
+            this.MainPictureBox.Size = new System.Drawing.Size(584, 366);
+            this.MainPictureBox.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.easyTrackBar1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(592, 30);
+            this.panel1.TabIndex = 1;
+            // 
+            // easyTrackBar1
+            // 
+            this.easyTrackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.easyTrackBar1.BackColor = System.Drawing.SystemColors.Control;
+            this.easyTrackBar1.BarBorderColor = System.Drawing.SystemColors.HotTrack;
+            this.easyTrackBar1.BarBorderWidth = false;
+            this.easyTrackBar1.BarClickColor = System.Drawing.SystemColors.ControlDark;
+            this.easyTrackBar1.BarColor = System.Drawing.SystemColors.HotTrack;
+            this.easyTrackBar1.BarWidth = 8;
+            this.easyTrackBar1.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.easyTrackBar1.BorderWidth = false;
+            this.easyTrackBar1.Location = new System.Drawing.Point(467, 0);
+            this.easyTrackBar1.Margin = new System.Windows.Forms.Padding(0);
+            this.easyTrackBar1.MaxValue = 50;
+            this.easyTrackBar1.MinValue = 10;
+            this.easyTrackBar1.Name = "easyTrackBar1";
+            this.easyTrackBar1.ProgressBarBackColor = System.Drawing.SystemColors.ControlLight;
+            this.easyTrackBar1.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDark;
+            this.easyTrackBar1.ProgressBarBorderWidth = true;
+            this.easyTrackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.easyTrackBar1.ShowValue = false;
+            this.easyTrackBar1.Size = new System.Drawing.Size(121, 30);
+            this.easyTrackBar1.TabIndex = 0;
+            this.easyTrackBar1.Text = "网格大小";
+            this.easyTrackBar1.Value = 15;
+            this.easyTrackBar1.ValueChanged += new CSSSatyr.MyControls.ValueChangeHandler<CSSSatyr.MyControls.EasyTrackBarValueChangedArgs>(this.easyTrackBar1_ValueChanged);
             // 
             // statusStrip1
             // 
@@ -487,10 +576,10 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsStatusLangLabel,
             this.tsStatusAutoSorption});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 676);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 476);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1045, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(845, 25);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -506,22 +595,10 @@
             this.tsStatusAutoSorption.Size = new System.Drawing.Size(109, 20);
             this.tsStatusAutoSorption.Text = "AutoSorption";
             // 
-            // MainPictureBox
-            // 
-            this.MainPictureBox.AllowDrop = true;
-            this.MainPictureBox.AutoScroll = true;
-            this.MainPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPictureBox.Location = new System.Drawing.Point(4, 4);
-            this.MainPictureBox.Margin = new System.Windows.Forms.Padding(4);
-            this.MainPictureBox.Name = "MainPictureBox";
-            this.MainPictureBox.Size = new System.Drawing.Size(784, 596);
-            this.MainPictureBox.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1045, 701);
+            this.ClientSize = new System.Drawing.Size(845, 501);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -544,6 +621,8 @@
             this.LeftSplitContainer.Panel1.ResumeLayout(false);
             this.LeftSplitContainer.Panel2.ResumeLayout(false);
             this.LeftSplitContainer.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -589,6 +668,10 @@
         private System.Windows.Forms.ToolStripMenuItem exportImagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel tsStatusAutoSorption;
         protected internal System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripMenuItem showGridToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Panel panel1;
+        private MyControls.EasyTrackBar easyTrackBar1;
     }
 }
 

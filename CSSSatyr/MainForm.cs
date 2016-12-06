@@ -8,9 +8,10 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 using CSSSatyr.Models;
 using CSSSatyr.Extends;
-using System.Diagnostics;
+using CSSSatyr.MyControls;
 
 namespace CSSSatyr
 {
@@ -20,6 +21,7 @@ namespace CSSSatyr
         public MainForm()
         {
             InitializeComponent();
+            //easyTrackBar1.Value = Global.GridSizeNum;
             this.MainPictureBox.ImageChanged += new MyControls.ImageChangeHandler<MyControls.ImageArgs>(MainPictureBox_ImageSelected);
             //this.MainPictureBox.MouseWheel += new MouseEventHandler( this.MainPictureBox_MouseWheel);
         }
@@ -281,6 +283,13 @@ namespace CSSSatyr
                 }
             }
             MainPictureBox.ResumeLayout();
+        }
+
+        private void easyTrackBar1_ValueChanged(EasyTrackBarValueChangedArgs e)
+        {
+            Global.GridSizeNum = e.NewValue;
+            if (e.OldValue != e.NewValue)
+                MainPictureBox.Invalidate();
         }
     }
 }
