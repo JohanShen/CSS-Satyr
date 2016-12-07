@@ -151,6 +151,23 @@ namespace CSSSatyr.MyControls
             InsertImage(img);
         }
 
+        /// <summary>
+        /// 根据ID删除
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveImage(long id)
+        {
+            Controls.RemoveByKey(String.Format("pic{0}", id));
+        }
+
+        /// <summary>
+        /// 清空
+        /// </summary>
+        public void Clear()
+        {
+            Controls.Clear();
+        }
+
         public void InsertImage(Image image) {
 
             ImageItem ii = new ImageItem(image.Width, image.Height, nextLocation.X, nextLocation.Y, image.RawFormat)
@@ -160,41 +177,41 @@ namespace CSSSatyr.MyControls
                 ShowWidth = image.Width,
             };
             items.Add(ii);
-            PictureBox button = new PictureBox();
-            button.Image = image;
-            button.SendToBack();
-            button.BackColor = Color.Transparent;
-            button.Tag = ii;
-            button.Name = ii.ClassName;
-            button.Parent = this;
+            PictureBox pic = new PictureBox();
+            pic.Image = image;
+            pic.SendToBack();
+            pic.BackColor = Color.Transparent;
+            pic.Tag = ii;
+            pic.Name = String.Format("pic{0}", ii.Id);
+            pic.Parent = this;
             //button.BackColor = Color.White;
-            button.ForeColor = Color.Transparent;
-            button.Size = new Size(image.Width, image.Height);
-            button.SizeMode = PictureBoxSizeMode.CenterImage;
-            button.Location = nextLocation;
-            button.Margin = new Padding(0);
-            button.Padding = new Padding(padding);
-            button.Width = button.Image.Width + button.Padding.Left + button.Padding.Right;
-            button.Height = button.Image.Height + button.Padding.Top + button.Padding.Bottom;
-            button.MouseDown += new MouseEventHandler(this.pic_MouseDown);
-            button.MouseUp += new MouseEventHandler(this.pic_MouseUp);
-            button.MouseMove += new MouseEventHandler(this.pic_MouseMove);
+            pic.ForeColor = Color.Transparent;
+            pic.Size = new Size(image.Width, image.Height);
+            pic.SizeMode = PictureBoxSizeMode.CenterImage;
+            pic.Location = nextLocation;
+            pic.Margin = new Padding(0);
+            pic.Padding = new Padding(padding);
+            pic.Width = pic.Image.Width + pic.Padding.Left + pic.Padding.Right;
+            pic.Height = pic.Image.Height + pic.Padding.Top + pic.Padding.Bottom;
+            pic.MouseDown += new MouseEventHandler(this.pic_MouseDown);
+            pic.MouseUp += new MouseEventHandler(this.pic_MouseUp);
+            pic.MouseMove += new MouseEventHandler(this.pic_MouseMove);
             //button.PreviewKeyDown += new PreviewKeyDownEventHandler(this.pic_PreviewKeyDown);
 
-            button.LocationChanged += new EventHandler(this.pic_LocationChanged);
+            pic.LocationChanged += new EventHandler(this.pic_LocationChanged);
 
-            button.TabStop = false;
-            button.Cursor = Cursors.SizeAll;
+            pic.TabStop = false;
+            pic.Cursor = Cursors.SizeAll;
 
-            this.Controls.Add(button);
+            this.Controls.Add(pic);
 
-            ImageChange(new ImageArgs(button, OperationAction.Added, MouseClickType.MouseLeftUp));
+            ImageChange(new ImageArgs(pic, OperationAction.Added, MouseClickType.MouseLeftUp));
 
 
-            nextLocation = new Point(nextLocation.X + button.Width, nextLocation.Y);
+            nextLocation = new Point(nextLocation.X + pic.Width, nextLocation.Y);
             if (nextLocation.X > this.Width)
             {
-                nextLocation = new Point(0, nextLocation.Y + button.Height);
+                nextLocation = new Point(0, nextLocation.Y + pic.Height);
             }
 
         }

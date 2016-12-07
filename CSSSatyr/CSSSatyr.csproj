@@ -52,6 +52,10 @@
     </Compile>
     <Compile Include="Extends\CommonLib.cs" />
     <Compile Include="Extends\CommonLibLanguage.cs" />
+    <Compile Include="Extends\CommonLibProject.cs" />
+    <Compile Include="Filemeta\v1\ExtendInfo.cs" />
+    <Compile Include="Filemeta\v1\ImageObj.cs" />
+    <Compile Include="Filemeta\v1\ImagePanel.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -60,8 +64,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AlignMode.cs" />
+    <Compile Include="Filemeta\v1\ApplicationConfig.cs" />
     <Compile Include="Models\ImageItem.cs" />
     <Compile Include="Models\ImageType.cs" />
+    <Compile Include="Filemeta\v1\Project.cs" />
     <Compile Include="MyControls\EasyTrackBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -157,6 +163,11 @@
     <Content Include="APP.ico" />
     <Content Include="Lang\en_US.txt" />
     <Content Include="Lang\zh_CN.txt" />
+    <None Include="Resources\G_Letter_16px.ico" />
+    <None Include="Resources\B_Letter_16px.ico" />
+    <None Include="Resources\W_Letter_16px.ico" />
+    <None Include="Resources\table_refresh_16.ico" />
+    <None Include="Resources\color_swatches_16px.ico" />
     <None Include="Resources\magnet_16px.ico" />
     <None Include="Resources\Workspace_16px.ico" />
     <None Include="Resources\Application_Side_Tree_16_1.ico" />

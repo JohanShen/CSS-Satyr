@@ -12,22 +12,33 @@ using System.Diagnostics;
 using CSSSatyr.Models;
 using CSSSatyr.Extends;
 using CSSSatyr.MyControls;
+using CSSSatyr.Filemeta.v1;
 
 namespace CSSSatyr
 {
     public partial class MainForm : Form
     {
-        //private TextureBrush textureBrush;
+       private static ListViewGroup _defaultGroup = null;
+
         public MainForm()
         {
             InitializeComponent();
             tsslSpaceLabel.Text = "";
             easyTrackBar1.Value = Global.GridSizeNum;
             this.MainPictureBox.ImageChanged += new MyControls.ImageChangeHandler<MyControls.ImageArgs>(MainPictureBox_ImageSelected);
+            _defaultGroup = CommonLib.CreateNewProject(listView1);
         }
 
         private void MainPictureBox_ImageSelected(object sender, MyControls.ImageArgs e)
         {
+            if (e == null || e.Control == null || e.Control.Tag ==null)
+                return;
+
+            PictureBox picBox = e.Control as PictureBox;
+            ImageItem imgItem = e.Control.Tag as ImageItem;
+            if (imgItem == null)
+                return;
+
             switch (e.Action)
             {
                 case MyControls.OperationAction.Selected:
@@ -44,6 +55,12 @@ namespace CSSSatyr
                     }
                 case MyControls.OperationAction.Added:
                     {
+                        ListViewItem lvi = new ListViewItem();
+                        lvi.Group = _defaultGroup;
+                        lvi.ToolTipText = imgItem.ClassName;
+                        lvi.Text = imgItem.ClassName;
+                        lvi.ImageIndex = 0;
+                        listView1.Items.Add(lvi);
                         break;
                     }
             }
@@ -51,6 +68,7 @@ namespace CSSSatyr
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            /*
             int i = 0;
             ListViewGroup lvg = new ListViewGroup();
             lvg.Header = "New project(1)";
@@ -62,54 +80,18 @@ namespace CSSSatyr
                 li.Group = lvg;
                 li.ToolTipText = pro.MainWindowTitle;
                 li.Text = pro.ProcessName.ToString();
-                li.ImageIndex = i++% imageList1.Images.Count ;
+                li.ImageIndex = i++ % imageList1.Images.Count;
                 this.listView1.Items.Add(li);
             }
-
-            /*
-            //产生子控件
-            Point pic_loca = new Point(0, 0);
-            for (int i = 0; i < 300; i++)
-            {
-                Image image = imageList1.Images[i % 3];
-                ImageItem ii = new ImageItem();
-                ii.ClassName = String.Format("cls_{0}", i);
-                PictureBox button = new PictureBox();
-                button.Tag = ii;
-                //button.Name = msg.ClassName;
-                button.BackColor = Color.White;
-                button.ForeColor = Color.Transparent;
-                button.Size = new Size(image.Width, image.Height );
-                button.SizeMode = PictureBoxSizeMode.CenterImage;
-                button.Location = pic_loca;
-                button.Margin = new Padding(0);
-                button.Padding = new Padding(0);
-                //button.Padding = new Padding(this.padding);
-                //button.FlatStyle = FlatStyle.Flat;
-                button.MouseDown += new MouseEventHandler(this.pic_MouseDown);
-                button.MouseUp += new MouseEventHandler(this.pic_MouseUp);
-                button.MouseMove += new MouseEventHandler(this.pic_MouseMove);
-                button.PreviewKeyDown += new PreviewKeyDownEventHandler(this.pic_PreviewKeyDown);
-                
-                button.LocationChanged += new EventHandler(this.pic_LocationChanged);
-                
-                button.TabStop = false;
-                button.Cursor = Cursors.SizeAll;
-
-                button.Image = image;
-                this.MainPictureBox.Controls.Add(button);
-                pic_loca = new Point(0, pic_loca.Y + 32);
-
-            }
-            this.MainPictureBox.Refresh();
             */
+            
         }
 
 
         private void pic_LocationChanged(object sender, EventArgs e)
         {
         }
-        
+
         private void openProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -137,45 +119,6 @@ namespace CSSSatyr
                 Global.AlignMode = item.Checked ? AlignMode.AutoAlign : AlignMode.FreeAlign;
             }
         }
-        /*
-        private void MainPictureBox_Paint(object sender, PaintEventArgs e)
-        {
-            var box = sender as Panel;
-            if (box != null)
-            {
-                var r = box.ClientRectangle;
-                int sNum = Global.GridSizeNum;
-                int boxX = box.DisplayRectangle.X;
-                int boxY = box.DisplayRectangle.Y;
-                int boxW = box.Width;
-                int boxH = box.Height;
-                int diffWidth = 0, diffHeight = 0;
-
-                if (boxY < 0)
-                {
-                    int diffY = Math.Abs(boxY) % sNum;
-                    //Console.WriteLine("x={0} y={1} w={2} h={3} diff={4}", boxX, boxY, boxW, boxH, diffY);
-                    if (diffY > 0)
-                    {
-                        diffHeight = sNum - diffY;
-                        e.Graphics.FillRectangle(Global.CreateBrush(sNum, diffHeight), new Rectangle(0, 0, boxW, diffHeight));
-                    }
-                }
-                if (boxX < 0)
-                {
-                    int diffX = Math.Abs(boxX) % sNum;
-                    //Console.WriteLine("x={0} y={1} w={2} h={3} diff={4}", boxX, boxY, boxW, boxH, diffX);
-                    if (diffX > 0)
-                    {
-                        diffWidth = sNum - diffX;
-                        e.Graphics.FillRectangle(Global.CreateBrush(diffWidth, sNum), new Rectangle(0, 0, diffWidth, boxH));
-                    }
-                }
-                e.Graphics.FillRectangle(Global.CreateBrush(diffWidth, diffHeight, sNum, sNum), r);
-            }
-        }
-        */
-
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -233,14 +176,15 @@ namespace CSSSatyr
             bitmap.Save("d:\\123.png", codecInfo, encoderParams);
         }
 
-        
+
 
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Global.Lang = Global.Lang == "zh-CN" ? "en-US" : "zh-CN";
             changeLanguage();
         }
-        private void changeLanguage() {
+        private void changeLanguage()
+        {
             fileToolStripMenuItem.Text = CommonLib.GetLocalString("file");
             addImagesToolStripMenuItem.Text = CommonLib.GetLocalString("add_images");
             viewToolStripMenuItem.Text = CommonLib.GetLocalString("view");
@@ -256,7 +200,7 @@ namespace CSSSatyr
         {
             int x = 0;
             int y = 0;
-            
+
             MainPictureBox.SuspendLayout();
             MainPictureBox.AutoScrollPosition = new Point(0, 0);
             foreach (PictureBox button in this.MainPictureBox.Controls)
@@ -271,7 +215,7 @@ namespace CSSSatyr
                     y = 0;
                 }
                 Point point = new Point(x, y);
-                
+
                 button.Location = point;
                 ImageItem tag = button.Tag as ImageItem;
                 tag.SetLocation(point);
@@ -307,6 +251,77 @@ namespace CSSSatyr
 
         private void viewToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void saveProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project p = new Project();
+            p.Author = "沈秋寒";
+            p.AutoSorption = true;
+            p.CompressType = 1;
+            p.CreateTime = CommonLib.ToUnixTime(DateTime.Now);
+            p.DefaultCssName = "csss_";
+            p.GridSizeNum = Global.GridSizeNum;
+            p.Language = "zh-cn";
+            p.LastTime = CommonLib.ToUnixTime(DateTime.Now);
+            p.Name = "";
+            p.ShowGrid = true;
+            p.ShowSider = true;
+            p.SorptionNum = Global.AutoAlignSpaceNum;
+
+            p.ExtendInfos.Add(new ExtendInfo() { Name = "TestA", Value = "ValueA" });
+            p.ExtendInfos.Add(new ExtendInfo() { Name = "测试B", Value = "值B" });
+
+            ImagePanel ip = new ImagePanel();
+            ip.Name = "Default Panel(1)";
+            foreach (PictureBox c in MainPictureBox.Controls)
+            {
+                ImageItem ii = c.Tag as ImageItem;
+                Image img = c.Image;
+                if (ii == null || img == null)
+                    continue;
+                ip.Images.Add(new ImageObj()
+                {
+                    CreateTime = CommonLib.ToUnixTime(DateTime.Now),
+                    CssName = ii.ClassName,
+                    Height = ii.Height,
+                    ImageType = CommonLib.GetImageMimeTypeIndex(ii.ImageType.MimeType),
+                    Key = BitConverter.ToInt64(Guid.NewGuid().ToByteArray(), 0),
+                    Mark = ii.Mark,
+                    ShowHeight = ii.ShowHeight,
+                    ShowWidth = ii.ShowWidth,
+                    Width = ii.Width,
+                    X = ii.X,
+                    Y = ii.Y,
+                    Content = CommonLib.ImageToBytes(img)
+                });
+            }
+            p.Panels.Add(ip);
+
+            p.SaveToFile("d:\\test.cssp", true);
+        }
+
+        private void tsbtnColorChange_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void blackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openProjectToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            byte[] buffer;
+            using (FileStream fs = new FileStream("d:\\test.cssp", FileMode.Open, FileAccess.Read, FileShare.None))
+            {
+                buffer = new byte[fs.Length];
+                fs.Read(buffer, 0, (int)fs.Length);
+                fs.Close();
+            }
+            Project p = Project.ReadFromBytes(buffer);
+
 
         }
     }

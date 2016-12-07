@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace CSSSatyr.Extends
 {
@@ -10,6 +11,7 @@ namespace CSSSatyr.Extends
     {
         private static Dictionary<ImageFormat, ImageType> _imageTypes = new Dictionary<ImageFormat, ImageType>();
         private static ImageCodecInfo[] _codecInfo = ImageCodecInfo.GetImageEncoders();
+        private static string[] mimes = { "Image/Png", "Image/Jpg", "Image/Gif", "Image/Bmp", "Image/X-Icon" };
 
         static CommonLib()
         {
@@ -22,7 +24,7 @@ namespace CSSSatyr.Extends
             _imageTypes[ImageFormat.Icon] = new ImageType() { Format = ImageFormat.Icon, MimeType = "Image/X-Icon" };
 
         }
-
+        
         /// <summary>
         /// 根据 mimeType 或图片解码信息
         /// </summary>
@@ -99,6 +101,55 @@ namespace CSSSatyr.Extends
         {
             int r = Convert.ToInt32((int)(x_y / Global.AutoAlignSpaceNum)) * Global.AutoAlignSpaceNum;
             return r;
+        }
+
+        /// <summary>
+        /// Convter DateTime to Timeamp
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static long ToUnixTime( DateTime dt)
+        {
+            long epoch = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000;
+            return epoch;
+        }
+
+        /// <summary>
+        /// Convert Timeamp to DateTime
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <returns></returns>
+        public static DateTime ToDateTime( long epoch)
+        {
+            DateTime dt = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(621355968000000000));
+            return dt.AddMilliseconds(epoch);
+        }
+
+        /// <summary>
+        /// 图片转bytes
+        /// </summary>
+        /// <param name="img"></param>
+        /// <returns></returns>
+        public static byte[] ImageToBytes(Image img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, ImageFormat.Png);
+                ms.Seek(0, SeekOrigin.Begin);
+                byte[] buffer = new byte[ms.Length];
+                ms.Read(buffer, 0, buffer.Length);
+                return buffer;
+            }
+        }
+
+        public static int GetImageMimeTypeIndex(string imageMime)
+        {
+            return Array.IndexOf(mimes, imageMime);
+        }
+
+        public static string GetImageMimeTypeFromIndex(int index)
+        {
+            return mimes[index];
         }
 
     }

@@ -10,6 +10,7 @@ namespace CSSSatyr.Models
     [DefaultProperty("ClassName")]
     public class ImageItem : PropertyBase
     {
+        private long _id = BitConverter.ToInt64(Guid.NewGuid().ToByteArray(), 0);
         public ImageItem(int w, int h, int x, int y, ImageFormat imageFormat):this(w,h,x,y,CommonLib.GetImageType(imageFormat))
         { }
         public ImageItem(int w, int h, int x, int y, ImageType imageType)
@@ -30,6 +31,9 @@ namespace CSSSatyr.Models
         {
             SetLocation(p.X, p.Y);
         }
+
+        [PropertyAttibute("ID", "唯一ID")]
+        public long Id { get { return _id; } }
 
         /// <summary>
         /// 类名

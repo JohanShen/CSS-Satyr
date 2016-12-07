@@ -103,6 +103,16 @@ namespace CSSSatyr.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap B_Letter_16px {
+            get {
+                object obj = ResourceManager.GetObject("B_Letter_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap bullet_error_16 {
             get {
                 object obj = ResourceManager.GetObject("bullet_error_16", resourceCulture);
@@ -146,6 +156,16 @@ namespace CSSSatyr.Properties {
         internal static System.Drawing.Bitmap cog_32 {
             get {
                 object obj = ResourceManager.GetObject("cog_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap color_swatches_16px {
+            get {
+                object obj = ResourceManager.GetObject("color_swatches_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,6 +233,16 @@ namespace CSSSatyr.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap G_Letter_16px {
+            get {
+                object obj = ResourceManager.GetObject("G_Letter_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap help_16 {
             get {
                 object obj = ResourceManager.GetObject("help_16", resourceCulture);
@@ -263,9 +293,29 @@ namespace CSSSatyr.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap table_refresh_16 {
+            get {
+                object obj = ResourceManager.GetObject("table_refresh_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap view_choose_321 {
             get {
                 object obj = ResourceManager.GetObject("view_choose_321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap W_Letter_16px {
+            get {
+                object obj = ResourceManager.GetObject("W_Letter_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

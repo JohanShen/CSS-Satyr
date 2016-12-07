@@ -39,12 +39,12 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsStatusLangLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStatusAutoSorption = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslSpaceLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslGridSize = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,9 +71,13 @@
             this.submitSuggestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyrightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.homepageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbtnAutoSorption = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnShowGrid = new System.Windows.Forms.ToolStripButton();
             this.tsbtnReOrder = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnColorChange = new System.Windows.Forms.ToolStripDropDownButton();
+            this.whiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbtnShowGrid = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnAutoSorption = new System.Windows.Forms.ToolStripButton();
             this.easyTrackBar1 = new CSSSatyr.MyControls.EasyTrackBar();
             this.MainPictureBox = new CSSSatyr.MyControls.PicturePanel();
             this.tableLayoutPanel1.SuspendLayout();
@@ -88,8 +92,8 @@
             this.LeftSplitContainer.Panel2.SuspendLayout();
             this.LeftSplitContainer.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -206,7 +210,7 @@
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 262;
+            this.LeftSplitContainer.SplitterDistance = 268;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -217,7 +221,7 @@
             this.listView1.Location = new System.Drawing.Point(4, 4);
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 254);
+            this.listView1.Size = new System.Drawing.Size(242, 260);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -230,7 +234,7 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 132);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 126);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
@@ -252,6 +256,30 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(592, 404);
             this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AllowMerge = false;
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.CanOverflow = false;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7F);
+            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnReOrder,
+            this.tsbtnColorChange,
+            this.tsbtnShowGrid,
+            this.tsbtnAutoSorption});
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
+            this.toolStrip1.Size = new System.Drawing.Size(467, 22);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // statusStrip1
             // 
@@ -292,28 +320,6 @@
             this.tsslGridSize.Name = "tsslGridSize";
             this.tsslGridSize.Size = new System.Drawing.Size(82, 20);
             this.tsslGridSize.Text = "GridSize:0";
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.AllowMerge = false;
-            this.toolStrip1.AutoSize = false;
-            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip1.CanOverflow = false;
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7F);
-            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnReOrder,
-            this.tsbtnShowGrid,
-            this.tsbtnAutoSorption});
-            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(467, 22);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -380,6 +386,7 @@
             this.openProjectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openProjectToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.openProjectToolStripMenuItem.Text = "OpenProject";
+            this.openProjectToolStripMenuItem.Click += new System.EventHandler(this.openProjectToolStripMenuItem_Click_1);
             // 
             // saveProjectToolStripMenuItem
             // 
@@ -389,6 +396,7 @@
             this.saveProjectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveProjectToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.saveProjectToolStripMenuItem.Text = "SaveProject";
+            this.saveProjectToolStripMenuItem.Click += new System.EventHandler(this.saveProjectToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -587,20 +595,62 @@
             this.homepageToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.homepageToolStripMenuItem.Text = "Homepage";
             // 
-            // tsbtnAutoSorption
+            // tsbtnReOrder
             // 
-            this.tsbtnAutoSorption.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbtnAutoSorption.Checked = true;
-            this.tsbtnAutoSorption.CheckOnClick = true;
-            this.tsbtnAutoSorption.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tsbtnAutoSorption.Image = global::CSSSatyr.Properties.Resources.Workspace_16px;
-            this.tsbtnAutoSorption.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbtnAutoSorption.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnAutoSorption.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
-            this.tsbtnAutoSorption.Name = "tsbtnAutoSorption";
-            this.tsbtnAutoSorption.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.tsbtnAutoSorption.Size = new System.Drawing.Size(84, 21);
-            this.tsbtnAutoSorption.Text = "ShowGrid";
+            this.tsbtnReOrder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnReOrder.Image = global::CSSSatyr.Properties.Resources.Order_16;
+            this.tsbtnReOrder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbtnReOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnReOrder.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
+            this.tsbtnReOrder.Name = "tsbtnReOrder";
+            this.tsbtnReOrder.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tsbtnReOrder.Size = new System.Drawing.Size(23, 21);
+            this.tsbtnReOrder.Text = "ReOrder";
+            // 
+            // tsbtnColorChange
+            // 
+            this.tsbtnColorChange.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbtnColorChange.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tsbtnColorChange.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.whiteToolStripMenuItem,
+            this.blackToolStripMenuItem,
+            this.grayToolStripMenuItem});
+            this.tsbtnColorChange.Image = global::CSSSatyr.Properties.Resources.color_swatches_16px;
+            this.tsbtnColorChange.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbtnColorChange.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnColorChange.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
+            this.tsbtnColorChange.Name = "tsbtnColorChange";
+            this.tsbtnColorChange.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tsbtnColorChange.Size = new System.Drawing.Size(98, 21);
+            this.tsbtnColorChange.Text = "BackColor";
+            this.tsbtnColorChange.Click += new System.EventHandler(this.tsbtnColorChange_Click);
+            // 
+            // whiteToolStripMenuItem
+            // 
+            this.whiteToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.whiteToolStripMenuItem.AutoToolTip = true;
+            this.whiteToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.W_Letter_16px;
+            this.whiteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.whiteToolStripMenuItem.Name = "whiteToolStripMenuItem";
+            this.whiteToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.whiteToolStripMenuItem.Text = "White(Default)";
+            // 
+            // blackToolStripMenuItem
+            // 
+            this.blackToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.B_Letter_16px;
+            this.blackToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.blackToolStripMenuItem.Name = "blackToolStripMenuItem";
+            this.blackToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.blackToolStripMenuItem.Text = "Black";
+            this.blackToolStripMenuItem.Click += new System.EventHandler(this.blackToolStripMenuItem_Click);
+            // 
+            // grayToolStripMenuItem
+            // 
+            this.grayToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.G_Letter_16px;
+            this.grayToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.grayToolStripMenuItem.Name = "grayToolStripMenuItem";
+            this.grayToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.grayToolStripMenuItem.Text = "Gray";
             // 
             // tsbtnShowGrid
             // 
@@ -615,17 +665,20 @@
             this.tsbtnShowGrid.Size = new System.Drawing.Size(105, 21);
             this.tsbtnShowGrid.Text = "AutoSorption";
             // 
-            // tsbtnReOrder
+            // tsbtnAutoSorption
             // 
-            this.tsbtnReOrder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtnReOrder.Image = global::CSSSatyr.Properties.Resources.Order_16;
-            this.tsbtnReOrder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbtnReOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnReOrder.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
-            this.tsbtnReOrder.Name = "tsbtnReOrder";
-            this.tsbtnReOrder.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.tsbtnReOrder.Size = new System.Drawing.Size(23, 21);
-            this.tsbtnReOrder.Text = "ReOrder";
+            this.tsbtnAutoSorption.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbtnAutoSorption.Checked = true;
+            this.tsbtnAutoSorption.CheckOnClick = true;
+            this.tsbtnAutoSorption.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsbtnAutoSorption.Image = global::CSSSatyr.Properties.Resources.Workspace_16px;
+            this.tsbtnAutoSorption.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbtnAutoSorption.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnAutoSorption.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
+            this.tsbtnAutoSorption.Name = "tsbtnAutoSorption";
+            this.tsbtnAutoSorption.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tsbtnAutoSorption.Size = new System.Drawing.Size(84, 21);
+            this.tsbtnAutoSorption.Text = "ShowGrid";
             // 
             // easyTrackBar1
             // 
@@ -694,10 +747,10 @@
             this.LeftSplitContainer.Panel2.ResumeLayout(false);
             this.LeftSplitContainer.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -750,6 +803,10 @@
         private System.Windows.Forms.ToolStripButton tsbtnAutoSorption;
         private System.Windows.Forms.ToolStripButton tsbtnShowGrid;
         private System.Windows.Forms.ToolStripButton tsbtnReOrder;
+        private System.Windows.Forms.ToolStripDropDownButton tsbtnColorChange;
+        private System.Windows.Forms.ToolStripMenuItem whiteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grayToolStripMenuItem;
     }
 }
 
