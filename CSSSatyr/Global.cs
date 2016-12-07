@@ -8,12 +8,11 @@ namespace CSSSatyr
 {
     public static class Global
     {
-        static Global()
-        {}
+        static Global(){}
 
 
-        private static int _GridSizeNum = 18;
-        private static int _AutoAlignSpaceNum = 18;
+        private static int _GridSizeNum = 25;
+        private static int _AutoAlignSpaceNum = 25;
         private static AlignMode _AlignMode = AlignMode.FreeAlign;
         private static string _lang = "en-US";
 

@@ -21,9 +21,9 @@ namespace CSSSatyr
         public MainForm()
         {
             InitializeComponent();
-            //easyTrackBar1.Value = Global.GridSizeNum;
+            tsslSpaceLabel.Text = "";
+            easyTrackBar1.Value = Global.GridSizeNum;
             this.MainPictureBox.ImageChanged += new MyControls.ImageChangeHandler<MyControls.ImageArgs>(MainPictureBox_ImageSelected);
-            //this.MainPictureBox.MouseWheel += new MouseEventHandler( this.MainPictureBox_MouseWheel);
         }
 
         private void MainPictureBox_ImageSelected(object sender, MyControls.ImageArgs e)
@@ -287,9 +287,22 @@ namespace CSSSatyr
 
         private void easyTrackBar1_ValueChanged(EasyTrackBarValueChangedArgs e)
         {
-            Global.GridSizeNum = e.NewValue;
             if (e.OldValue != e.NewValue)
+            {
+                Global.GridSizeNum = e.NewValue;
+                tsslGridSize.Text = String.Format("GridSize:{0}", e.NewValue);
                 MainPictureBox.Invalidate();
+            }
+        }
+
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

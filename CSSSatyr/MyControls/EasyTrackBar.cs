@@ -8,10 +8,20 @@ using System.ComponentModel;
 
 namespace CSSSatyr.MyControls
 {
+    /// <summary>
+    /// 值变化的委托
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="e"></param>
     public delegate void ValueChangeHandler<T>(T e) where T : EventArgs;
     /// <summary>
     /// @author : JohanShen
     /// @date : 2016/12/06
+    /// 
+    /// 2016/12/7 
+    /// 修改 将 bar 改为绘制方式（老方式使用子Control）
+    /// 新增 根据点击位置判断所点击子控件
+    /// 新增 点击进度条来改变值和调节条位置
     /// </summary>
     [DefaultEvent("ValueChanged")]
     public class EasyTrackBar : Control
@@ -19,105 +29,120 @@ namespace CSSSatyr.MyControls
         /// <summary>
         /// 拖动控件
         /// </summary>
-        //TODO: 要更改控件为GDI绘制方式
-        private Control _bar = new Control();
-        private Point mouseOffset = new Point(0, 0), nowPoint = new Point(0);
-        private int _barMinX = 0, _barMaxX = 0;
+        private Point _nowPoint = new Point(0), _offsetPoint = new Point(0);
+        private int _barMinX = 0, _barMaxX = 0, _barHeight = 0;
         private int _oldWidth = 0, _oldHeight = 0;
+        private ChildControl _clickChildControl = ChildControl.None;
+        private Dictionary<ChildControl, RectangleF> _childControls = new Dictionary<ChildControl, RectangleF>();
+
         public EasyTrackBar()
         {
-            /*
-            //_bar.Visible = false;
-            _bar.MouseDown += new MouseEventHandler(Bar_MouseDown);
-            _bar.MouseUp += new MouseEventHandler(Bar_MouseUp);
-            _bar.MouseMove += new MouseEventHandler(Bar_MouseMove);
-            this.Controls.Add(_bar);
-            */
             base.MouseDown += new MouseEventHandler(EasyTrackBar_MouseDown);
             base.MouseUp += new MouseEventHandler(EasyTrackBar_MouseUp);
             base.MouseMove += new MouseEventHandler(EasyTrackBar_MouseMove);
             _borderStyle = new BorderStyle() { Color = SystemColors.ControlDark, Width = 0 };
             _barStyle = new BarStyle() { Width = 15, Color = SystemColors.ControlDark, ClickColor = Color.Blue, BorderStyle = new BorderStyle() { Width = 0, Color = SystemColors.ControlDarkDark } };
             _progressBarStyle = new ProgressBarStyle() { BackColor = SystemColors.InactiveCaption, BorderStyle = new BorderStyle() { Width = 1, Color = SystemColors.ControlDarkDark } };
+
+            //按照检查的优先级添加
+            //有时多个控件坐标相互重叠，相同位置坐标的优先级
+            _childControls[ChildControl.Bar] = new RectangleF();
+            _childControls[ChildControl.Progress] = new RectangleF();
+            _childControls[ChildControl.LabelText] = new RectangleF();
+
         }
 
+
+        #region - 内部事件 -
+        /// <summary>
+        /// 鼠标按下事件
+        /// 用于判断点中的子控件和计算鼠标偏移值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EasyTrackBar_MouseDown(object sender, MouseEventArgs e)
         {
             var ctrl = sender as Control;
-            if (ctrl != null && MouseButtons.Left == e.Button)
+            if (ctrl != null)
             {
-                mouseOffset = new Point(-e.X, -e.Y);
-                //ctrl.BackColor = BarClickColor;
-            }
-        }
+                _offsetPoint = new Point(e.X - _nowPoint.X, e.Y - _nowPoint.Y);
 
-        private void EasyTrackBar_MouseUp(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void EasyTrackBar_MouseMove(object sender, MouseEventArgs e)
-        {
-           // Console.WriteLine(String.Format("x {0}  y {1}", MousePosition.X, MousePosition.Y));
-            var ctrl = sender as Control;
-            if (ctrl != null && MouseButtons.Left == e.Button)
-            {
-                //Console.WriteLine(String.Format("min:{0} max {1} now {2}", _barMinX, _barMaxX, ctrl.Location.X));
-                int _oldValue = _value;
-                float _percent = 0f;
-                if (nowPoint.X < _barMinX)
+                //判断点中了哪个控件
+                foreach (KeyValuePair<ChildControl, RectangleF> c in _childControls)
                 {
-                    //ctrl.Location = new Point(_barMinX, ctrl.Location.Y);
-                    nowPoint = new Point(_barMinX, nowPoint.Y);
-                    _value = _minValue;
+                    RectangleF r = c.Value;
+                    if ((r.X <= e.X && e.X <= r.X + r.Width) && (r.Y <= e.Y && e.Y <= r.Y + r.Height))
+                    {
+                        _clickChildControl = c.Key;
+                        break;
+                    }
                 }
-                else if (nowPoint.X > _barMaxX)
-                {
-                    //ctrl.Location = new Point(_barMaxX, ctrl.Location.Y);
-                    nowPoint = new Point(_barMaxX, nowPoint.Y);
-                    _value = _maxValue;
-                    _percent = 100;
-                }
-                else
-                {
-                    Point mousePosition = Control.MousePosition;
-                    mousePosition.Offset(mouseOffset);
-                    Point point = this.PointToClient(mousePosition);
-                    Console.WriteLine(String.Format("x {0}  y {1}", point.X, point.Y));
-                    if (point.X < _barMinX)
-                        point.X = _barMinX;
-                    if (point.X > _barMaxX)
-                        point.X = _barMaxX;
-                    //ctrl.Location = new Point(point.X, ctrl.Location.Y);
-
-                    nowPoint = new Point(point.X, nowPoint.Y);
-                    if (point.X - _barMinX > 0)
-                        _percent = (float)(point.X - _barMinX) / (_barMaxX - _barMinX);
-
-                    _value = Convert.ToInt32(_percent * (_maxValue - _minValue)) + _minValue;
-
-                    //Console.WriteLine(String.Format("value {0}", _value));
-                }
-                ValueChange(new EasyTrackBarValueChangedArgs() { OldValue = _oldValue, NewValue = _value, Percent = _percent });
                 Invalidate();
             }
         }
 
+        /// <summary>
+        /// 鼠标弹起事件
+        /// 主要用于点击进度条改变值
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EasyTrackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            //Console.WriteLine("点中：" + _clickChildControl);
+            var ctrl = sender as Control;
+            if (ctrl != null && MouseButtons.Left == e.Button)
+            {
+                if (_clickChildControl == ChildControl.Progress)
+                {
+                    Point point = new Point(e.X, e.Y);
+                    updateBarLocation(point);
+                }
+                else
+                {
+                    _clickChildControl = ChildControl.None;
+                    Invalidate();
+                }
+            }
+        }
 
+        /// <summary>
+        /// 鼠标移动
+        /// 主要用于按下调节条后的事件处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EasyTrackBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            var ctrl = sender as Control;
+            if (ctrl != null && MouseButtons.Left == e.Button)
+            {
+                if (_clickChildControl == ChildControl.Bar)
+                {
+                    Point point = new Point(e.X- _offsetPoint.X, e.Y);
+                    updateBarLocation(point);
+                }
+            }
+        }
 
+        #endregion
 
+        #region - 自定义事件 -
         public event ValueChangeHandler<EasyTrackBarValueChangedArgs> ValueChanged;
         private void ValueChange(EasyTrackBarValueChangedArgs s)
         {
             ValueChanged?.Invoke(s);
         }
+        #endregion
 
-
+        #region - 属性 -
         private string text;
         [DefaultValue("")]
         public new string Text
         {
             get { return text; }
             set { text = value;
+                updateBarMinMaxX();
                 Invalidate();
             }
         }
@@ -128,16 +153,8 @@ namespace CSSSatyr.MyControls
             get { return _value; }
             set
             {
-                if (value > _maxValue)
-                {
-                    value = _maxValue;
-                }
-                else if (value < _minValue)
-                {
-                    value = _minValue;
-                }
-                _value = value;
-                updateBarLocationg();
+                _value = value > _maxValue ? _maxValue : value < _minValue ? _minValue : value;
+                updateBarLocation(_value, _minValue, _maxValue);
                 Invalidate();
             }
         }
@@ -153,7 +170,7 @@ namespace CSSSatyr.MyControls
                     throw new Exception("MinValue 不能大于 MaxValue，且不能大于 Value");
                 }
                 _minValue = value;
-                updateBarLocationg();
+                updateBarLocation(_value, _minValue, _maxValue);
                 Invalidate();
             }
         }
@@ -168,7 +185,7 @@ namespace CSSSatyr.MyControls
                 {
                     throw new Exception("MinValue 不能大于 MaxValue，且不能小于 Value");
                 }
-                _maxValue = value; updateBarLocationg(); Invalidate();
+                _maxValue = value; updateBarLocation(_value, _minValue, _maxValue); Invalidate();
             }
         }
 
@@ -201,8 +218,7 @@ namespace CSSSatyr.MyControls
             get { return _barStyle.Color; }
             set
             {
-                _barStyle.Color = value;
-                _bar.BackColor = BarColor; Invalidate();
+                _barStyle.Color = value; Invalidate();
             }
         }
 
@@ -254,65 +270,9 @@ namespace CSSSatyr.MyControls
             get { return _progressBarStyle.BorderStyle.Width > 0; }
             set { _progressBarStyle.BorderStyle.Width = value ? 1 : 0; Invalidate(); }
         }
-        /*
-        private void Bar_MouseUp(object sender, MouseEventArgs e)
-        {
-            var ctrl = sender as Control;
-            if (ctrl != null && MouseButtons.Left == e.Button)
-            {
-                ctrl.BackColor = BarColor;
-            }
-        }
-        private void Bar_MouseDown(object sender, MouseEventArgs e)
-        {
-            var ctrl = sender as Control;
-            if (ctrl != null && MouseButtons.Left == e.Button)
-            {
-                mouseOffset = new Point(-e.X, -e.Y);
-                ctrl.BackColor = BarClickColor;
-            }
-        }
 
-        private void Bar_MouseMove(object sender, MouseEventArgs e)
-        {
-            var ctrl = sender as Control;
-            if (ctrl != null && MouseButtons.Left == e.Button)
-            {
-                //Console.WriteLine(String.Format("min:{0} max {1} now {2}", _barMinX, _barMaxX, ctrl.Location.X));
-                int _oldValue = _value;
-                float _percent = 0f;
-                if (ctrl.Location.X < _barMinX)
-                {
-                    ctrl.Location = new Point(_barMinX, ctrl.Location.Y);
-                    _value = _minValue;
-                }
-                else if (ctrl.Location.X > _barMaxX)
-                {
-                    ctrl.Location = new Point(_barMaxX, ctrl.Location.Y);
-                    _value = _maxValue;
-                    _percent = 100;
-                }
-                else
-                {
-                    Point mousePosition = Control.MousePosition;
-                    mousePosition.Offset(mouseOffset);
-                    Point point = this.PointToClient(mousePosition);
-                    if (point.X < _barMinX)
-                        point.X = _barMinX;
-                    if (point.X > _barMaxX)
-                        point.X = _barMaxX;
-                    ctrl.Location = new Point(point.X, ctrl.Location.Y);
-                    if (point.X - _barMinX > 0)
-                        _percent = (float)(point.X - _barMinX) / (_barMaxX - _barMinX);
+        #endregion
 
-                    _value = Convert.ToInt32(_percent * (_maxValue - _minValue)) + _minValue;
-
-                    Console.WriteLine(String.Format("value {0}", _value));
-                }
-                ValueChange(new EasyTrackBarValueChangedArgs() { OldValue = _oldValue, NewValue = _value, Percent = _percent });
-            }
-        }
-        */
         protected override void OnPaint(PaintEventArgs e)
         {
             float barHeight = Height / 4;
@@ -331,8 +291,10 @@ namespace CSSSatyr.MyControls
                 SizeF fontSize = e.Graphics.MeasureString(Text, Font, 1000, StringFormat.GenericTypographic);
                 textWidth = fontSize.Width + 5;
                 e.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), new PointF(0, (Height - fontSize.Height) / 2));
+                //加入文字
+                updateChildControl(ChildControl.LabelText, new RectangleF(0, (Height - fontSize.Height) / 2, fontSize.Width, fontSize.Height));
             }
-            barWidth = Width - textWidth - Padding.Left - Padding.Right - _progressBarStyle.BorderStyle.Width * 2;
+            barWidth = Width - textWidth - Padding.Left - Padding.Right - _progressBarStyle.BorderStyle.Width * 2 - 2;
             barX = textWidth;
 
             //绘制刻度条
@@ -341,6 +303,7 @@ namespace CSSSatyr.MyControls
                 e.Graphics.DrawRectangle(new Pen(_progressBarStyle.BorderStyle.Color, _progressBarStyle.BorderStyle.Width), barX, barY, barWidth, barHeight);
             }
             e.Graphics.FillRectangle(new SolidBrush(_progressBarStyle.BackColor), new RectangleF(barX, barY, barWidth, barHeight));
+            updateChildControl(ChildControl.Progress, new RectangleF(barX, barY, barWidth, barHeight));
 
             //绘制刻度数字
             if (_showValue)
@@ -352,49 +315,131 @@ namespace CSSSatyr.MyControls
                 //e.Graphics.DrawString(MaxValue.ToString(), Font, new SolidBrush(ForeColor), new PointF(Width - 12, 0));
             }
 
-            _barMinX = Convert.ToInt32(barX-3);
-            _barMaxX = Convert.ToInt32(barX + barWidth - _barStyle.Width +3);
+            _barMinX = Convert.ToInt32(barX-2);
+            _barMaxX = Convert.ToInt32(barX + barWidth - _barStyle.Width +2);
 
-            //设置调节条
-            /*
-            if (_oldWidth != Width || _oldHeight != Height)
-            {
-                _bar.Size = new Size(_barStyle.Width, Convert.ToInt32(Height - Height / 3) - Padding.Top - Padding.Bottom);
-                _bar.Location = new Point(_barMinX, Convert.ToInt32(Math.Round((double)(Height - _bar.Height) / 3)) + Padding.Top);
-                _oldWidth = Width;
-                _oldHeight = Height;
-            }*/
             //绘制调节条
-
             if (_oldWidth != Width || _oldHeight != Height)
             {
-                _bar.Height = Convert.ToInt32(Height - Height / 3);
-                nowPoint = new Point(_barMinX, Convert.ToInt32(Math.Round((double)(Height - _bar.Height) / 3)) + Padding.Top);
+                _barHeight = Convert.ToInt32(Height - Height / 3);
+                _nowPoint = new Point(_nowPoint.X < _minValue ? _minValue : _nowPoint.X, Convert.ToInt32(Math.Round((double)(Height - _barHeight) / 3)) + Padding.Top);
                 _oldWidth = Width;
                 _oldHeight = Height;
             }
-            e.Graphics.FillRectangle(new SolidBrush(_barStyle.Color), nowPoint.X, nowPoint.Y, _barStyle.Width, _bar.Height - Padding.Top - Padding.Bottom);
-
-            //Console.WriteLine(String.Format("x {0}  y {1}", nowPoint.X, nowPoint.Y));
+            e.Graphics.FillRectangle(new SolidBrush(_clickChildControl== ChildControl.Bar?_barStyle.ClickColor: _barStyle.Color), _nowPoint.X, _nowPoint.Y, _barStyle.Width, _barHeight - Padding.Top - Padding.Bottom);
+            updateChildControl(ChildControl.Bar, new RectangleF(_nowPoint.X, _nowPoint.Y, _barStyle.Width, _barHeight - Padding.Top - Padding.Bottom));
 
             if (_borderStyle.Width > 0)
             {
                 //绘制边框
                 e.Graphics.DrawRectangle(new Pen(_borderStyle.Color, _borderStyle.Width), 0, 0, Width - _borderStyle.Width, Height - _borderStyle.Width);
             }
+            e.Graphics.Dispose();
         }
 
 
-        private void updateBarLocationg()
+        #region - 私有方法 -
+
+        #region - 更新调节条位置 -
+
+        /// <summary>
+        /// 更新滑动条的位置
+        /// 根据值计算位置
+        /// </summary>
+        private void updateBarLocation(int value, int minValue, int maxValue)
         {
-            //TODO:移动滑动条位置
-            float v = 0;
-            if (_value - _minValue != 0)
-                v = (float)(_value - _minValue) / (_maxValue - _minValue);
-            //_bar.Location = new Point(Convert.ToInt32((_barMaxX - _barMinX) * v) + _barMinX, _bar.Location.Y);
-            nowPoint = new Point(Convert.ToInt32((_barMaxX - _barMinX) * v) + _barMinX, _bar.Location.Y);
+            float v = 0f;
+            if (value - minValue != 0)
+                v = (float)(value - minValue) / (maxValue - minValue);
+            _nowPoint = new Point(Convert.ToInt32((_barMaxX - _barMinX) * v) + _barMinX, _nowPoint.Y);
         }
 
+        /// <summary>
+        /// 更新滑动条的位置
+        /// </summary>
+        /// <param name="point">更新到的坐标</param>
+        private void updateBarLocation(Point point)
+        {
+
+            int _oldValue = _value;
+            float _percent = 0f;
+            if (_nowPoint.X < _barMinX)
+            {
+                _nowPoint = new Point(_barMinX, _nowPoint.Y);
+                _value = _minValue;
+            }
+            else if (_nowPoint.X > _barMaxX)
+            {
+                _nowPoint = new Point(_barMaxX, _nowPoint.Y);
+                _value = _maxValue;
+                _percent = 100;
+            }
+            else
+            {
+                if (point.X < _barMinX)
+                    point.X = _barMinX;
+                if (point.X > _barMaxX)
+                    point.X = _barMaxX;
+
+                _nowPoint = new Point(point.X, _nowPoint.Y);
+                if (point.X - _barMinX > 0)
+                    _percent = (float)(point.X - _barMinX) / (_barMaxX - _barMinX);
+
+                _value = Convert.ToInt32(_percent * (_maxValue - _minValue)) + _minValue;
+            }
+            if (_oldValue != _value)
+            {
+                ValueChange(new EasyTrackBarValueChangedArgs() { OldValue = _oldValue, NewValue = _value, Percent = _percent });
+                Invalidate();
+            }
+
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 更新调节条的最大最小值
+        /// </summary>
+        private void updateBarMinMaxX()
+        {
+            //计算初始状态下的值
+            using (Graphics g = CreateGraphics())
+            {
+                SizeF fontSize = g.MeasureString(Text, Font, 1000, StringFormat.GenericTypographic);
+                float textWidth = fontSize.Width + 5;
+                float barWidth = Width - textWidth - Padding.Left - Padding.Right - _progressBarStyle.BorderStyle.Width * 2 - 2;
+
+                float barX = textWidth;
+                _barMinX = Convert.ToInt32(barX - 2);
+                _barMaxX = Convert.ToInt32(barX + barWidth - _barStyle.Width + 2);
+
+                _barHeight = Convert.ToInt32(Height - Height / 3);
+                _nowPoint = new Point(_nowPoint.X, Convert.ToInt32(Math.Round((double)(Height - _barHeight) / 3)) + Padding.Top);
+
+            }
+        }
+
+        /// <summary>
+        /// 更新空间坐标尺寸信息
+        /// </summary>
+        /// <param name="cc"></param>
+        /// <param name="r"></param>
+        private void updateChildControl(ChildControl cc, RectangleF r) {
+            _childControls[cc] = r;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 子控件名
+        /// </summary>
+        public enum ChildControl
+        {
+            None = 0,
+            LabelText = 1,
+            Bar = 2,
+            Progress = 3
+        }
     }
     
     public class BarStyle
@@ -443,7 +488,6 @@ namespace CSSSatyr.MyControls
             return String.Format("");
         }
     }
-
 
     public class EasyTrackBarValueChangedArgs: EventArgs
     {

@@ -181,7 +181,6 @@
             this.easyTrackBar1.Size = new System.Drawing.Size(145, 18);
             this.easyTrackBar1.TabIndex = 2;
             this.easyTrackBar1.Text = "测试";
-            this.easyTrackBar1.Value = 1;
             this.easyTrackBar1.ValueChanged += new CSSSatyr.MyControls.ValueChangeHandler<CSSSatyr.MyControls.EasyTrackBarValueChangedArgs>(this.easyTrackBar1_ValueChanged);
             // 
             // AboutBox
