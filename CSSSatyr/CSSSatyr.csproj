@@ -157,6 +157,9 @@
     <Content Include="APP.ico" />
     <Content Include="Lang\en_US.txt" />
     <Content Include="Lang\zh_CN.txt" />
+    <None Include="Resources\magnet_16px.ico" />
+    <None Include="Resources\Workspace_16px.ico" />
+    <None Include="Resources\Application_Side_Tree_16_1.ico" />
     <None Include="LICENSE" />
     <None Include="Resources\export_16.ico" />
     <None Include="Resources\close_16_2.ico" />

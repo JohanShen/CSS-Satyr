@@ -93,6 +93,16 @@ namespace CSSSatyr.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Application_Side_Tree_16_1 {
+            get {
+                object obj = ResourceManager.GetObject("Application_Side_Tree_16_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap bullet_error_16 {
             get {
                 object obj = ResourceManager.GetObject("bullet_error_16", resourceCulture);
@@ -223,6 +233,16 @@ namespace CSSSatyr.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap magnet_16px {
+            get {
+                object obj = ResourceManager.GetObject("magnet_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Order_16 {
             get {
                 object obj = ResourceManager.GetObject("Order_16", resourceCulture);
@@ -246,6 +266,16 @@ namespace CSSSatyr.Properties {
         internal static System.Drawing.Bitmap view_choose_321 {
             get {
                 object obj = ResourceManager.GetObject("view_choose_321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Workspace_16px {
+            get {
+                object obj = ResourceManager.GetObject("Workspace_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

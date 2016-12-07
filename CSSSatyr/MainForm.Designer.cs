@@ -34,6 +34,17 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.BodyContainer = new System.Windows.Forms.SplitContainer();
+            this.LeftSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsStatusLangLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsStatusAutoSorption = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslSpaceLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslGridSize = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,27 +64,18 @@
             this.choiceLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.defaultLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.howToUseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.submitSuggestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyrightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.homepageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BodyContainer = new System.Windows.Forms.SplitContainer();
-            this.LeftSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsStatusLangLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsStatusAutoSorption = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslSpaceLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslGridSize = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsbtnAutoSorption = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnShowGrid = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnReOrder = new System.Windows.Forms.ToolStripButton();
             this.easyTrackBar1 = new CSSSatyr.MyControls.EasyTrackBar();
             this.MainPictureBox = new CSSSatyr.MyControls.PicturePanel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tableLayoutPanel1.SuspendLayout();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
@@ -86,8 +88,8 @@
             this.LeftSplitContainer.Panel2.SuspendLayout();
             this.LeftSplitContainer.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageList1
@@ -148,14 +150,170 @@
             this.fileToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.settingToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.createToolStripMenuItem});
+            this.createToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(845, 67);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // BodyContainer
+            // 
+            this.BodyContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BodyContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.BodyContainer.Location = new System.Drawing.Point(0, 0);
+            this.BodyContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.BodyContainer.Name = "BodyContainer";
+            // 
+            // BodyContainer.Panel1
+            // 
+            this.BodyContainer.Panel1.Controls.Add(this.LeftSplitContainer);
+            this.BodyContainer.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BodyContainer.Panel1MinSize = 200;
+            // 
+            // BodyContainer.Panel2
+            // 
+            this.BodyContainer.Panel2.Controls.Add(this.tableLayoutPanel2);
+            this.BodyContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BodyContainer.Panel2MinSize = 100;
+            this.BodyContainer.Size = new System.Drawing.Size(845, 404);
+            this.BodyContainer.SplitterDistance = 250;
+            this.BodyContainer.SplitterWidth = 3;
+            this.BodyContainer.TabIndex = 0;
+            // 
+            // LeftSplitContainer
+            // 
+            this.LeftSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LeftSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.LeftSplitContainer.IsSplitterFixed = true;
+            this.LeftSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.LeftSplitContainer.Margin = new System.Windows.Forms.Padding(0);
+            this.LeftSplitContainer.Name = "LeftSplitContainer";
+            this.LeftSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // LeftSplitContainer.Panel1
+            // 
+            this.LeftSplitContainer.Panel1.Controls.Add(this.listView1);
+            this.LeftSplitContainer.Panel1.Padding = new System.Windows.Forms.Padding(4);
+            this.LeftSplitContainer.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            // 
+            // LeftSplitContainer.Panel2
+            // 
+            this.LeftSplitContainer.Panel2.Controls.Add(this.propertyGrid1);
+            this.LeftSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(4);
+            this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
+            this.LeftSplitContainer.SplitterDistance = 262;
+            this.LeftSplitContainer.SplitterWidth = 2;
+            this.LeftSplitContainer.TabIndex = 0;
+            // 
+            // listView1
+            // 
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.LargeImageList = this.imageList1;
+            this.listView1.Location = new System.Drawing.Point(4, 4);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(242, 254);
+            this.listView1.SmallImageList = this.imageList1;
+            this.listView1.TabIndex = 1;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.HelpVisible = false;
+            this.propertyGrid1.Location = new System.Drawing.Point(4, 4);
+            this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 132);
+            this.propertyGrid1.TabIndex = 0;
+            this.propertyGrid1.ToolbarVisible = false;
+            this.propertyGrid1.UseCompatibleTextRendering = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanel2.Controls.Add(this.easyTrackBar1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.MainPictureBox, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.toolStrip1, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(592, 404);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsStatusLangLabel,
+            this.tsStatusAutoSorption,
+            this.tsslSpaceLabel,
+            this.tsslGridSize});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 476);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(845, 25);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsStatusLangLabel
+            // 
+            this.tsStatusLangLabel.Name = "tsStatusLangLabel";
+            this.tsStatusLangLabel.Size = new System.Drawing.Size(135, 20);
+            this.tsStatusLangLabel.Text = "CurrentLanguage";
+            // 
+            // tsStatusAutoSorption
+            // 
+            this.tsStatusAutoSorption.Name = "tsStatusAutoSorption";
+            this.tsStatusAutoSorption.Size = new System.Drawing.Size(109, 20);
+            this.tsStatusAutoSorption.Text = "AutoSorption";
+            // 
+            // tsslSpaceLabel
+            // 
+            this.tsslSpaceLabel.Name = "tsslSpaceLabel";
+            this.tsslSpaceLabel.Size = new System.Drawing.Size(499, 20);
+            this.tsslSpaceLabel.Spring = true;
+            this.tsslSpaceLabel.Text = "toolStripStatusLabel1";
+            // 
+            // tsslGridSize
+            // 
+            this.tsslGridSize.Name = "tsslGridSize";
+            this.tsslGridSize.Size = new System.Drawing.Size(82, 20);
+            this.tsslGridSize.Text = "GridSize:0";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AllowMerge = false;
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.CanOverflow = false;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7F);
+            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtnReOrder,
+            this.tsbtnShowGrid,
+            this.tsbtnAutoSorption});
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(467, 22);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -177,7 +335,7 @@
             this.fileToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.fileToolStripMenuItem.ShowShortcutKeys = false;
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(63, 63);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(80, 63);
             this.fileToolStripMenuItem.Text = "File";
             this.fileToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -264,9 +422,10 @@
             this.viewToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5);
             this.viewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.V)));
             this.viewToolStripMenuItem.ShowShortcutKeys = false;
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(94, 63);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(117, 63);
             this.viewToolStripMenuItem.Text = "View";
             this.viewToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
             // 
             // reOrderImagesToolStripMenuItem
             // 
@@ -353,10 +512,21 @@
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5);
             this.settingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(63, 63);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(80, 63);
             this.settingToolStripMenuItem.Text = "Setting";
             this.settingToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.AutoSize = false;
+            this.createToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.application_side_expand_32;
+            this.createToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(80, 63);
+            this.createToolStripMenuItem.Text = "Create";
+            this.createToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -373,7 +543,7 @@
             this.helpToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5);
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(63, 63);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(80, 63);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -417,161 +587,45 @@
             this.homepageToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.homepageToolStripMenuItem.Text = "Homepage";
             // 
-            // createToolStripMenuItem
+            // tsbtnAutoSorption
             // 
-            this.createToolStripMenuItem.AutoSize = false;
-            this.createToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.application_side_expand_32;
-            this.createToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(63, 63);
-            this.createToolStripMenuItem.Text = "Create";
-            this.createToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.createToolStripMenuItem.Click += new System.EventHandler(this.createToolStripMenuItem_Click);
+            this.tsbtnAutoSorption.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbtnAutoSorption.Checked = true;
+            this.tsbtnAutoSorption.CheckOnClick = true;
+            this.tsbtnAutoSorption.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsbtnAutoSorption.Image = global::CSSSatyr.Properties.Resources.Workspace_16px;
+            this.tsbtnAutoSorption.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbtnAutoSorption.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnAutoSorption.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
+            this.tsbtnAutoSorption.Name = "tsbtnAutoSorption";
+            this.tsbtnAutoSorption.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tsbtnAutoSorption.Size = new System.Drawing.Size(84, 21);
+            this.tsbtnAutoSorption.Text = "ShowGrid";
             // 
-            // BodyContainer
+            // tsbtnShowGrid
             // 
-            this.BodyContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BodyContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.BodyContainer.Location = new System.Drawing.Point(0, 0);
-            this.BodyContainer.Margin = new System.Windows.Forms.Padding(0);
-            this.BodyContainer.Name = "BodyContainer";
+            this.tsbtnShowGrid.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbtnShowGrid.CheckOnClick = true;
+            this.tsbtnShowGrid.Image = global::CSSSatyr.Properties.Resources.magnet_16px;
+            this.tsbtnShowGrid.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbtnShowGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnShowGrid.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
+            this.tsbtnShowGrid.Name = "tsbtnShowGrid";
+            this.tsbtnShowGrid.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tsbtnShowGrid.Size = new System.Drawing.Size(105, 21);
+            this.tsbtnShowGrid.Text = "AutoSorption";
             // 
-            // BodyContainer.Panel1
+            // tsbtnReOrder
             // 
-            this.BodyContainer.Panel1.Controls.Add(this.LeftSplitContainer);
-            this.BodyContainer.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.BodyContainer.Panel1MinSize = 200;
-            // 
-            // BodyContainer.Panel2
-            // 
-            this.BodyContainer.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.BodyContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.BodyContainer.Panel2MinSize = 100;
-            this.BodyContainer.Size = new System.Drawing.Size(845, 404);
-            this.BodyContainer.SplitterDistance = 250;
-            this.BodyContainer.SplitterWidth = 3;
-            this.BodyContainer.TabIndex = 0;
-            // 
-            // LeftSplitContainer
-            // 
-            this.LeftSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LeftSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.LeftSplitContainer.IsSplitterFixed = true;
-            this.LeftSplitContainer.Location = new System.Drawing.Point(0, 0);
-            this.LeftSplitContainer.Margin = new System.Windows.Forms.Padding(0);
-            this.LeftSplitContainer.Name = "LeftSplitContainer";
-            this.LeftSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // LeftSplitContainer.Panel1
-            // 
-            this.LeftSplitContainer.Panel1.Controls.Add(this.listView1);
-            this.LeftSplitContainer.Panel1.Padding = new System.Windows.Forms.Padding(4);
-            this.LeftSplitContainer.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            // 
-            // LeftSplitContainer.Panel2
-            // 
-            this.LeftSplitContainer.Panel2.Controls.Add(this.propertyGrid1);
-            this.LeftSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 256;
-            this.LeftSplitContainer.SplitterWidth = 2;
-            this.LeftSplitContainer.TabIndex = 0;
-            // 
-            // listView1
-            // 
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(4, 4);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 248);
-            this.listView1.SmallImageList = this.imageList1;
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.HelpVisible = false;
-            this.propertyGrid1.Location = new System.Drawing.Point(4, 4);
-            this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 138);
-            this.propertyGrid1.TabIndex = 0;
-            this.propertyGrid1.ToolbarVisible = false;
-            this.propertyGrid1.UseCompatibleTextRendering = true;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel2.Controls.Add(this.easyTrackBar1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.MainPictureBox, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(592, 404);
-            this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.toolStrip1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(467, 30);
-            this.panel1.TabIndex = 1;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsStatusLangLabel,
-            this.tsStatusAutoSorption,
-            this.tsslSpaceLabel,
-            this.tsslGridSize});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 476);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(845, 25);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tsStatusLangLabel
-            // 
-            this.tsStatusLangLabel.Name = "tsStatusLangLabel";
-            this.tsStatusLangLabel.Size = new System.Drawing.Size(135, 20);
-            this.tsStatusLangLabel.Text = "CurrentLanguage";
-            // 
-            // tsStatusAutoSorption
-            // 
-            this.tsStatusAutoSorption.Name = "tsStatusAutoSorption";
-            this.tsStatusAutoSorption.Size = new System.Drawing.Size(109, 20);
-            this.tsStatusAutoSorption.Text = "AutoSorption";
-            // 
-            // tsslSpaceLabel
-            // 
-            this.tsslSpaceLabel.Name = "tsslSpaceLabel";
-            this.tsslSpaceLabel.Size = new System.Drawing.Size(499, 20);
-            this.tsslSpaceLabel.Spring = true;
-            this.tsslSpaceLabel.Text = "toolStripStatusLabel1";
-            // 
-            // tsslGridSize
-            // 
-            this.tsslGridSize.Name = "tsslGridSize";
-            this.tsslGridSize.Size = new System.Drawing.Size(82, 20);
-            this.tsslGridSize.Text = "GridSize:0";
+            this.tsbtnReOrder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnReOrder.Image = global::CSSSatyr.Properties.Resources.Order_16;
+            this.tsbtnReOrder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbtnReOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnReOrder.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
+            this.tsbtnReOrder.Name = "tsbtnReOrder";
+            this.tsbtnReOrder.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tsbtnReOrder.Size = new System.Drawing.Size(23, 21);
+            this.tsbtnReOrder.Text = "ReOrder";
             // 
             // easyTrackBar1
             // 
@@ -583,8 +637,8 @@
             this.easyTrackBar1.BarWidth = 8;
             this.easyTrackBar1.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.easyTrackBar1.BorderWidth = false;
-            this.easyTrackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.easyTrackBar1.Location = new System.Drawing.Point(467, 0);
+            this.easyTrackBar1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.easyTrackBar1.Location = new System.Drawing.Point(472, 0);
             this.easyTrackBar1.Margin = new System.Windows.Forms.Padding(0);
             this.easyTrackBar1.MaxValue = 50;
             this.easyTrackBar1.MinValue = 10;
@@ -594,7 +648,7 @@
             this.easyTrackBar1.ProgressBarBorderWidth = true;
             this.easyTrackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.easyTrackBar1.ShowValue = false;
-            this.easyTrackBar1.Size = new System.Drawing.Size(125, 30);
+            this.easyTrackBar1.Size = new System.Drawing.Size(120, 22);
             this.easyTrackBar1.TabIndex = 0;
             this.easyTrackBar1.Text = "网格大小";
             this.easyTrackBar1.Value = 10;
@@ -607,25 +661,11 @@
             this.MainPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableLayoutPanel2.SetColumnSpan(this.MainPictureBox, 2);
             this.MainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPictureBox.Location = new System.Drawing.Point(4, 34);
+            this.MainPictureBox.Location = new System.Drawing.Point(4, 26);
             this.MainPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.MainPictureBox.Name = "MainPictureBox";
-            this.MainPictureBox.Size = new System.Drawing.Size(584, 366);
+            this.MainPictureBox.Size = new System.Drawing.Size(584, 374);
             this.MainPictureBox.TabIndex = 0;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip1.CanOverflow = false;
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(467, 30);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
             // 
             // MainForm
             // 
@@ -654,10 +694,10 @@
             this.LeftSplitContainer.Panel2.ResumeLayout(false);
             this.LeftSplitContainer.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -705,9 +745,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ToolStripStatusLabel tsslGridSize;
         private System.Windows.Forms.ToolStripStatusLabel tsslSpaceLabel;
-        private System.Windows.Forms.Panel panel1;
         private MyControls.EasyTrackBar easyTrackBar1;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbtnAutoSorption;
+        private System.Windows.Forms.ToolStripButton tsbtnShowGrid;
+        private System.Windows.Forms.ToolStripButton tsbtnReOrder;
     }
 }
 
