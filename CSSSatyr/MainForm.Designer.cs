@@ -65,6 +65,8 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.easyTrackBar1 = new CSSSatyr.MyControls.EasyTrackBar();
+            this.MainPictureBox = new CSSSatyr.MyControls.PicturePanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbShowLeftTree = new System.Windows.Forms.ToolStripButton();
             this.tsbtnReOrder = new System.Windows.Forms.ToolStripButton();
@@ -79,8 +81,6 @@
             this.tsStatusAutoSorption = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslSpaceLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslGridSize = new System.Windows.Forms.ToolStripStatusLabel();
-            this.easyTrackBar1 = new CSSSatyr.MyControls.EasyTrackBar();
-            this.MainPictureBox = new CSSSatyr.MyControls.PicturePanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
@@ -101,11 +101,11 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "ico24.png");
-            this.imageList1.Images.SetKeyName(1, "gif24.png");
-            this.imageList1.Images.SetKeyName(2, "jpg24.png");
+            this.imageList1.Images.SetKeyName(0, "bmp24.png");
+            this.imageList1.Images.SetKeyName(1, "jpg24.png");
+            this.imageList1.Images.SetKeyName(2, "gif24.png");
             this.imageList1.Images.SetKeyName(3, "png24.png");
-            this.imageList1.Images.SetKeyName(4, "bmp24.png");
+            this.imageList1.Images.SetKeyName(4, "ico24.png");
             // 
             // tableLayoutPanel1
             // 
@@ -486,7 +486,7 @@
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 300;
+            this.LeftSplitContainer.SplitterDistance = 304;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -499,7 +499,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 292);
+            this.listView1.Size = new System.Drawing.Size(242, 296);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -513,7 +513,7 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 94);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 90);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
@@ -535,6 +535,48 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(592, 404);
             this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // easyTrackBar1
+            // 
+            this.easyTrackBar1.BackColor = System.Drawing.SystemColors.Control;
+            this.easyTrackBar1.BarBorderColor = System.Drawing.SystemColors.HotTrack;
+            this.easyTrackBar1.BarBorderWidth = false;
+            this.easyTrackBar1.BarClickColor = System.Drawing.SystemColors.ControlDark;
+            this.easyTrackBar1.BarColor = System.Drawing.SystemColors.HotTrack;
+            this.easyTrackBar1.BarWidth = 8;
+            this.easyTrackBar1.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.easyTrackBar1.BorderWidth = false;
+            this.easyTrackBar1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.easyTrackBar1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.easyTrackBar1.Location = new System.Drawing.Point(472, 0);
+            this.easyTrackBar1.Margin = new System.Windows.Forms.Padding(0);
+            this.easyTrackBar1.MaxValue = 50;
+            this.easyTrackBar1.MinValue = 10;
+            this.easyTrackBar1.Name = "easyTrackBar1";
+            this.easyTrackBar1.ProgressBarBackColor = System.Drawing.SystemColors.ControlLight;
+            this.easyTrackBar1.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDark;
+            this.easyTrackBar1.ProgressBarBorderWidth = true;
+            this.easyTrackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.easyTrackBar1.ShowValue = false;
+            this.easyTrackBar1.Size = new System.Drawing.Size(120, 22);
+            this.easyTrackBar1.TabIndex = 0;
+            this.easyTrackBar1.Text = "网格大小";
+            this.easyTrackBar1.Value = 10;
+            this.easyTrackBar1.ValueChanged += new CSSSatyr.MyControls.ValueChangeHandler<CSSSatyr.MyControls.EasyTrackBarValueChangedArgs>(this.easyTrackBar1_ValueChanged);
+            // 
+            // MainPictureBox
+            // 
+            this.MainPictureBox.AllowDrop = true;
+            this.MainPictureBox.AutoScroll = true;
+            this.MainPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.MainPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutPanel2.SetColumnSpan(this.MainPictureBox, 2);
+            this.MainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPictureBox.Location = new System.Drawing.Point(4, 26);
+            this.MainPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.MainPictureBox.Name = "MainPictureBox";
+            this.MainPictureBox.Size = new System.Drawing.Size(584, 374);
+            this.MainPictureBox.TabIndex = 0;
             // 
             // toolStrip1
             // 
@@ -589,6 +631,7 @@
             this.tsbtnReOrder.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.tsbtnReOrder.Size = new System.Drawing.Size(23, 21);
             this.tsbtnReOrder.Text = "ReOrder";
+            this.tsbtnReOrder.Click += new System.EventHandler(this.tsbtnReOrder_Click);
             // 
             // tsbtnColorChange
             // 
@@ -708,48 +751,6 @@
             this.tsslGridSize.Name = "tsslGridSize";
             this.tsslGridSize.Size = new System.Drawing.Size(82, 20);
             this.tsslGridSize.Text = "GridSize:0";
-            // 
-            // easyTrackBar1
-            // 
-            this.easyTrackBar1.BackColor = System.Drawing.SystemColors.Control;
-            this.easyTrackBar1.BarBorderColor = System.Drawing.SystemColors.HotTrack;
-            this.easyTrackBar1.BarBorderWidth = false;
-            this.easyTrackBar1.BarClickColor = System.Drawing.SystemColors.ControlDark;
-            this.easyTrackBar1.BarColor = System.Drawing.SystemColors.HotTrack;
-            this.easyTrackBar1.BarWidth = 8;
-            this.easyTrackBar1.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.easyTrackBar1.BorderWidth = false;
-            this.easyTrackBar1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.easyTrackBar1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.easyTrackBar1.Location = new System.Drawing.Point(472, 0);
-            this.easyTrackBar1.Margin = new System.Windows.Forms.Padding(0);
-            this.easyTrackBar1.MaxValue = 50;
-            this.easyTrackBar1.MinValue = 10;
-            this.easyTrackBar1.Name = "easyTrackBar1";
-            this.easyTrackBar1.ProgressBarBackColor = System.Drawing.SystemColors.ControlLight;
-            this.easyTrackBar1.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.easyTrackBar1.ProgressBarBorderWidth = true;
-            this.easyTrackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.easyTrackBar1.ShowValue = false;
-            this.easyTrackBar1.Size = new System.Drawing.Size(120, 22);
-            this.easyTrackBar1.TabIndex = 0;
-            this.easyTrackBar1.Text = "网格大小";
-            this.easyTrackBar1.Value = 10;
-            this.easyTrackBar1.ValueChanged += new CSSSatyr.MyControls.ValueChangeHandler<CSSSatyr.MyControls.EasyTrackBarValueChangedArgs>(this.easyTrackBar1_ValueChanged);
-            // 
-            // MainPictureBox
-            // 
-            this.MainPictureBox.AllowDrop = true;
-            this.MainPictureBox.AutoScroll = true;
-            this.MainPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.MainPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutPanel2.SetColumnSpan(this.MainPictureBox, 2);
-            this.MainPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPictureBox.Location = new System.Drawing.Point(4, 26);
-            this.MainPictureBox.Margin = new System.Windows.Forms.Padding(4);
-            this.MainPictureBox.Name = "MainPictureBox";
-            this.MainPictureBox.Size = new System.Drawing.Size(584, 374);
-            this.MainPictureBox.TabIndex = 0;
             // 
             // MainForm
             // 

@@ -55,7 +55,7 @@ namespace CSSSatyr
                 case OperationAction.Removed:
                     {
                         this.propertyGrid1.SelectedObject = null;
-                        //TODO: 删除左侧目录树显示
+                        listView1.Items.RemoveByKey(imgItem.Id.ToString());
                         break;
                     }
                 case OperationAction.Added:
@@ -65,7 +65,7 @@ namespace CSSSatyr
                         lvi.ToolTipText = imgItem.ClassName;
                         lvi.Text = imgItem.ClassName;
                         lvi.Name = imgItem.Id.ToString();
-                        lvi.ImageIndex = 0;
+                        lvi.ImageIndex = imgItem.ImageType.ImageIndex;
                         lvi.Tag = imgItem;
                         listView1.Items.Add(lvi);
                         break;
@@ -387,6 +387,11 @@ namespace CSSSatyr
             var item = sender as ToolStripButton;
             if (item != null)
                 showGridToolStripMenuItem.Checked = item.Checked;
+        }
+
+        private void tsbtnReOrder_Click(object sender, EventArgs e)
+        {
+            reOrderImagesToolStripMenuItem_Click(reOrderImagesToolStripMenuItem, e);
         }
     }
 }

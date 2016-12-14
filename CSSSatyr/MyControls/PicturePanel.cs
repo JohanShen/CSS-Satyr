@@ -195,8 +195,8 @@ namespace CSSSatyr.MyControls
             ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat)
             {
                 ClassName = String.Format("c{0}", _items.Count + 1),
-                ShowHeight = image.Height,
-                ShowWidth = image.Width,
+                //ShowHeight = image.Height,
+                //ShowWidth = image.Width,
             };
             _items.Add(ii);
             PictureBox pic = new PictureBox();
@@ -276,9 +276,17 @@ namespace CSSSatyr.MyControls
             var button = sender as PictureBox;
             if (button != null && MouseButtons.Left == e.Button)
             {
-                Point mousePosition = Control.MousePosition;
+                Point mousePosition = MousePosition;
                 mousePosition.Offset(_mouseOffset);
                 Point point = this.PointToClient(mousePosition);
+                //Point point = new Point(e.X, e.Y);
+
+
+                int boxX = this.DisplayRectangle.X;
+                int boxY = this.DisplayRectangle.Y;
+
+                Console.WriteLine(String.Format("{0}, {1}", boxX, boxY));
+
 
                 if (Global.AlignMode == AlignMode.AutoAlign)
                 {
@@ -298,7 +306,7 @@ namespace CSSSatyr.MyControls
                     return;
 
                 ImageItem image = button.Tag as ImageItem;
-                image?.SetLocation(point);
+                image?.SetLocation(new Point(point.X - boxX, point.Y - boxY));
                 //button.SuspendLayout();
                 button.Location = point;
                 //button.ResumeLayout(false);
@@ -376,6 +384,7 @@ namespace CSSSatyr.MyControls
 
         private void PicturePanel_MouseWheel(object sender, MouseEventArgs e)
         {
+            //Console.WriteLine(String.Format("{2},{3}  {0}, {1}", e.X, e.Y, e.Location.X, e.Location.Y));
             this.Refresh();
         }
 
@@ -383,6 +392,7 @@ namespace CSSSatyr.MyControls
         {
             if (e.Type == ScrollEventType.ThumbPosition)
             {
+               // Console.WriteLine(String.Format("{2}  {0}, {1}", e.NewValue, e.OldValue, e.ScrollOrientation));
                 this.Refresh();
             }
         }

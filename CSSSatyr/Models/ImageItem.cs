@@ -42,18 +42,6 @@ namespace CSSSatyr.Models
         public string ClassName { get; set; }
 
         /// <summary>
-        /// 文件名
-        /// </summary>
-       // [ReadOnly(true), PropertyAttibute("文件名", "文件的源名称")]
-        //public string FileName { get; set; }
-
-        /// <summary>
-        /// 文件路径
-        /// </summary>
-      //  [ReadOnly(true), PropertyAttibute("路径", "文件的源路径")]
-      //  public string OriginalUri { get; set; }
-
-        /// <summary>
         /// 备注
         /// </summary>
         [ReadOnly(false), PropertyAttibute("备注", "可以给图片添加备注")]
@@ -83,14 +71,14 @@ namespace CSSSatyr.Models
         /// <summary>
         /// 显示宽
         /// </summary>
-        [PropertyAttibute("显示宽","图片的显示宽度")]
-        public int ShowWidth { get; set; }
+        [ReadOnly(true), PropertyAttibute("显示宽","图片的显示宽度")]
+        public int ShowWidth { get { return _width; } }
 
         /// <summary>
         /// 显示高
         /// </summary>
-        [PropertyAttibute("显示高", "图片的显的宽度")]
-        public int ShowHeight { get; set; }
+        [ReadOnly(true), PropertyAttibute("显示高", "图片的显的宽度")]
+        public int ShowHeight { get { return _height; }}
 
         private int _x;
         /// <summary>

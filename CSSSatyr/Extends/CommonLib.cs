@@ -18,11 +18,11 @@ namespace CSSSatyr.Extends
         {
             InitLanguage();
 
-            _imageTypes[ImageFormat.Bmp] = new ImageType() { Format = ImageFormat.Bmp, MimeType = "Image/Bmp" };
-            _imageTypes[ImageFormat.Jpeg] = new ImageType() { Format = ImageFormat.Jpeg, MimeType = "Image/Jpeg" };
-            _imageTypes[ImageFormat.Gif] = new ImageType() { Format = ImageFormat.Gif, MimeType = "Image/Gif" };
-            _imageTypes[ImageFormat.Png] = new ImageType() { Format = ImageFormat.Png, MimeType = "Image/Png" };
-            _imageTypes[ImageFormat.Icon] = new ImageType() { Format = ImageFormat.Icon, MimeType = "Image/X-Icon" };
+            _imageTypes[ImageFormat.Bmp] = new ImageType() { Format = ImageFormat.Bmp, MimeType = "Image/Bmp", ExtName = ".bmp", ImageIndex = 0 };
+            _imageTypes[ImageFormat.Jpeg] = new ImageType() { Format = ImageFormat.Jpeg, MimeType = "Image/Jpeg", ExtName = ".jpg", ImageIndex = 1 };
+            _imageTypes[ImageFormat.Gif] = new ImageType() { Format = ImageFormat.Gif, MimeType = "Image/Gif", ExtName = ".gif", ImageIndex = 2 };
+            _imageTypes[ImageFormat.Png] = new ImageType() { Format = ImageFormat.Png, MimeType = "Image/Png", ExtName = ".png", ImageIndex = 3 };
+            _imageTypes[ImageFormat.Icon] = new ImageType() { Format = ImageFormat.Icon, MimeType = "Image/X-Icon", ExtName = ".ico", ImageIndex = 4 };
 
             _gridStyles["default"] = new GridStyle() { BgColor = Color.White, ShowGrid = true, LineColor = Color.Silver, LineWidth = 1, Name = "White(Default)" };
             _gridStyles["gray"] = new GridStyle() { BgColor = Color.Gray, ShowGrid = true, LineColor = Color.Silver, LineWidth = 1, Name = "Gray" };

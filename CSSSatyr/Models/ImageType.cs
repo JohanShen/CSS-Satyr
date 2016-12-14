@@ -23,6 +23,16 @@ namespace CSSSatyr.Models
         /// </summary>
         public string  MimeType { get { return _mimeType; } set { _mimeType = value; _codecInfo = CommonLib.GetCodecInfo(_mimeType); } }
 
+        /// <summary>
+        /// 扩展名
+        /// </summary>
+        public string ExtName { get; set; }
+
+        /// <summary>
+        /// 图标索引
+        /// </summary>
+        public int ImageIndex { get; set; }
+
         public override string ToString()
         {
             return MimeType;
