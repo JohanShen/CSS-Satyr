@@ -171,5 +171,47 @@ namespace CSSSatyr.Extends
             return _mimes[index];
         }
 
+        private static string[] _allowExtension = { ".jpg", ".jpeg", ".gif", ".bmp", ".ico", ".png" };
+        /// <summary>
+        /// 是否允许的扩展名
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <returns></returns>
+        public static bool IsAllowExtension(string extension)
+        {
+            return Array.IndexOf(_allowExtension, extension) >= 0;
+        }
+
+        /// <summary>
+        /// 便利出所有允许的文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string[] GetAllAllowFiles(string path)
+        {
+            List<string> r = new List<string>();
+            if (Directory.Exists(path))
+            {
+                DirectoryInfo info = new DirectoryInfo(path);
+                foreach (FileInfo info2 in info.GetFiles())
+                {
+                    string path1 = info2.FullName;
+                    if (IsAllowExtension(Path.GetExtension(path1)))
+                        r.Add(path1);
+                }
+                foreach (DirectoryInfo info2 in info.GetDirectories())
+                {
+                    string path1 = info2.FullName;
+                    r.AddRange(GetAllAllowFiles(path1));
+                }
+            }
+            else if (File.Exists(path))
+            {
+                if (IsAllowExtension(Path.GetExtension(path)))
+                    r.Add(path);
+            }
+
+            return r.ToArray();
+        }
     }
 }

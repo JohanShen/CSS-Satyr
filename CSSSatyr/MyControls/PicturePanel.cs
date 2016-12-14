@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using CSSSatyr.Models;
 using System.Drawing.Imaging;
 using CSSSatyr.Extends;
+using System.Collections;
 
 namespace CSSSatyr.MyControls
 {
@@ -123,8 +124,7 @@ namespace CSSSatyr.MyControls
 
         private void PicturePanel_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.Bitmap) ||
-               e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e.Data.GetDataPresent(DataFormats.Bitmap) || e.Data.GetDataPresent(DataFormats.FileDrop) )
             {
                 e.Effect = DragDropEffects.Copy;
             }
@@ -321,31 +321,18 @@ namespace CSSSatyr.MyControls
 
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                // Assign the file names to a string array, in 
-                // case the user has selected multiple files.
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 try
                 {
-                    this.SuspendLayout();
-                    //TODO: 改良成无限便利
+                    ArrayList al = new ArrayList();
                     foreach (string path in files)
                     {
-                        //string path = obj2.ToString();
-                        if (Directory.Exists(path))
-                        {
-                            DirectoryInfo info = new DirectoryInfo(path);
-                            foreach (FileInfo info2 in info.GetFiles())
-                            {
-                                string path1 = info2.FullName;
-                                //检查文件类型
-                                InsertImage(path1);
-                            }
-                        }
-                        else if (File.Exists(path))
-                        {
-                            //检查文件类型
-                            InsertImage(path);
-                        }
+                        al.AddRange(CommonLib.GetAllAllowFiles(path));
+                    }
+                    this.SuspendLayout();
+                    foreach(object o in al)
+                    {
+                        InsertImage(o.ToString());
                     }
                     this.ResumeLayout(true);
                 }
