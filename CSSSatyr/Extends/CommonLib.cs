@@ -72,7 +72,8 @@ namespace CSSSatyr.Extends
         /// </summary>
         /// <param name="imageFormat"></param>
         /// <returns></returns>
-        public static ImageType GetImageType(ImageFormat imageFormat) {
+        public static ImageType GetImageType(ImageFormat imageFormat)
+        {
             if (_imageTypes.ContainsKey(imageFormat))
                 return _imageTypes[imageFormat];
             return null;
@@ -127,7 +128,7 @@ namespace CSSSatyr.Extends
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static long ToUnixTime( DateTime dt)
+        public static long ToUnixTime(DateTime dt)
         {
             long epoch = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000;
             return epoch;
@@ -138,7 +139,7 @@ namespace CSSSatyr.Extends
         /// </summary>
         /// <param name="epoch"></param>
         /// <returns></returns>
-        public static DateTime ToDateTime( long epoch)
+        public static DateTime ToDateTime(long epoch)
         {
             DateTime dt = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(621355968000000000));
             return dt.AddMilliseconds(epoch);
@@ -212,6 +213,17 @@ namespace CSSSatyr.Extends
             }
 
             return r.ToArray();
+        }
+
+
+        public static int ColorToInt(Color c)
+        {
+            return c.ToArgb();
+        }
+
+        public static Color IntToColor(int color)
+        {
+            return Color.FromArgb(color & 0x0000ff, (color & 0x00ff00) >> 8, (color & 0xff0000) >> 16);
         }
     }
 }

@@ -31,6 +31,9 @@ namespace CSSSatyr.Filemeta.v1
         public int GridBgColor { get; set; }
         public int GridLineColor { get; set; }
         #endregion
+        #region - 2016/12/14 新增 -
+        public int GridLineWidth { get; set; }
+        #endregion
 
         private List<ExtendInfo> _extendInfos = new List<ExtendInfo>();
         /// <summary>
@@ -73,6 +76,7 @@ namespace CSSSatyr.Filemeta.v1
                 p.GridStyleName = FilemetaCommon.ReadString(br);//网格样式名称
                 p.GridBgColor = br.ReadInt32();//网格背景颜色
                 p.GridLineColor = br.ReadInt32();//网格线条颜色
+                p.GridLineWidth = br.ReadInt32();//网格线条大小
 
                 int extCount = br.ReadInt32();
                 for (int i = 0; i < extCount; i++)
@@ -139,6 +143,7 @@ namespace CSSSatyr.Filemeta.v1
                 FilemetaCommon.WriteString(bw, GridStyleName);//网格样式名称
                 bw.Write(GridBgColor);//网格背景颜色
                 bw.Write(GridLineColor);//网格线条颜色
+                bw.Write(GridLineWidth);//网格线条宽
                 //写入扩展信息
                 bw.Write(_extendInfos.Count);
                 foreach (ExtendInfo ei in _extendInfos)

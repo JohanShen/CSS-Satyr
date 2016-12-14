@@ -275,10 +275,14 @@ namespace CSSSatyr
             p.GridSizeNum = Global.GridSizeNum;
             p.Language = "zh-cn";
             p.LastTime = CommonLib.ToUnixTime(DateTime.Now);
-            p.Name = "";
+            p.Name = _defaultGroup.Header;
             p.ShowGrid = true;
             p.ShowSider = true;
             p.SorptionNum = Global.AutoAlignSpaceNum;
+            p.GridStyleName = Global.GridStyle.Name;
+            p.GridBgColor = CommonLib.ColorToInt( Global.GridStyle.BgColor);
+            p.GridLineColor = CommonLib.ColorToInt(Global.GridStyle.LineColor);
+            p.GridLineWidth = Global.GridStyle.LineWidth;
 
             p.ExtendInfos.Add(new ExtendInfo() { Name = "TestA", Value = "ValueA" });
             p.ExtendInfos.Add(new ExtendInfo() { Name = "测试B", Value = "值B" });
@@ -297,7 +301,7 @@ namespace CSSSatyr
                     CssName = ii.ClassName,
                     Height = ii.Height,
                     ImageType = CommonLib.GetImageMimeTypeIndex(ii.ImageType.MimeType),
-                    Key = BitConverter.ToInt64(Guid.NewGuid().ToByteArray(), 0),
+                    Key = ii.Id,// BitConverter.ToInt64(Guid.NewGuid().ToByteArray(), 0),
                     Mark = ii.Mark,
                     ShowHeight = ii.ShowHeight,
                     ShowWidth = ii.ShowWidth,
@@ -337,6 +341,31 @@ namespace CSSSatyr
                 fs.Close();
             }
             Project p = Project.ReadFromBytes(buffer);
+
+            _defaultGroup = CommonLib.CreateNewProject(listView1, p.Name);
+
+
+            easyTrackBar1.Value = Global.GridSizeNum = p.GridSizeNum;
+            foreach (ImagePanel panel in p.Panels)
+                foreach (ImageObj io in panel.Images)
+                    MainPictureBox.InsertImage(io.Content, io.CssName, io.X, io.Y, io.Mark, io.Key);
+
+            if (tsbtnShowGrid.Checked != p.ShowGrid)
+            {
+                tsbtnShowGrid.Checked = p.ShowGrid;
+                tsbtnShowGrid_Click(tsbtnShowGrid, e);
+            }
+            if (tsbtnAutoSorption.Checked != p.AutoSorption)
+            {
+                tsbtnAutoSorption.Checked = p.AutoSorption;
+                tsbtnAutoSorption_CheckedChanged(tsbtnAutoSorption, e);
+            }
+            if (tsbShowLeftTree.Checked != p.ShowSider)
+            {
+                tsbShowLeftTree.Checked = p.ShowSider;
+                toolStripButton1_CheckStateChanged(tsbShowLeftTree, e);
+            }
+            MainPictureBox.ChangeColor(new GridStyle() { BgColor = CommonLib.IntToColor(p.GridBgColor), LineColor = CommonLib.IntToColor(p.GridLineColor), LineWidth = p.GridLineWidth, Name = p.GridStyleName, ShowGrid = p.ShowGrid });
 
 
         }

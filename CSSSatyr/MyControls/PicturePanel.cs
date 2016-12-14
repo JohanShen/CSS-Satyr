@@ -146,10 +146,10 @@ namespace CSSSatyr.MyControls
             InsertImage(img);
         }
 
-        public void InsertImage(byte[] bytes)
+        public void InsertImage(byte[] bytes, string clsName = null, int x = 0, int y = 0, string mark = null, long id = 0)
         {
             Image img = Image.FromStream(new MemoryStream(bytes));
-            InsertImage(img);
+            InsertImage(img, clsName, x, y, mark, id);
         }
 
         /// <summary>
@@ -190,11 +190,12 @@ namespace CSSSatyr.MyControls
             Controls.Clear();
         }
 
-        public void InsertImage(Image image) {
+        public void InsertImage(Image image, string clsName =null, int x =0, int y = 0, string mark = null, long id = 0) {
 
-            ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat)
+            ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat, id)
             {
                 ClassName = String.Format("c{0}", _items.Count + 1),
+                Mark = mark
                 //ShowHeight = image.Height,
                 //ShowWidth = image.Width,
             };
@@ -210,7 +211,7 @@ namespace CSSSatyr.MyControls
             pic.ForeColor = Color.Transparent;
             pic.Size = new Size(image.Width, image.Height);
             pic.SizeMode = PictureBoxSizeMode.CenterImage;
-            pic.Location = _nextLocation;
+            pic.Location = (x > 0 || y > 0) ? new Point(x, y) : _nextLocation;
             pic.Margin = new Padding(0);
             pic.Padding = new Padding(_padding);
             pic.Width = pic.Image.Width + pic.Padding.Left + pic.Padding.Right;
