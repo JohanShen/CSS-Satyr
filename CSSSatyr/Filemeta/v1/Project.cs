@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using CSSSatyr.Filemeta;
 
 namespace CSSSatyr.Filemeta.v1
 {
@@ -26,6 +26,12 @@ namespace CSSSatyr.Filemeta.v1
         public int GridSizeNum { get; set; }
         public int SorptionNum { get; set; }
 
+        #region - 2016/12/9 新增 -
+        public string GridStyleName { get; set; }
+        public int GridBgColor { get; set; }
+        public int GridLineColor { get; set; }
+        #endregion
+
         private List<ExtendInfo> _extendInfos = new List<ExtendInfo>();
         /// <summary>
         /// 扩展信息
@@ -47,7 +53,7 @@ namespace CSSSatyr.Filemeta.v1
                 br.BaseStream.Position = 0;
                 byte[] head = br.ReadBytes(4);
                 byte version = br.ReadByte();
-                if (EqualsBytes(head,Project.Header) == false)
+                if (FilemetaCommon.EqualsBytes(head, Project.Header) == false)
                     throw new Exception("文件格式不支持，不是所支持的项目文件。");
                 if (version != Project.Version)
                     throw new Exception("版本 " + version + " 不支持");
@@ -55,23 +61,26 @@ namespace CSSSatyr.Filemeta.v1
                 p.CreateTime = br.ReadInt64();
                 p.LastTime = br.ReadInt64();
                 p.CompressType = br.ReadByte();
-                p.Name = ReadString(br);
-                p.Author = ReadString(br);
-                p.DefaultCssName = ReadString(br);
-                p.Language = ReadString(br);
+                p.Name = FilemetaCommon.ReadString(br);
+                p.Author = FilemetaCommon.ReadString(br);
+                p.DefaultCssName = FilemetaCommon.ReadString(br);
+                p.Language = FilemetaCommon.ReadString(br);
                 p.ShowSider = br.ReadBoolean();
                 p.ShowGrid = br.ReadBoolean();
                 p.AutoSorption = br.ReadBoolean();
                 p.GridSizeNum = br.ReadInt32();
                 p.SorptionNum = br.ReadInt32();
+                p.GridStyleName = FilemetaCommon.ReadString(br);//网格样式名称
+                p.GridBgColor = br.ReadInt32();//网格背景颜色
+                p.GridLineColor = br.ReadInt32();//网格线条颜色
 
                 int extCount = br.ReadInt32();
                 for (int i = 0; i < extCount; i++)
                 {
                     p.ExtendInfos.Add(new ExtendInfo()
                     {
-                        Name = ReadString(br),
-                        Value = ReadString(br)
+                        Name = FilemetaCommon.ReadString(br),
+                        Value = FilemetaCommon.ReadString(br)
                     });
                 }
 
@@ -79,7 +88,7 @@ namespace CSSSatyr.Filemeta.v1
                 for (int i = 0; i < panelCount; i++)
                 {
                     ImagePanel ip = new ImagePanel();
-                    ip.Name = ReadString(br);
+                    ip.Name = FilemetaCommon.ReadString(br);
                     int imgCount = br.ReadInt32();
                     for (int j = 0; j < imgCount; j++)
                     {
@@ -93,8 +102,8 @@ namespace CSSSatyr.Filemeta.v1
                         io.X = br.ReadInt32();
                         io.Y = br.ReadInt32();
                         io.ImageType = br.ReadInt32();
-                        io.CssName = ReadString(br);
-                        io.Mark = ReadString(br);
+                        io.CssName = FilemetaCommon.ReadString(br);
+                        io.Mark = FilemetaCommon.ReadString(br);
                         int cLen = br.ReadInt32();
                         io.Content = br.ReadBytes(cLen);
                         ip.Images.Add(io);
@@ -118,27 +127,30 @@ namespace CSSSatyr.Filemeta.v1
                 bw.Write(CreateTime);//创建时间
                 bw.Write(LastTime);//创建时间
                 bw.Write(CompressType);//压缩类型
-                WriteString(bw, Name); //名称
-                WriteString(bw, Author); //作者
-                WriteString(bw, DefaultCssName); //默认CSS名称
-                WriteString(bw, Language); //语言
+                FilemetaCommon.WriteString(bw, Name); //名称
+                FilemetaCommon.WriteString(bw, Author); //作者
+                FilemetaCommon.WriteString(bw, DefaultCssName); //默认CSS名称
+                FilemetaCommon.WriteString(bw, Language); //语言
                 bw.Write(ShowSider);//是否显示边
                 bw.Write(ShowGrid);//是否显示网格
                 bw.Write(AutoSorption);//是否自动给停靠
                 bw.Write(GridSizeNum);//网格大小
                 bw.Write(SorptionNum);//自定停靠数值
+                FilemetaCommon.WriteString(bw, GridStyleName);//网格样式名称
+                bw.Write(GridBgColor);//网格背景颜色
+                bw.Write(GridLineColor);//网格线条颜色
                 //写入扩展信息
                 bw.Write(_extendInfos.Count);
                 foreach (ExtendInfo ei in _extendInfos)
                 {
-                    WriteString(bw, ei.Name);
-                    WriteString(bw, ei.Value);
+                    FilemetaCommon.WriteString(bw, ei.Name);
+                    FilemetaCommon.WriteString(bw, ei.Value);
                 }
                 //写入面板
                 bw.Write(_Panels.Count);
                 foreach (ImagePanel ip in _Panels)
                 {
-                    WriteString(bw, ip.Name);
+                    FilemetaCommon.WriteString(bw, ip.Name);
                     bw.Write(ip.Images.Count);
                     //写入面板里的图片对象
                     foreach (ImageObj i in ip.Images)
@@ -152,8 +164,8 @@ namespace CSSSatyr.Filemeta.v1
                         bw.Write(i.X);
                         bw.Write(i.Y);
                         bw.Write(i.ImageType);
-                        WriteString(bw, i.CssName);
-                        WriteString(bw, i.Mark);
+                        FilemetaCommon.WriteString(bw, i.CssName);
+                        FilemetaCommon.WriteString(bw, i.Mark);
                         bw.Write(i.Content.Length);
                         bw.Write(i.Content);
                     }
@@ -171,51 +183,6 @@ namespace CSSSatyr.Filemeta.v1
             }
 
 
-        }
-
-        /// <summary>
-        /// Write String to Stream
-        /// </summary>
-        /// <param name="bw"></param>
-        /// <param name="str"></param>
-        private static void WriteString(BinaryWriter bw, string str )
-        {
-            if (String.IsNullOrEmpty(str))
-            {
-                bw.Write(0);
-                return;
-            }
-            byte[] bytes = Encoding.UTF8.GetBytes(str);
-            bw.Write(bytes.Length);
-            bw.Write(bytes);
-        }
-        
-        /// <summary>
-        /// Read String From Stream
-        /// </summary>
-        /// <param name="br"></param>
-        /// <returns></returns>
-        private static string ReadString(BinaryReader br)
-        {
-            int len = br.ReadInt32();
-            if (len <= 0)
-                return "";
-            byte[] bytes = br.ReadBytes(len);
-            string str = Encoding.UTF8.GetString(bytes);
-            return str;
-        }
-
-        private static bool EqualsBytes(byte[] a, byte[] b)
-        {
-            if (a.Length != b.Length)
-                return false;
-
-            for(int i = 0; i < a.Length; i++)
-            {
-                if (a[i] != b[i])
-                    return false;
-            }
-            return true;
         }
     }
 }

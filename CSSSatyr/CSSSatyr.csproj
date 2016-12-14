@@ -53,6 +53,7 @@
     <Compile Include="Extends\CommonLib.cs" />
     <Compile Include="Extends\CommonLibLanguage.cs" />
     <Compile Include="Extends\CommonLibProject.cs" />
+    <Compile Include="Filemeta\FilemetaCommon.cs" />
     <Compile Include="Filemeta\v1\ExtendInfo.cs" />
     <Compile Include="Filemeta\v1\ImageObj.cs" />
     <Compile Include="Filemeta\v1\ImagePanel.cs" />
@@ -65,6 +66,7 @@
     </Compile>
     <Compile Include="Models\AlignMode.cs" />
     <Compile Include="Filemeta\v1\ApplicationConfig.cs" />
+    <Compile Include="Models\GridStyle.cs" />
     <Compile Include="Models\ImageItem.cs" />
     <Compile Include="Models\ImageType.cs" />
     <Compile Include="Filemeta\v1\Project.cs" />

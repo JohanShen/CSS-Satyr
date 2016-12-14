@@ -18,20 +18,21 @@ namespace CSSSatyr
 {
     public partial class MainForm : Form
     {
-       private static ListViewGroup _defaultGroup = null;
+        private static ListViewGroup _defaultGroup = null;
 
         public MainForm()
         {
             InitializeComponent();
             tsslSpaceLabel.Text = "";
             easyTrackBar1.Value = Global.GridSizeNum;
-            this.MainPictureBox.ImageChanged += new MyControls.ImageChangeHandler<MyControls.ImageArgs>(MainPictureBox_ImageSelected);
             _defaultGroup = CommonLib.CreateNewProject(listView1);
+
+            this.MainPictureBox.ImageChanged += new MyControls.ImageChangeHandler<MyControls.ImageArgs>(MainPictureBox_ImageSelected);
         }
 
         private void MainPictureBox_ImageSelected(object sender, MyControls.ImageArgs e)
         {
-            if (e == null || e.Control == null || e.Control.Tag ==null)
+            if (e == null || e.Control == null || e.Control.Tag == null)
                 return;
 
             PictureBox picBox = e.Control as PictureBox;
@@ -41,25 +42,31 @@ namespace CSSSatyr
 
             switch (e.Action)
             {
-                case MyControls.OperationAction.Selected:
+                case OperationAction.Selected:
                     {
                         if (e.Control != null && e.Control.Tag != null)
+                        {
                             this.propertyGrid1.SelectedObject = e.Control.Tag;
+                            //int index = listView1.Items.IndexOfKey(imgItem.Id.ToString());
+                            //listView1.Items[index].Selected = true;
+                        }
                         break;
                     }
-                case MyControls.OperationAction.Removed:
+                case OperationAction.Removed:
                     {
                         this.propertyGrid1.SelectedObject = null;
-                        //删除左侧目录树显示
+                        //TODO: 删除左侧目录树显示
                         break;
                     }
-                case MyControls.OperationAction.Added:
+                case OperationAction.Added:
                     {
                         ListViewItem lvi = new ListViewItem();
                         lvi.Group = _defaultGroup;
                         lvi.ToolTipText = imgItem.ClassName;
                         lvi.Text = imgItem.ClassName;
+                        lvi.Name = imgItem.Id.ToString();
                         lvi.ImageIndex = 0;
+                        lvi.Tag = imgItem;
                         listView1.Items.Add(lvi);
                         break;
                     }
@@ -84,7 +91,7 @@ namespace CSSSatyr
                 this.listView1.Items.Add(li);
             }
             */
-            
+
         }
 
 
@@ -108,6 +115,7 @@ namespace CSSSatyr
             if (item != null)
             {
                 BodyContainer.Panel1Collapsed = !item.Checked;
+                tsbShowLeftTree.Checked = item.Checked;
             }
         }
 
@@ -117,6 +125,8 @@ namespace CSSSatyr
             if (item != null)
             {
                 Global.AlignMode = item.Checked ? AlignMode.AutoAlign : AlignMode.FreeAlign;
+                tsbtnAutoSorption.Checked = item.Checked;
+                tsStatusAutoSorption.Text = String.Format("对齐模式：{0}", item.Checked ? "吸附模式" : "自由模式");
             }
         }
 
@@ -302,13 +312,19 @@ namespace CSSSatyr
             p.SaveToFile("d:\\test.cssp", true);
         }
 
-        private void tsbtnColorChange_Click(object sender, EventArgs e)
-        {
-        }
-
         private void blackToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ToolStripMenuItem tsmi = sender as ToolStripMenuItem;
+            if (tsmi != null && tsmi.Tag != null)
+            {
+                GridStyle gridStyle = CommonLib.GetGridStyle(tsmi.Tag.ToString());
+                if (gridStyle != null)
+                {
+                    gridStyle.ShowGrid = showGridToolStripMenuItem.Checked;
+                    Global.GridStyle = gridStyle;
+                    MainPictureBox.ChangeColor(gridStyle);
+                }
+            }
         }
 
         private void openProjectToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -323,6 +339,54 @@ namespace CSSSatyr
             Project p = Project.ReadFromBytes(buffer);
 
 
+        }
+
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection lvis = listView1.SelectedItems;
+            if (lvis != null && lvis.Count == 1)
+            {
+                ListViewItem lvi = lvis[0];
+                ImageItem ii = lvi.Tag as ImageItem;
+                if (ii != null)
+                {
+                    MainPictureBox.SelectItem(ii.Id);
+                    MainPictureBox.Focus();
+                    propertyGrid1.SelectedObject = ii;
+                }
+            }
+        }
+
+        private void tsbtnAutoSorption_CheckedChanged(object sender, EventArgs e)
+        {
+            var item = sender as ToolStripButton;
+            if (item != null)
+                autoSorptionGridToolStripMenuItem.Checked = item.Checked;
+        }
+
+        private void showGridToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            var item = sender as ToolStripMenuItem;
+            if (item != null)
+            {
+                Global.GridStyle.ShowGrid = item.Checked;
+                tsbtnShowGrid.Checked = item.Checked;
+                MainPictureBox.ChangeColor(Global.GridStyle);
+            }
+        }
+
+        private void toolStripButton1_CheckStateChanged(object sender, EventArgs e)
+        {
+            var item = sender as ToolStripButton;
+            if (item != null)
+                showSiderTreeToolStripMenuItem.Checked = item.Checked;
+        }
+
+        private void tsbtnShowGrid_Click(object sender, EventArgs e)
+        {
+            var item = sender as ToolStripButton;
+            if (item != null)
+                showGridToolStripMenuItem.Checked = item.Checked;
         }
     }
 }

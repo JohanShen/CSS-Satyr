@@ -12,25 +12,26 @@ namespace CSSSatyr.MyControls
     public delegate void ImageChangeHandler<T>(object sender, T e) where T : ImageArgs;
     public class PicturePanel : Panel
     {
-        private int padding = 1;
-        private List<ImageItem> items = new List<ImageItem>();
-        private Point minPoint = new Point(0, 0);
-        private Point maxPoint = new Point(0, 0);
-        private Point nextLocation = new Point(0, 0);
-        private Point mouseOffset = new Point(0, 0);
-        private Point mouseLastPoint = new Point(0, 0);
-        private PictureBox activeBox = null;
+        private int _padding = 1;
+        private List<ImageItem> _items = new List<ImageItem>();
+        private Point _minPoint = new Point(0, 0);
+        private Point _maxPoint = new Point(0, 0);
+        private Point _nextLocation = new Point(0, 0);
+        private Point _mouseOffset = new Point(0, 0);
+        private Point _mouseLastPoint = new Point(0, 0);
+        private PictureBox _activeBox = null;
+        private GridStyle _gridStyle = CommonLib.GetGridStyle();
 
         public PicturePanel()
         {
             this.AllowDrop = true;
-            this.AutoScroll = true;
+            base.AutoScroll = true;
             //base.AllowDrop = true;
             base.DragDrop += new DragEventHandler(PicturePanel_DragDrop);
             base.DragEnter += new DragEventHandler(PicturePanel_DragEnter);
             base.Paint += new PaintEventHandler(PictureBoxGrid_Paint);
-            //base.Scroll += new ScrollEventHandler(PicturePanel_Scroll);
-            //base.MouseWheel += new MouseEventHandler(PicturePanel_MouseWheel);
+            base.Scroll += new ScrollEventHandler(PicturePanel_Scroll);
+            base.MouseWheel += new MouseEventHandler(PicturePanel_MouseWheel);
             base.ControlAdded += new ControlEventHandler(PicturePanel_ControlAdded);
             base.ControlRemoved += new ControlEventHandler(PicturePanel_ControlRemoved);
             //base.PreviewKeyDown += new PreviewKeyDownEventHandler(PicturePanel_PreviewKeyDown);
@@ -43,7 +44,7 @@ namespace CSSSatyr.MyControls
 
         private void PicturePanel_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            var button = activeBox;
+            var button = _activeBox;
             int x = 0, y = 0;
             if (button == null || e.Alt || e.Shift)
                 return;
@@ -112,7 +113,7 @@ namespace CSSSatyr.MyControls
                         //ClassMsg tag = (ClassMsg)button.Image.Tag;
                         this.Controls.Remove(button);
                         ImageChange(new ImageArgs(button, OperationAction.Removed, MouseClickType.None));
-                        activeBox = null;
+                        _activeBox = null;
                         return;
                     }
                 default:
@@ -152,12 +153,33 @@ namespace CSSSatyr.MyControls
         }
 
         /// <summary>
+        /// 完成配色修改
+        /// </summary>
+        public void ChangeColor(GridStyle gridStyle)
+        {
+            _gridStyle = gridStyle;
+            Invalidate();
+        }
+
+        /// <summary>
         /// 根据ID删除
         /// </summary>
         /// <param name="id"></param>
         public void RemoveImage(long id)
         {
             Controls.RemoveByKey(String.Format("pic{0}", id));
+        }
+
+        public void SelectItem(long id)
+        {
+            Control[] cItems = Controls.Find(String.Format("pic{0}", id), false);
+            if (cItems != null)
+                foreach (PictureBox c in cItems)
+                {
+                    c.Focus();
+                    c.BringToFront();
+                    _activeBox = c;
+                }
         }
 
         /// <summary>
@@ -170,13 +192,13 @@ namespace CSSSatyr.MyControls
 
         public void InsertImage(Image image) {
 
-            ImageItem ii = new ImageItem(image.Width, image.Height, nextLocation.X, nextLocation.Y, image.RawFormat)
+            ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat)
             {
-                ClassName = String.Format("c{0}", items.Count + 1),
+                ClassName = String.Format("c{0}", _items.Count + 1),
                 ShowHeight = image.Height,
                 ShowWidth = image.Width,
             };
-            items.Add(ii);
+            _items.Add(ii);
             PictureBox pic = new PictureBox();
             pic.Image = image;
             pic.SendToBack();
@@ -188,9 +210,9 @@ namespace CSSSatyr.MyControls
             pic.ForeColor = Color.Transparent;
             pic.Size = new Size(image.Width, image.Height);
             pic.SizeMode = PictureBoxSizeMode.CenterImage;
-            pic.Location = nextLocation;
+            pic.Location = _nextLocation;
             pic.Margin = new Padding(0);
-            pic.Padding = new Padding(padding);
+            pic.Padding = new Padding(_padding);
             pic.Width = pic.Image.Width + pic.Padding.Left + pic.Padding.Right;
             pic.Height = pic.Image.Height + pic.Padding.Top + pic.Padding.Bottom;
             pic.MouseDown += new MouseEventHandler(this.pic_MouseDown);
@@ -208,10 +230,10 @@ namespace CSSSatyr.MyControls
             ImageChange(new ImageArgs(pic, OperationAction.Added, MouseClickType.MouseLeftUp));
 
 
-            nextLocation = new Point(nextLocation.X + pic.Width, nextLocation.Y);
-            if (nextLocation.X > this.Width)
+            _nextLocation = new Point(_nextLocation.X + pic.Width, _nextLocation.Y);
+            if (_nextLocation.X > this.Width)
             {
-                nextLocation = new Point(0, nextLocation.Y + pic.Height);
+                _nextLocation = new Point(0, _nextLocation.Y + pic.Height);
             }
 
         }
@@ -226,7 +248,7 @@ namespace CSSSatyr.MyControls
             var button = sender as PictureBox;
             if (button != null && MouseButtons.Left == e.Button)
             {
-                mouseOffset = new Point(-e.X, -e.Y);
+                _mouseOffset = new Point(-e.X, -e.Y);
                 button.BackColor = Color.Red;
                 button.Focus();
                 button.BringToFront();
@@ -238,7 +260,7 @@ namespace CSSSatyr.MyControls
             var button = sender as PictureBox;
             if (button != null)
             {
-                activeBox = button;
+                _activeBox = button;
                 //this.propertyGrid1.SelectedObject = button.Tag;
                 ImageChange(new ImageArgs(button, OperationAction.Selected, MouseClickType.MouseLeftUp));
                 button.BackColor = Color.Transparent;
@@ -255,7 +277,7 @@ namespace CSSSatyr.MyControls
             if (button != null && MouseButtons.Left == e.Button)
             {
                 Point mousePosition = Control.MousePosition;
-                mousePosition.Offset(mouseOffset);
+                mousePosition.Offset(_mouseOffset);
                 Point point = this.PointToClient(mousePosition);
 
                 if (Global.AlignMode == AlignMode.AutoAlign)
@@ -272,7 +294,7 @@ namespace CSSSatyr.MyControls
                     point.Y = 0;
                 }
 
-                if (point.Equals(mouseLastPoint))
+                if (point.Equals(_mouseLastPoint))
                     return;
 
                 ImageItem image = button.Tag as ImageItem;
@@ -280,7 +302,7 @@ namespace CSSSatyr.MyControls
                 //button.SuspendLayout();
                 button.Location = point;
                 //button.ResumeLayout(false);
-                mouseLastPoint = point;
+                _mouseLastPoint = point;
                 //Console.WriteLine(String.Format("move({0},{1})", point.X, point.Y));
                 //button.Invalidate();
             }
@@ -297,6 +319,7 @@ namespace CSSSatyr.MyControls
                 try
                 {
                     this.SuspendLayout();
+                    //TODO: 改良成无限便利
                     foreach (string path in files)
                     {
                         //string path = obj2.ToString();
@@ -330,10 +353,7 @@ namespace CSSSatyr.MyControls
             {
                 try
                 {
-                    // Create an Image and assign it to the picture variable.
-                    //this.picture = (Image)e.Data.GetData(DataFormats.Bitmap);
-                    // Set the picture location equal to the drop point.
-                    //this.pictureLocation = this.PointToClient(new Point(e.X, e.Y));
+                    InsertImage((Image)e.Data.GetData(DataFormats.Bitmap));
                 }
                 catch (Exception ex)
                 {
@@ -341,29 +361,6 @@ namespace CSSSatyr.MyControls
                     return;
                 }
             }
-
-            /*
-            //throw new NotImplementedException();
-            Array data = (Array)e.Data.GetData(DataFormats.FileDrop);
-            foreach (object obj2 in data)
-            {
-                string path = obj2.ToString();
-                if (Directory.Exists(path))
-                {
-                    DirectoryInfo info = new DirectoryInfo(path);
-                    foreach (FileInfo info2 in info.GetFiles())
-                    {
-                        path = info2.FullName;
-                        //检查文件类型
-                        InsertImage(path);
-                    }
-                }
-                else if (File.Exists(path))
-                {
-                    //检查文件类型
-                    InsertImage(path);
-                }
-            }*/
         }
 
         private void PicturePanel_ControlRemoved(object sender, ControlEventArgs e)
@@ -379,20 +376,21 @@ namespace CSSSatyr.MyControls
 
         private void PicturePanel_MouseWheel(object sender, MouseEventArgs e)
         {
-            //this.Update();
+            this.Refresh();
         }
 
         private void PicturePanel_Scroll(object sender, ScrollEventArgs e)
         {
             if (e.Type == ScrollEventType.ThumbPosition)
             {
-                //this.Update();
+                this.Refresh();
             }
         }
 
         private void PictureBoxGrid_Paint(object sender, PaintEventArgs e)
         {
             var box = sender as Panel;
+            
             if (box != null)
             {
                 var r = box.ClientRectangle;
@@ -409,7 +407,7 @@ namespace CSSSatyr.MyControls
                     if (diffY > 0)
                     {
                         diffHeight = sNum - diffY;
-                        e.Graphics.FillRectangle(CommonLib.DrawRectangle(sNum, diffHeight), new Rectangle(0, 0, boxW, diffHeight));
+                        e.Graphics.FillRectangle(CommonLib.DrawRectangle(sNum, diffHeight, _gridStyle), new Rectangle(0, 0, boxW, diffHeight));
                     }
                 }
                 if (boxX < 0)
@@ -418,10 +416,10 @@ namespace CSSSatyr.MyControls
                     if (diffX > 0)
                     {
                         diffWidth = sNum - diffX;
-                        e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, sNum), new Rectangle(0, 0, diffWidth, boxH));
+                        e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, sNum, _gridStyle), new Rectangle(0, 0, diffWidth, boxH));
                     }
                 }
-                e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, diffHeight, sNum, sNum), r);
+                e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, diffHeight, sNum, sNum, _gridStyle), r);
                 
             }
         }

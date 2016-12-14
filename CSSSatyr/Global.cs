@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 using CSSSatyr.Models;
+using CSSSatyr.Extends;
 
 namespace CSSSatyr
 {
@@ -10,19 +11,30 @@ namespace CSSSatyr
     {
         static Global(){}
 
-
-        private static int _GridSizeNum = 25;
-        private static int _AutoAlignSpaceNum = 25;
-        private static AlignMode _AlignMode = AlignMode.FreeAlign;
+        private static int _gridSizeNum = 25;
+        private static int _autoAlignSpaceNum = 25;
+        private static AlignMode _alignMode = AlignMode.FreeAlign;
         private static string _lang = "en-US";
+        private static GridStyle _gridStyle = CommonLib.GetGridStyle();
+
+        public static GridStyle GridStyle
+        {
+            get { return _gridStyle; }
+            set { _gridStyle = value; }
+        }
+
+        public static bool ProjectSaved
+        {
+            get;set;
+        }
 
         /// <summary>
         /// Grid Size Number
         /// </summary>
         public static int GridSizeNum
         {
-            get { return _GridSizeNum; }
-            set { _GridSizeNum = value; }
+            get { return _gridSizeNum; }
+            set { _gridSizeNum = value; }
         }
 
         /// <summary>
@@ -30,8 +42,8 @@ namespace CSSSatyr
         /// </summary>
         public static int AutoAlignSpaceNum
         {
-            get { return _AutoAlignSpaceNum; }
-            set { _AutoAlignSpaceNum = value; }
+            get { return _autoAlignSpaceNum; }
+            set { _autoAlignSpaceNum = value; }
         }
 
         /// <summary>
@@ -39,8 +51,8 @@ namespace CSSSatyr
         /// </summary>
         public static AlignMode AlignMode
         {
-            get { return _AlignMode; }
-            set { _AlignMode = value; }
+            get { return _alignMode; }
+            set { _alignMode = value; }
         }
 
         /// <summary>

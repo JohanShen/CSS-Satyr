@@ -11,7 +11,8 @@ namespace CSSSatyr.Extends
     {
         private static Dictionary<ImageFormat, ImageType> _imageTypes = new Dictionary<ImageFormat, ImageType>();
         private static ImageCodecInfo[] _codecInfo = ImageCodecInfo.GetImageEncoders();
-        private static string[] mimes = { "Image/Png", "Image/Jpg", "Image/Gif", "Image/Bmp", "Image/X-Icon" };
+        private static string[] _mimes = { "Image/Png", "Image/Jpg", "Image/Gif", "Image/Bmp", "Image/X-Icon" };
+        private static Dictionary<string, GridStyle> _gridStyles = new Dictionary<string, GridStyle>();
 
         static CommonLib()
         {
@@ -23,8 +24,25 @@ namespace CSSSatyr.Extends
             _imageTypes[ImageFormat.Png] = new ImageType() { Format = ImageFormat.Png, MimeType = "Image/Png" };
             _imageTypes[ImageFormat.Icon] = new ImageType() { Format = ImageFormat.Icon, MimeType = "Image/X-Icon" };
 
+            _gridStyles["default"] = new GridStyle() { BgColor = Color.White, ShowGrid = true, LineColor = Color.Silver, LineWidth = 1, Name = "White(Default)" };
+            _gridStyles["gray"] = new GridStyle() { BgColor = Color.Gray, ShowGrid = true, LineColor = Color.Silver, LineWidth = 1, Name = "Gray" };
+            _gridStyles["black"] = new GridStyle() { BgColor = Color.Black, ShowGrid = true, LineColor = Color.DarkGray, LineWidth = 1, Name = "Black" };
+
         }
-        
+
+        public static GridStyle GetGridStyle(string name = "default")
+        {
+            if (_gridStyles.ContainsKey(name))
+                return _gridStyles[name];
+            return null;
+        }
+
+        public static void SetGridStyle(string name, GridStyle gridStyle)
+        {
+            _gridStyles[name] = gridStyle;
+        }
+
+
         /// <summary>
         /// 根据 mimeType 或图片解码信息
         /// </summary>
@@ -66,10 +84,11 @@ namespace CSSSatyr.Extends
         /// <param name="gridSizeNumW">宽</param>
         /// <param name="gridSizeNumH">高</param>
         /// <returns></returns>
-        public static TextureBrush DrawRectangle(int gridSizeNumW, int gridSizeNumH)
+        public static TextureBrush DrawRectangle(int gridSizeNumW, int gridSizeNumH, GridStyle gridStyle)
         {
-            return DrawRectangle(-1, -1, gridSizeNumW, gridSizeNumH);
+            return DrawRectangle(-1, -1, gridSizeNumW, gridSizeNumH, gridStyle);
         }
+
 
         /// <summary>
         /// 创建矩形笔刷
@@ -79,12 +98,12 @@ namespace CSSSatyr.Extends
         /// <param name="gridSizeNumW">宽</param>
         /// <param name="gridSizeNumH">高</param>
         /// <returns></returns>
-        public static TextureBrush DrawRectangle(int x, int y, int gridSizeNumW, int gridSizeNumH)
+        public static TextureBrush DrawRectangle(int x, int y, int gridSizeNumW, int gridSizeNumH, GridStyle gridStyle)
         {
             Bitmap bit = new Bitmap(gridSizeNumW, gridSizeNumH);
             Graphics g = Graphics.FromImage(bit);
-            g.Clear(Color.White);
-            g.DrawRectangle(Pens.Silver, new Rectangle(-1, -1, gridSizeNumW, gridSizeNumH));
+            g.Clear(gridStyle.BgColor);
+            g.DrawRectangle(new Pen(gridStyle.ShowGrid ? gridStyle.LineColor : gridStyle.BgColor, gridStyle.LineWidth), new Rectangle(-1, -1, gridSizeNumW, gridSizeNumH));
             g.Dispose();
             TextureBrush textureBrush = new TextureBrush(bit);
             textureBrush.TranslateTransform(x, y);
@@ -144,12 +163,12 @@ namespace CSSSatyr.Extends
 
         public static int GetImageMimeTypeIndex(string imageMime)
         {
-            return Array.IndexOf(mimes, imageMime);
+            return Array.IndexOf(_mimes, imageMime);
         }
 
         public static string GetImageMimeTypeFromIndex(int index)
         {
-            return mimes[index];
+            return _mimes[index];
         }
 
     }
