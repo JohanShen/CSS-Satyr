@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Drawing.Imaging;
 using CSSSatyr.Models;
 using CSSSatyr.Extends;
+using System.Windows.Forms;
+using System.Reflection;
 
 namespace CSSSatyr
 {
@@ -17,16 +19,37 @@ namespace CSSSatyr
         private static string _lang = "en-US";
         private static GridStyle _gridStyle = CommonLib.GetGridStyle();
 
+        /// <summary>
+        /// 软件名
+        /// </summary>
+        public static string ProductName { get { return Application.ProductName; } }
+
+        /// <summary>
+        /// 软件版本
+        /// </summary>
+        public static string ProductVersion { get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); } }
+
+        /// <summary>
+        /// 网格样式
+        /// </summary>
         public static GridStyle GridStyle
         {
             get { return _gridStyle; }
             set { _gridStyle = value; }
         }
 
+        /// <summary>
+        /// 是否保存
+        /// </summary>
         public static bool ProjectSaved
         {
             get;set;
         }
+
+        /// <summary>
+        /// 保存路径
+        /// </summary>
+        public static string SavedPath { get; set; }
 
         /// <summary>
         /// Grid Size Number

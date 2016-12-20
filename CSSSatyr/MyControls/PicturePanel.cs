@@ -7,10 +7,20 @@ using CSSSatyr.Models;
 using System.Drawing.Imaging;
 using CSSSatyr.Extends;
 using System.Collections;
+using System.Drawing.Drawing2D;
 
 namespace CSSSatyr.MyControls
 {
+    /// <summary>
+    /// 控件委托
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public delegate void ImageChangeHandler<T>(object sender, T e) where T : ImageArgs;
+    /// <summary>
+    /// PicturePanel 控件
+    /// </summary>
     public class PicturePanel : Panel
     {
         private int _padding = 1;
@@ -38,6 +48,31 @@ namespace CSSSatyr.MyControls
             //base.PreviewKeyDown += new PreviewKeyDownEventHandler(PicturePanel_PreviewKeyDown);
         }
 
+        /// <summary>
+        /// 图片显示区域
+        /// </summary>
+        public Rectangle Rectangle
+        {
+            get
+            {
+                ArrayList xList = new ArrayList(), yList = new ArrayList();
+                foreach (ImageItem item in _items)
+                {
+                    xList.Add(item.X);
+                    xList.Add(item.X + item.ShowWidth);
+                    yList.Add(item.Y);
+                    yList.Add(item.Y + item.ShowHeight);
+                }
+                xList.Sort();
+                yList.Sort();
+
+                int x = (int)xList[0], y = (int)yList[0];
+                int width = (int)xList[xList.Count - 1] - x, height = (int)yList[yList.Count - 1] - y;
+                return new Rectangle(x, y, width, height);
+            }
+        }
+
+        #region - 相应事件 -
         public void PKeyDown(Keys keyData)
         {
             this.PicturePanel_PreviewKeyDown(this, new PreviewKeyDownEventArgs(keyData));
@@ -109,10 +144,7 @@ namespace CSSSatyr.MyControls
                     }
                 case Keys.Delete:
                     {
-                        //this.now_w -= button.Width;
-                        //this.now_h -= button.Height;
-                        //ClassMsg tag = (ClassMsg)button.Image.Tag;
-                        this.Controls.Remove(button);
+                        Controls.Remove(button);
                         ImageChange(new ImageArgs(button, OperationAction.Removed, MouseClickType.None));
                         _activeBox = null;
                         return;
@@ -124,7 +156,7 @@ namespace CSSSatyr.MyControls
 
         private void PicturePanel_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.Bitmap) || e.Data.GetDataPresent(DataFormats.FileDrop) )
+            if (e.Data.GetDataPresent(DataFormats.Bitmap) || e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 e.Effect = DragDropEffects.Copy;
             }
@@ -132,111 +164,6 @@ namespace CSSSatyr.MyControls
             {
                 e.Effect = DragDropEffects.None;
             }
-        }
-
-        public event ImageChangeHandler<ImageArgs> ImageChanged;
-        private void ImageChange(ImageArgs s)
-        {
-            ImageChanged?.Invoke(this, s);
-        }
-
-
-        public void InsertImage(string path) {
-            Image img = Image.FromFile(path);
-            InsertImage(img);
-        }
-
-        public void InsertImage(byte[] bytes, string clsName = null, int x = 0, int y = 0, string mark = null, long id = 0)
-        {
-            Image img = Image.FromStream(new MemoryStream(bytes));
-            InsertImage(img, clsName, x, y, mark, id);
-        }
-
-        /// <summary>
-        /// 完成配色修改
-        /// </summary>
-        public void ChangeColor(GridStyle gridStyle)
-        {
-            _gridStyle = gridStyle;
-            Invalidate();
-        }
-
-        /// <summary>
-        /// 根据ID删除
-        /// </summary>
-        /// <param name="id"></param>
-        public void RemoveImage(long id)
-        {
-            Controls.RemoveByKey(String.Format("pic{0}", id));
-        }
-
-        public void SelectItem(long id)
-        {
-            Control[] cItems = Controls.Find(String.Format("pic{0}", id), false);
-            if (cItems != null)
-                foreach (PictureBox c in cItems)
-                {
-                    c.Focus();
-                    c.BringToFront();
-                    _activeBox = c;
-                }
-        }
-
-        /// <summary>
-        /// 清空
-        /// </summary>
-        public void Clear()
-        {
-            Controls.Clear();
-        }
-
-        public void InsertImage(Image image, string clsName =null, int x =0, int y = 0, string mark = null, long id = 0) {
-
-            ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat, id)
-            {
-                ClassName = String.Format("c{0}", _items.Count + 1),
-                Mark = mark
-                //ShowHeight = image.Height,
-                //ShowWidth = image.Width,
-            };
-            _items.Add(ii);
-            PictureBox pic = new PictureBox();
-            pic.Image = image;
-            pic.SendToBack();
-            pic.BackColor = Color.Transparent;
-            pic.Tag = ii;
-            pic.Name = String.Format("pic{0}", ii.Id);
-            pic.Parent = this;
-            //button.BackColor = Color.White;
-            pic.ForeColor = Color.Transparent;
-            pic.Size = new Size(image.Width, image.Height);
-            pic.SizeMode = PictureBoxSizeMode.CenterImage;
-            pic.Location = (x > 0 || y > 0) ? new Point(x, y) : _nextLocation;
-            pic.Margin = new Padding(0);
-            pic.Padding = new Padding(_padding);
-            pic.Width = pic.Image.Width + pic.Padding.Left + pic.Padding.Right;
-            pic.Height = pic.Image.Height + pic.Padding.Top + pic.Padding.Bottom;
-            pic.MouseDown += new MouseEventHandler(this.pic_MouseDown);
-            pic.MouseUp += new MouseEventHandler(this.pic_MouseUp);
-            pic.MouseMove += new MouseEventHandler(this.pic_MouseMove);
-            //button.PreviewKeyDown += new PreviewKeyDownEventHandler(this.pic_PreviewKeyDown);
-
-            pic.LocationChanged += new EventHandler(this.pic_LocationChanged);
-
-            pic.TabStop = false;
-            pic.Cursor = Cursors.SizeAll;
-
-            this.Controls.Add(pic);
-
-            ImageChange(new ImageArgs(pic, OperationAction.Added, MouseClickType.MouseLeftUp));
-
-
-            _nextLocation = new Point(_nextLocation.X + pic.Width, _nextLocation.Y);
-            if (_nextLocation.X > this.Width)
-            {
-                _nextLocation = new Point(0, _nextLocation.Y + pic.Height);
-            }
-
         }
 
 
@@ -316,7 +243,7 @@ namespace CSSSatyr.MyControls
                 //button.Invalidate();
             }
         }
-        
+
         private void PicturePanel_DragDrop(object sender, DragEventArgs e)
         {
 
@@ -331,7 +258,7 @@ namespace CSSSatyr.MyControls
                         al.AddRange(CommonLib.GetAllAllowFiles(path));
                     }
                     this.SuspendLayout();
-                    foreach(object o in al)
+                    foreach (object o in al)
                     {
                         InsertImage(o.ToString());
                     }
@@ -361,13 +288,18 @@ namespace CSSSatyr.MyControls
 
         private void PicturePanel_ControlRemoved(object sender, ControlEventArgs e)
         {
-            //throw new NotImplementedException();
+            ImageItem ii = e.Control.Tag as ImageItem;
+            if (ii != null && _items.Count > 0)
+            {
+                _items.Remove(ii);
+                //TODO: 重新计算最新值的坐标
+            }
         }
 
         private void PicturePanel_ControlAdded(object sender, ControlEventArgs e)
         {
             //throw new NotImplementedException();
-            
+
         }
 
         private void PicturePanel_MouseWheel(object sender, MouseEventArgs e)
@@ -380,7 +312,7 @@ namespace CSSSatyr.MyControls
         {
             if (e.Type == ScrollEventType.ThumbPosition)
             {
-               // Console.WriteLine(String.Format("{2}  {0}, {1}", e.NewValue, e.OldValue, e.ScrollOrientation));
+                // Console.WriteLine(String.Format("{2}  {0}, {1}", e.NewValue, e.OldValue, e.ScrollOrientation));
                 this.Refresh();
             }
         }
@@ -388,7 +320,7 @@ namespace CSSSatyr.MyControls
         private void PictureBoxGrid_Paint(object sender, PaintEventArgs e)
         {
             var box = sender as Panel;
-            
+
             if (box != null)
             {
                 var r = box.ClientRectangle;
@@ -398,7 +330,7 @@ namespace CSSSatyr.MyControls
                 int boxW = box.Width;
                 int boxH = box.Height;
                 int diffWidth = 0, diffHeight = 0;
-                
+
                 if (boxY < 0)
                 {
                     int diffY = Math.Abs(boxY) % sNum;
@@ -418,13 +350,180 @@ namespace CSSSatyr.MyControls
                     }
                 }
                 e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, diffHeight, sNum, sNum, _gridStyle), r);
-                
+
             }
         }
+
+        #endregion
+
+        #region - 输出事件 -
+
+        public event ImageChangeHandler<ImageArgs> ImageChanged;
+        /// <summary>
+        /// 图片发生变化
+        /// </summary>
+        /// <param name="s"></param>
+        private void ImageChange(ImageArgs s)
+        {
+            ImageChanged?.Invoke(this, s);
+        }
+
+        #endregion
+
+        #region - 插入图片 -
+
+        public void InsertImage(string path)
+        {
+            Image img = Image.FromFile(path);
+            InsertImage(img);
+        }
+
+        public void InsertImage(byte[] bytes, string clsName = null, int x = 0, int y = 0, string mark = null, long id = 0)
+        {
+            Image img = Image.FromStream(new MemoryStream(bytes));
+            InsertImage(img, clsName, x, y, mark, id);
+        }
+
+
+        public void InsertImage(Image image, string clsName = null, int x = 0, int y = 0, string mark = null, long id = 0)
+        {
+
+            ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat, id)
+            {
+                ClassName = clsName == null ? String.Format("c{0}", _items.Count + 1) : clsName,
+                Mark = mark
+                //ShowHeight = image.Height,
+                //ShowWidth = image.Width,
+            };
+            _items.Add(ii);
+            PictureBox pic = new PictureBox();
+            pic.Image = image;
+            pic.SendToBack();
+            pic.BackColor = Color.Transparent;
+            pic.Tag = ii;
+            pic.Name = String.Format("pic{0}", ii.Id);
+            pic.Parent = this;
+            //button.BackColor = Color.White;
+            pic.ForeColor = Color.Transparent;
+            pic.Size = new Size(image.Width, image.Height);
+            pic.SizeMode = PictureBoxSizeMode.CenterImage;
+            pic.Location = (x > 0 || y > 0) ? new Point(x, y) : _nextLocation;
+            pic.Margin = new Padding(0);
+            pic.Padding = new Padding(_padding);
+            pic.Width = pic.Image.Width + pic.Padding.Left + pic.Padding.Right;
+            pic.Height = pic.Image.Height + pic.Padding.Top + pic.Padding.Bottom;
+            pic.MouseDown += new MouseEventHandler(this.pic_MouseDown);
+            pic.MouseUp += new MouseEventHandler(this.pic_MouseUp);
+            pic.MouseMove += new MouseEventHandler(this.pic_MouseMove);
+            //button.PreviewKeyDown += new PreviewKeyDownEventHandler(this.pic_PreviewKeyDown);
+
+            pic.LocationChanged += new EventHandler(this.pic_LocationChanged);
+
+            pic.TabStop = false;
+            pic.Cursor = Cursors.SizeAll;
+
+            this.Controls.Add(pic);
+
+            ImageChange(new ImageArgs(pic, OperationAction.Added, MouseClickType.MouseLeftUp));
+
+
+            _nextLocation = new Point(_nextLocation.X + pic.Width, _nextLocation.Y);
+            if (_nextLocation.X > this.Width)
+            {
+                _nextLocation = new Point(0, _nextLocation.Y + pic.Height);
+            }
+
+        }
+
+        #endregion
+
+        #region - 其他方法 -
+        /// <summary>
+        /// 完成配色修改
+        /// </summary>
+        public void ChangeColor(GridStyle gridStyle)
+        {
+            _gridStyle = gridStyle;
+            Invalidate();
+        }
+
+        /// <summary>
+        /// 根据ID删除
+        /// </summary>
+        /// <param name="id"></param>
+        public void RemoveImage(long id)
+        {
+            Controls.RemoveByKey(String.Format("pic{0}", id));
+        }
+
+        public void SelectItem(long id)
+        {
+            Control[] cItems = Controls.Find(String.Format("pic{0}", id), false);
+            if (cItems != null)
+                foreach (PictureBox c in cItems)
+                {
+                    c.Focus();
+                    c.BringToFront();
+                    _activeBox = c;
+                }
+        }
+
+        /// <summary>
+        /// 清空
+        /// </summary>
+        public void Clear()
+        {
+            _items.Clear();
+            Controls.Clear();
+        }
+
+        #endregion
+
+        #region - 保存图片 -
+        /// <summary>
+        /// 保存图片
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="imgCodec"></param>
+        /// <param name="encoderParames"></param>
+        public void SaveImage(string path, ImageCodecInfo imgCodec, EncoderParameters encoderParames)
+        {
+
+            Image image = new Bitmap(DisplayRectangle.Width, DisplayRectangle.Height);
+            Graphics graphics = Graphics.FromImage(image);
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            graphics.SmoothingMode = SmoothingMode.HighQuality;
+            graphics.Clear(Color.Transparent);
+            foreach (PictureBox button in this.Controls)
+            {
+                Image btn_image = button.Image;
+                ImageItem tag = button.Tag as ImageItem;
+                if (btn_image == null || tag == null)
+                    continue;
+
+                graphics.DrawImage(btn_image, tag.X, tag.Y, tag.ShowWidth, tag.ShowHeight);
+            }
+            graphics.Save();
+            graphics.Dispose();
+
+            Rectangle r = Rectangle;
+            int width = r.Width;
+            int height = r.Height;
+            Bitmap bitmap = new Bitmap(width, height);
+            Graphics graphics2 = Graphics.FromImage(bitmap);
+            graphics2.DrawImage(image, new Rectangle(0, 0, width, height), new Rectangle(r.X, r.Y, width, height), GraphicsUnit.Pixel);
+            graphics2.Dispose();
+
+            bitmap.Save(path, imgCodec, encoderParames);
+        }
+
+        #endregion
     }
 
 
-
+    /// <summary>
+    /// 事件传递参数
+    /// </summary>
     public class ImageArgs : EventArgs
     {
         public ImageArgs() { }
@@ -439,6 +538,9 @@ namespace CSSSatyr.MyControls
         public MouseClickType MouseClickType { get; set; }
     }
 
+    /// <summary>
+    /// 操作动作
+    /// </summary>
     public enum OperationAction
     {
         None = 1,
@@ -460,6 +562,9 @@ namespace CSSSatyr.MyControls
         Selected = 4,
     }
 
+    /// <summary>
+    /// 鼠标点击类型
+    /// </summary>
     public enum MouseClickType
     {
         None = 0,

@@ -153,9 +153,19 @@ namespace CSSSatyr.MyControls
             get { return _value; }
             set
             {
-                _value = value > _maxValue ? _maxValue : value < _minValue ? _minValue : value;
-                updateBarLocation(_value, _minValue, _maxValue);
-                Invalidate();
+                if (value != _value)
+                {
+                    int _oldValue = _value;
+                    _value = value > _maxValue ? _maxValue : value < _minValue ? _minValue : value;
+                    updateBarLocation(_value, _minValue, _maxValue);
+                    
+                    float _percent = 0f;
+                    if (value - _minValue != 0)
+                        _percent = (float)(value - _minValue) / (_maxValue - _minValue);
+                    ValueChange(new EasyTrackBarValueChangedArgs() { OldValue = _oldValue, NewValue = _value, Percent = _percent });
+
+                    Invalidate();
+                }
             }
         }
 
@@ -348,10 +358,10 @@ namespace CSSSatyr.MyControls
         /// </summary>
         private void updateBarLocation(int value, int minValue, int maxValue)
         {
-            float v = 0f;
+            float _percent = 0f;
             if (value - minValue != 0)
-                v = (float)(value - minValue) / (maxValue - minValue);
-            _nowPoint = new Point(Convert.ToInt32((_barMaxX - _barMinX) * v) + _barMinX, _nowPoint.Y);
+                _percent = (float)(value - minValue) / (maxValue - minValue);
+            _nowPoint = new Point(Convert.ToInt32((_barMaxX - _barMinX) * _percent) + _barMinX, _nowPoint.Y);
         }
 
         /// <summary>

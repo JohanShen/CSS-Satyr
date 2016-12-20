@@ -13,6 +13,7 @@ using CSSSatyr.Models;
 using CSSSatyr.Extends;
 using CSSSatyr.MyControls;
 using CSSSatyr.Filemeta.v1;
+using System.Threading;
 
 namespace CSSSatyr
 {
@@ -26,8 +27,14 @@ namespace CSSSatyr
             tsslSpaceLabel.Text = "";
             easyTrackBar1.Value = Global.GridSizeNum;
             _defaultGroup = CommonLib.CreateNewProject(listView1);
+            ReWriteTitle();
 
-            this.MainPictureBox.ImageChanged += new MyControls.ImageChangeHandler<MyControls.ImageArgs>(MainPictureBox_ImageSelected);
+            this.MainPictureBox.ImageChanged += new ImageChangeHandler<ImageArgs>(MainPictureBox_ImageSelected);
+        }
+
+        private void ReWriteTitle()
+        {
+            this.Text = String.Format("{3}{0} - {1} v2 beta", _defaultGroup.Header, Global.ProductName, Global.ProductVersion, Global.ProjectSaved ? "" : "*");
         }
 
         private void MainPictureBox_ImageSelected(object sender, MyControls.ImageArgs e)
@@ -39,6 +46,9 @@ namespace CSSSatyr
             ImageItem imgItem = e.Control.Tag as ImageItem;
             if (imgItem == null)
                 return;
+
+            Global.ProjectSaved = false;
+            ReWriteTitle();
 
             switch (e.Action)
             {
@@ -156,34 +166,12 @@ namespace CSSSatyr
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Image image = new Bitmap(this.MainPictureBox.DisplayRectangle.Width, this.MainPictureBox.DisplayRectangle.Height);
-            Graphics graphics = Graphics.FromImage(image);
-            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            graphics.SmoothingMode = SmoothingMode.HighQuality;
-            graphics.Clear(Color.Transparent);
-            foreach (PictureBox button in this.MainPictureBox.Controls)
-            {
-                Image btn_image = button.Image;
-                ImageItem tag = button.Tag as ImageItem;
-                if (btn_image == null || tag == null)
-                    continue;
-
-                graphics.DrawImage(btn_image, tag.X, tag.Y, tag.ShowWidth, tag.ShowHeight);
-            }
-            graphics.Save();
-            graphics.Dispose();
             EncoderParameters encoderParams = new EncoderParameters(2);
             encoderParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100);
             encoderParams.Param[1] = new EncoderParameter(System.Drawing.Imaging.Encoder.Compression, (long)EncoderValue.CompressionLZW);
             ImageCodecInfo codecInfo = CommonLib.GetCodecInfo("image/png");
-            int width = image.Width;// this.imgSize.MaxX - this.imgSize.MinX;
-            int height = image.Height;// this.imgSize.MaxY - this.imgSize.MinY;
-            Bitmap bitmap = new Bitmap(width, height);
-            Graphics graphics2 = Graphics.FromImage(bitmap);
-            graphics2.DrawImage(image, new Rectangle(0, 0, width, height), new Rectangle(0, 0, width, height), GraphicsUnit.Pixel);
-            graphics2.Dispose();
-            //text = text + "." + selectedItem.Value;
-            bitmap.Save("d:\\123.png", codecInfo, encoderParams);
+
+            MainPictureBox.SaveImage(String.Format("d:\\{0}.png", Guid.NewGuid().ToString()), codecInfo, encoderParams);
         }
 
 
@@ -244,7 +232,7 @@ namespace CSSSatyr
             if (e.OldValue != e.NewValue)
             {
                 Global.GridSizeNum = e.NewValue;
-                tsslGridSize.Text = String.Format("GridSize:{0}", e.NewValue);
+                tsslGridSize.Text = String.Format("网格大小:{0}", e.NewValue);
                 MainPictureBox.Invalidate();
             }
         }
@@ -266,54 +254,75 @@ namespace CSSSatyr
 
         private void saveProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Project p = new Project();
-            p.Author = "沈秋寒";
-            p.AutoSorption = true;
-            p.CompressType = 1;
-            p.CreateTime = CommonLib.ToUnixTime(DateTime.Now);
-            p.DefaultCssName = "csss_";
-            p.GridSizeNum = Global.GridSizeNum;
-            p.Language = "zh-cn";
-            p.LastTime = CommonLib.ToUnixTime(DateTime.Now);
-            p.Name = _defaultGroup.Header;
-            p.ShowGrid = true;
-            p.ShowSider = true;
-            p.SorptionNum = Global.AutoAlignSpaceNum;
-            p.GridStyleName = Global.GridStyle.Name;
-            p.GridBgColor = CommonLib.ColorToInt( Global.GridStyle.BgColor);
-            p.GridLineColor = CommonLib.ColorToInt(Global.GridStyle.LineColor);
-            p.GridLineWidth = Global.GridStyle.LineWidth;
-
-            p.ExtendInfos.Add(new ExtendInfo() { Name = "TestA", Value = "ValueA" });
-            p.ExtendInfos.Add(new ExtendInfo() { Name = "测试B", Value = "值B" });
-
-            ImagePanel ip = new ImagePanel();
-            ip.Name = "Default Panel(1)";
-            foreach (PictureBox c in MainPictureBox.Controls)
+            if (MainPictureBox.Controls.Count == 0
+                && MessageBox.Show("项目为空，确定要保存工程吗？", "空项目", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
             {
-                ImageItem ii = c.Tag as ImageItem;
-                Image img = c.Image;
-                if (ii == null || img == null)
-                    continue;
-                ip.Images.Add(new ImageObj()
-                {
-                    CreateTime = CommonLib.ToUnixTime(DateTime.Now),
-                    CssName = ii.ClassName,
-                    Height = ii.Height,
-                    ImageType = CommonLib.GetImageMimeTypeIndex(ii.ImageType.MimeType),
-                    Key = ii.Id,// BitConverter.ToInt64(Guid.NewGuid().ToByteArray(), 0),
-                    Mark = ii.Mark,
-                    ShowHeight = ii.ShowHeight,
-                    ShowWidth = ii.ShowWidth,
-                    Width = ii.Width,
-                    X = ii.X,
-                    Y = ii.Y,
-                    Content = CommonLib.ImageToBytes(img)
-                });
+                return;
             }
-            p.Panels.Add(ip);
 
-            p.SaveToFile("d:\\test.cssp", true);
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.CheckFileExists = false;
+            saveFileDialog.SupportMultiDottedExtensions = false;
+            saveFileDialog.Filter = "CSS-Satry Project File(2016)|*.cssp";
+            if (String.IsNullOrEmpty(Global.SavedPath) && saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Global.SavedPath = saveFileDialog.FileName;
+            }
+            if (String.IsNullOrEmpty(Global.SavedPath) == false)
+            {
+                Project p = new Project();
+                p.Author = "沈秋寒";
+                p.AutoSorption = true;
+                p.CompressType = 1;
+                p.CreateTime = CommonLib.ToUnixTime(DateTime.Now);
+                p.DefaultCssName = "csss_";
+                p.GridSizeNum = Global.GridSizeNum;
+                p.Language = "zh-cn";
+                p.LastTime = CommonLib.ToUnixTime(DateTime.Now);
+                p.Name = _defaultGroup.Header;
+                p.ShowGrid = true;
+                p.ShowSider = true;
+                p.SorptionNum = Global.AutoAlignSpaceNum;
+                p.GridStyleName = Global.GridStyle.Name;
+                p.GridBgColor = CommonLib.ColorToInt(Global.GridStyle.BgColor);
+                p.GridLineColor = CommonLib.ColorToInt(Global.GridStyle.LineColor);
+                p.GridLineWidth = Global.GridStyle.LineWidth;
+
+                p.ExtendInfos.Add(new ExtendInfo() { Name = "TestA", Value = "ValueA" });
+                p.ExtendInfos.Add(new ExtendInfo() { Name = "测试B", Value = "值B" });
+
+                ImagePanel ip = new ImagePanel();
+                ip.Name = "Default Panel";
+                foreach (PictureBox c in MainPictureBox.Controls)
+                {
+                    ImageItem ii = c.Tag as ImageItem;
+                    Image img = c.Image;
+                    if (ii == null || img == null)
+                        continue;
+                    ip.Images.Add(new ImageObj()
+                    {
+                        CreateTime = CommonLib.ToUnixTime(DateTime.Now),
+                        CssName = ii.ClassName,
+                        Height = ii.Height,
+                        ImageType = CommonLib.GetImageMimeTypeIndex(ii.ImageType.MimeType),
+                        Key = ii.Id,
+                        Mark = ii.Mark,
+                        ShowHeight = ii.ShowHeight,
+                        ShowWidth = ii.ShowWidth,
+                        Width = ii.Width,
+                        X = ii.X,
+                        Y = ii.Y,
+                        Content = CommonLib.ImageToBytes(img)
+                    });
+                }
+                p.Panels.Add(ip);
+
+                p.SaveToFile(Global.SavedPath, true);
+
+                Global.ProjectSaved = true;
+                ReWriteTitle();
+            }
         }
 
         private void blackToolStripMenuItem_Click(object sender, EventArgs e)
@@ -333,40 +342,55 @@ namespace CSSSatyr
 
         private void openProjectToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            byte[] buffer;
-            using (FileStream fs = new FileStream("d:\\test.cssp", FileMode.Open, FileAccess.Read, FileShare.None))
+            OpenFileDialog openfileDialog = new OpenFileDialog();
+            openfileDialog.AddExtension = true;
+            openfileDialog.CheckFileExists = true;
+            openfileDialog.Multiselect = false;
+            openfileDialog.Filter = "CSS-Satry Project File(2016)|*.cssp";
+
+            if (openfileDialog.ShowDialog() == DialogResult.OK)
             {
-                buffer = new byte[fs.Length];
-                fs.Read(buffer, 0, (int)fs.Length);
-                fs.Close();
+                //TODO: 添加打开错误异常
+                byte[] buffer;
+                using (FileStream fs = new FileStream(openfileDialog.FileName, FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    buffer = new byte[fs.Length];
+                    fs.Read(buffer, 0, (int)fs.Length);
+                    fs.Close();
+                }
+                Project p = Project.ReadFromBytes(buffer);
+
+                _defaultGroup = CommonLib.CreateNewProject(listView1, p.Name);
+
+                MainPictureBox.Clear();
+                easyTrackBar1.Value = Global.GridSizeNum = p.GridSizeNum;
+                foreach (ImagePanel panel in p.Panels)
+                    foreach (ImageObj io in panel.Images)
+                        MainPictureBox.InsertImage(io.Content, io.CssName, io.X, io.Y, io.Mark, io.Key);
+
+                if (tsbtnShowGrid.Checked != p.ShowGrid)
+                {
+                    tsbtnShowGrid.Checked = p.ShowGrid;
+                    tsbtnShowGrid_Click(tsbtnShowGrid, e);
+                }
+                if (tsbtnAutoSorption.Checked != p.AutoSorption)
+                {
+                    tsbtnAutoSorption.Checked = p.AutoSorption;
+                    tsbtnAutoSorption_CheckedChanged(tsbtnAutoSorption, e);
+                }
+                if (tsbShowLeftTree.Checked != p.ShowSider)
+                {
+                    tsbShowLeftTree.Checked = p.ShowSider;
+                    toolStripButton1_CheckStateChanged(tsbShowLeftTree, e);
+                }
+                GridStyle gs = new GridStyle() { BgColor = CommonLib.IntToColor(p.GridBgColor), LineColor = CommonLib.IntToColor(p.GridLineColor), LineWidth = p.GridLineWidth, Name = p.GridStyleName, ShowGrid = p.ShowGrid };
+                MainPictureBox.ChangeColor(gs);
+                Global.GridStyle = gs;
+
+                Global.SavedPath = openfileDialog.FileName;
+                Global.ProjectSaved = true;
+                ReWriteTitle();
             }
-            Project p = Project.ReadFromBytes(buffer);
-
-            _defaultGroup = CommonLib.CreateNewProject(listView1, p.Name);
-
-
-            easyTrackBar1.Value = Global.GridSizeNum = p.GridSizeNum;
-            foreach (ImagePanel panel in p.Panels)
-                foreach (ImageObj io in panel.Images)
-                    MainPictureBox.InsertImage(io.Content, io.CssName, io.X, io.Y, io.Mark, io.Key);
-
-            if (tsbtnShowGrid.Checked != p.ShowGrid)
-            {
-                tsbtnShowGrid.Checked = p.ShowGrid;
-                tsbtnShowGrid_Click(tsbtnShowGrid, e);
-            }
-            if (tsbtnAutoSorption.Checked != p.AutoSorption)
-            {
-                tsbtnAutoSorption.Checked = p.AutoSorption;
-                tsbtnAutoSorption_CheckedChanged(tsbtnAutoSorption, e);
-            }
-            if (tsbShowLeftTree.Checked != p.ShowSider)
-            {
-                tsbShowLeftTree.Checked = p.ShowSider;
-                toolStripButton1_CheckStateChanged(tsbShowLeftTree, e);
-            }
-            MainPictureBox.ChangeColor(new GridStyle() { BgColor = CommonLib.IntToColor(p.GridBgColor), LineColor = CommonLib.IntToColor(p.GridLineColor), LineWidth = p.GridLineWidth, Name = p.GridStyleName, ShowGrid = p.ShowGrid });
-
 
         }
 
@@ -421,6 +445,23 @@ namespace CSSSatyr
         private void tsbtnReOrder_Click(object sender, EventArgs e)
         {
             reOrderImagesToolStripMenuItem_Click(reOrderImagesToolStripMenuItem, e);
+        }
+
+        private void newProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //重新启动一个实例
+
+            Thread thtmp = new Thread(new ParameterizedThreadStart(run));
+            object appName = Application.ExecutablePath;
+            thtmp.Start(appName);
+        }
+
+
+        private void run(Object obj)
+        {
+            Process ps = new Process();
+            ps.StartInfo.FileName = obj.ToString();
+            ps.Start();
         }
     }
 }

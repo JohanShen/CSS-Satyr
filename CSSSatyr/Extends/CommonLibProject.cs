@@ -16,7 +16,7 @@ namespace CSSSatyr.Extends
         /// <param name="listView1"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static ListViewGroup CreateNewProject(ListView listView1, string name= "New project(1)")
+        public static ListViewGroup CreateNewProject(ListView listView1, string name= "New project")
         {
             listView1.Clear();
             //新建一个项目
