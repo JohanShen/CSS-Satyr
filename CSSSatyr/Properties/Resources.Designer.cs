@@ -63,6 +63,16 @@ namespace CSSSatyr.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap alert_information_16px {
+            get {
+                object obj = ResourceManager.GetObject("alert_information_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap application_edit_16 {
             get {
                 object obj = ResourceManager.GetObject("application_edit_16", resourceCulture);
@@ -256,6 +266,16 @@ namespace CSSSatyr.Properties {
         internal static System.Drawing.Bitmap infomation_32 {
             get {
                 object obj = ResourceManager.GetObject("infomation_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap information_16px {
+            get {
+                object obj = ResourceManager.GetObject("information_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

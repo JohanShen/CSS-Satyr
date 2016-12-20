@@ -77,9 +77,9 @@
             this.tsbtnAutoSorption = new System.Windows.Forms.ToolStripButton();
             this.tsbtnShowGrid = new System.Windows.Forms.ToolStripButton();
             this.sslAutoSorption = new System.Windows.Forms.StatusStrip();
-            this.tsStatusLangLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsStatusAutoSorption = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsStatusNewVersionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslSpaceLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsStatusAutoSorption = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslGridSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.MainSplitContainer.Panel1.SuspendLayout();
@@ -206,6 +206,7 @@
             this.exportImagesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.exportImagesToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.exportImagesToolStripMenuItem.Text = "ExportImage";
+            this.exportImagesToolStripMenuItem.Click += new System.EventHandler(this.exportImagesToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -255,6 +256,7 @@
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -487,7 +489,7 @@
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 222;
+            this.LeftSplitContainer.SplitterDistance = 254;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -500,7 +502,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 214);
+            this.listView1.Size = new System.Drawing.Size(242, 246);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -514,7 +516,7 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 172);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 140);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
@@ -717,9 +719,9 @@
             // 
             this.sslAutoSorption.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.sslAutoSorption.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsStatusLangLabel,
-            this.tsStatusAutoSorption,
+            this.tsStatusNewVersionLabel,
             this.tsslSpaceLabel,
+            this.tsStatusAutoSorption,
             this.tsslGridSize});
             this.sslAutoSorption.Location = new System.Drawing.Point(0, 476);
             this.sslAutoSorption.Name = "sslAutoSorption";
@@ -728,11 +730,20 @@
             this.sslAutoSorption.TabIndex = 2;
             this.sslAutoSorption.Text = "statusStrip1";
             // 
-            // tsStatusLangLabel
+            // tsStatusNewVersionLabel
             // 
-            this.tsStatusLangLabel.Name = "tsStatusLangLabel";
-            this.tsStatusLangLabel.Size = new System.Drawing.Size(135, 20);
-            this.tsStatusLangLabel.Text = "CurrentLanguage";
+            this.tsStatusNewVersionLabel.Image = global::CSSSatyr.Properties.Resources.information_16px;
+            this.tsStatusNewVersionLabel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsStatusNewVersionLabel.Name = "tsStatusNewVersionLabel";
+            this.tsStatusNewVersionLabel.Size = new System.Drawing.Size(114, 20);
+            this.tsStatusNewVersionLabel.Text = "NowVersion";
+            // 
+            // tsslSpaceLabel
+            // 
+            this.tsslSpaceLabel.Name = "tsslSpaceLabel";
+            this.tsslSpaceLabel.Size = new System.Drawing.Size(533, 20);
+            this.tsslSpaceLabel.Spring = true;
+            this.tsslSpaceLabel.Text = "toolStripStatusLabel1";
             // 
             // tsStatusAutoSorption
             // 
@@ -740,18 +751,11 @@
             this.tsStatusAutoSorption.Size = new System.Drawing.Size(109, 20);
             this.tsStatusAutoSorption.Text = "AutoSorption";
             // 
-            // tsslSpaceLabel
-            // 
-            this.tsslSpaceLabel.Name = "tsslSpaceLabel";
-            this.tsslSpaceLabel.Size = new System.Drawing.Size(499, 20);
-            this.tsslSpaceLabel.Spring = true;
-            this.tsslSpaceLabel.Text = "toolStripStatusLabel1";
-            // 
             // tsslGridSize
             // 
             this.tsslGridSize.Name = "tsslGridSize";
-            this.tsslGridSize.Size = new System.Drawing.Size(82, 20);
-            this.tsslGridSize.Text = "GridSize:0";
+            this.tsslGridSize.Size = new System.Drawing.Size(69, 20);
+            this.tsslGridSize.Text = "GridSize";
             // 
             // MainForm
             // 
@@ -764,6 +768,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "CSS Satyr v2.0 beta";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -822,7 +827,7 @@
         private System.Windows.Forms.StatusStrip sslAutoSorption;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem choiceLanguageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel tsStatusLangLabel;
+        private System.Windows.Forms.ToolStripStatusLabel tsStatusNewVersionLabel;
         private System.Windows.Forms.ToolStripMenuItem defaultLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportImagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel tsStatusAutoSorption;

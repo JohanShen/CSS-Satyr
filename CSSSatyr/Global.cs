@@ -14,7 +14,6 @@ namespace CSSSatyr
         static Global(){}
 
         private static int _gridSizeNum = 25;
-        private static int _autoAlignSpaceNum = 25;
         private static AlignMode _alignMode = AlignMode.FreeAlign;
         private static string _lang = "en-US";
         private static GridStyle _gridStyle = CommonLib.GetGridStyle();
@@ -65,8 +64,7 @@ namespace CSSSatyr
         /// </summary>
         public static int AutoAlignSpaceNum
         {
-            get { return _autoAlignSpaceNum; }
-            set { _autoAlignSpaceNum = value; }
+            get { return _gridSizeNum; }
         }
 
         /// <summary>

@@ -27,6 +27,8 @@ namespace CSSSatyr
             tsslSpaceLabel.Text = "";
             easyTrackBar1.Value = Global.GridSizeNum;
             _defaultGroup = CommonLib.CreateNewProject(listView1);
+            tsStatusNewVersionLabel.Text = String.Format("当前版本:{0}", Global.ProductVersion);
+            Global.ProjectSaved = true;
             ReWriteTitle();
 
             this.MainPictureBox.ImageChanged += new ImageChangeHandler<ImageArgs>(MainPictureBox_ImageSelected);
@@ -34,7 +36,7 @@ namespace CSSSatyr
 
         private void ReWriteTitle()
         {
-            this.Text = String.Format("{3}{0} - {1} v2 beta", _defaultGroup.Header, Global.ProductName, Global.ProductVersion, Global.ProjectSaved ? "" : "*");
+            this.Text = String.Format("{3}{0} {4} - {1} v2.0 beta", _defaultGroup.Header, Global.ProductName, Global.ProductVersion, Global.ProjectSaved ? "" : "*", Global.SavedPath);
         }
 
         private void MainPictureBox_ImageSelected(object sender, MyControls.ImageArgs e)
@@ -171,7 +173,7 @@ namespace CSSSatyr
             encoderParams.Param[1] = new EncoderParameter(System.Drawing.Imaging.Encoder.Compression, (long)EncoderValue.CompressionLZW);
             ImageCodecInfo codecInfo = CommonLib.GetCodecInfo("image/png");
 
-            MainPictureBox.SaveImage(String.Format("d:\\{0}.png", Guid.NewGuid().ToString()), codecInfo, encoderParams);
+            MainPictureBox.SavePanelToImage(String.Format("d:\\{0}.png", Guid.NewGuid().ToString()), codecInfo, encoderParams);
         }
 
 
@@ -308,8 +310,8 @@ namespace CSSSatyr
                         ImageType = CommonLib.GetImageMimeTypeIndex(ii.ImageType.MimeType),
                         Key = ii.Id,
                         Mark = ii.Mark,
-                        ShowHeight = ii.ShowHeight,
-                        ShowWidth = ii.ShowWidth,
+                        ShowHeight = ii.Height,
+                        ShowWidth = ii.Width,
                         Width = ii.Width,
                         X = ii.X,
                         Y = ii.Y,
@@ -342,6 +344,13 @@ namespace CSSSatyr
 
         private void openProjectToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+
+            if (Global.ProjectSaved == false && MessageBox.Show(CommonLib.GetLocalString("project_no_saved"), CommonLib.GetLocalString("confirm_windows_title"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+            {
+                return;
+            }
+
+
             OpenFileDialog openfileDialog = new OpenFileDialog();
             openfileDialog.AddExtension = true;
             openfileDialog.CheckFileExists = true;
@@ -450,10 +459,9 @@ namespace CSSSatyr
         private void newProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //重新启动一个实例
-
-            Thread thtmp = new Thread(new ParameterizedThreadStart(run));
+            Thread t = new Thread(new ParameterizedThreadStart(run));
             object appName = Application.ExecutablePath;
-            thtmp.Start(appName);
+            t.Start(appName);
         }
 
 
@@ -462,6 +470,42 @@ namespace CSSSatyr
             Process ps = new Process();
             ps.StartInfo.FileName = obj.ToString();
             ps.Start();
+        }
+
+        private void exportImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MainPictureBox.ActiveControlTag == null)
+            {
+                MessageBox.Show(CommonLib.GetLocalString("no_object"), CommonLib.GetLocalString("alert_windows_title"), MessageBoxButtons.OK);
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.CheckFileExists = false;
+            saveFileDialog.SupportMultiDottedExtensions = false;
+            //saveFileDialog.Filter = "CSS-Satry Project File(2016)|*.*";
+            saveFileDialog.FileName = String.Format( "{0}{1}", MainPictureBox.ActiveControlTag.ClassName, MainPictureBox.ActiveControlTag.ImageType.ExtName );
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                MainPictureBox.SaveSingleImage(saveFileDialog.FileName);
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Global.ProjectSaved == false)
+            {
+                if (MessageBox.Show(CommonLib.GetLocalString("project_no_saved"), CommonLib.GetLocalString("confirm_windows_title"), MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

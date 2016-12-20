@@ -165,6 +165,8 @@
     <Content Include="APP.ico" />
     <Content Include="Lang\en_US.txt" />
     <Content Include="Lang\zh_CN.txt" />
+    <None Include="Resources\information_16px.ico" />
+    <None Include="Resources\alert_information_16px.ico" />
     <None Include="Resources\G_Letter_16px.ico" />
     <None Include="Resources\B_Letter_16px.ico" />
     <None Include="Resources\W_Letter_16px.ico" />

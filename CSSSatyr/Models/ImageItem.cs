@@ -34,7 +34,15 @@ namespace CSSSatyr.Models
         }
 
         [PropertyAttibute("ID", "唯一ID")]
-        public long Id { get { if (_id == 0) _id = BitConverter.ToInt64(Guid.NewGuid().ToByteArray(), 0); return _id; } }
+        public long Id
+        {
+            get
+            {
+                if (_id == 0)
+                    _id = BitConverter.ToInt64(Guid.NewGuid().ToByteArray(), 0);
+                return _id;
+            }
+        }
 
         /// <summary>
         /// 类名
@@ -68,18 +76,6 @@ namespace CSSSatyr.Models
         /// </summary>
         [ReadOnly(true), PropertyAttibute("实际高", "图片的实际高度")]
         public int Height { get { return _height; } }
-
-        /// <summary>
-        /// 显示宽
-        /// </summary>
-        [ReadOnly(true), PropertyAttibute("显示宽","图片的显示宽度")]
-        public int ShowWidth { get { return _width; } }
-
-        /// <summary>
-        /// 显示高
-        /// </summary>
-        [ReadOnly(true), PropertyAttibute("显示高", "图片的显的宽度")]
-        public int ShowHeight { get { return _height; }}
 
         private int _x;
         /// <summary>

@@ -45,6 +45,8 @@ namespace CSSSatyr.MyControls
             base.MouseWheel += new MouseEventHandler(PicturePanel_MouseWheel);
             base.ControlAdded += new ControlEventHandler(PicturePanel_ControlAdded);
             base.ControlRemoved += new ControlEventHandler(PicturePanel_ControlRemoved);
+            base.MouseDown += new MouseEventHandler(PicturePanel_MouseDown);
+            //base.MouseUp += new MouseEventHandler(PicturePanel_MouseDown);
             //base.PreviewKeyDown += new PreviewKeyDownEventHandler(PicturePanel_PreviewKeyDown);
         }
 
@@ -59,9 +61,9 @@ namespace CSSSatyr.MyControls
                 foreach (ImageItem item in _items)
                 {
                     xList.Add(item.X);
-                    xList.Add(item.X + item.ShowWidth);
+                    xList.Add(item.X + item.Width);
                     yList.Add(item.Y);
-                    yList.Add(item.Y + item.ShowHeight);
+                    yList.Add(item.Y + item.Height);
                 }
                 xList.Sort();
                 yList.Sort();
@@ -72,12 +74,36 @@ namespace CSSSatyr.MyControls
             }
         }
 
+        /// <summary>
+        /// 选中控件
+        /// </summary>
+        public PictureBox ActiveControl
+        {
+            get { return _activeBox; }
+        }
+
+        /// <summary>
+        /// 选中控件的 ImageItem 对象
+        /// </summary>
+        public ImageItem ActiveControlTag
+        {
+            get
+            {
+                return _activeBox?.Tag as ImageItem;
+            }
+        }
+
         #region - 相应事件 -
         public void PKeyDown(Keys keyData)
         {
             this.PicturePanel_PreviewKeyDown(this, new PreviewKeyDownEventArgs(keyData));
         }
 
+        /// <summary>
+        /// 键盘调整图片位置和删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PicturePanel_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             var button = _activeBox;
@@ -154,6 +180,23 @@ namespace CSSSatyr.MyControls
             }
         }
 
+
+
+        private void PicturePanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (_activeBox != null)
+            {
+                if (MouseButtons.Right == e.Button)
+                    _activeBox.BackColor = Color.Red;
+            }
+        }
+
+
+        /// <summary>
+        /// 拖入图片和文件夹
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PicturePanel_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Bitmap) || e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -180,13 +223,21 @@ namespace CSSSatyr.MyControls
                 button.BackColor = Color.Red;
                 button.Focus();
                 button.BringToFront();
+
+                if (_activeBox != null)
+                    _activeBox.BackColor = Color.Transparent;
                 //button.Focus();
             }
+            else if (_activeBox != null && MouseButtons.Right == e.Button)
+            {
+                _activeBox.BackColor = Color.Red;
+            }
         }
+
         private void pic_MouseUp(object sender, MouseEventArgs e)
         {
             var button = sender as PictureBox;
-            if (button != null)
+            if (button != null && MouseButtons.Left == e.Button)
             {
                 _activeBox = button;
                 //this.propertyGrid1.SelectedObject = button.Tag;
@@ -199,6 +250,11 @@ namespace CSSSatyr.MyControls
             }
         }
 
+        /// <summary>
+        /// 拖动图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pic_MouseMove(object sender, MouseEventArgs e)
         {
             var button = sender as PictureBox;
@@ -207,19 +263,28 @@ namespace CSSSatyr.MyControls
                 Point mousePosition = MousePosition;
                 mousePosition.Offset(_mouseOffset);
                 Point point = this.PointToClient(mousePosition);
-                //Point point = new Point(e.X, e.Y);
 
 
                 int boxX = this.DisplayRectangle.X;
                 int boxY = this.DisplayRectangle.Y;
-
-                Console.WriteLine(String.Format("{0}, {1}", boxX, boxY));
+                int sNum = Global.GridSizeNum;
 
 
                 if (Global.AlignMode == AlignMode.AutoAlign)
                 {
-                    point.X = CommonLib.GetSpaceNum(point.X);
-                    point.Y = CommonLib.GetSpaceNum(point.Y);
+
+                    int diffX = 0, diffY = 0;
+
+                    if (boxY < 0)
+                    {
+                        diffY = Math.Abs(boxY) % sNum;
+                    }
+                    if (boxX < 0)
+                    {
+                        diffX = Math.Abs(boxX) % sNum;
+                    }
+                    point.X = CommonLib.GetSpaceNum(point.X) - diffX;
+                    point.Y = CommonLib.GetSpaceNum(point.Y) - diffY;
                 }
                 if (point.X < 0)
                 {
@@ -292,7 +357,10 @@ namespace CSSSatyr.MyControls
             if (ii != null && _items.Count > 0)
             {
                 _items.Remove(ii);
-                //TODO: 重新计算最新值的坐标
+                if (e.Control.Equals(_activeBox))
+                    _activeBox = null;
+
+                //TODO: 重新计算最新值的坐标 _nextPoint
             }
         }
 
@@ -387,13 +455,11 @@ namespace CSSSatyr.MyControls
 
         public void InsertImage(Image image, string clsName = null, int x = 0, int y = 0, string mark = null, long id = 0)
         {
-
+            _nextLocation = (x > 0 || y > 0) ? new Point(x, y) : _nextLocation;
             ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat, id)
             {
                 ClassName = clsName == null ? String.Format("c{0}", _items.Count + 1) : clsName,
                 Mark = mark
-                //ShowHeight = image.Height,
-                //ShowWidth = image.Width,
             };
             _items.Add(ii);
             PictureBox pic = new PictureBox();
@@ -407,7 +473,7 @@ namespace CSSSatyr.MyControls
             pic.ForeColor = Color.Transparent;
             pic.Size = new Size(image.Width, image.Height);
             pic.SizeMode = PictureBoxSizeMode.CenterImage;
-            pic.Location = (x > 0 || y > 0) ? new Point(x, y) : _nextLocation;
+            pic.Location = _nextLocation;
             pic.Margin = new Padding(0);
             pic.Padding = new Padding(_padding);
             pic.Width = pic.Image.Width + pic.Padding.Left + pic.Padding.Right;
@@ -460,12 +526,18 @@ namespace CSSSatyr.MyControls
         {
             Control[] cItems = Controls.Find(String.Format("pic{0}", id), false);
             if (cItems != null)
+            {
+                if (_activeBox != null)
+                    _activeBox.BackColor = Color.Transparent;
                 foreach (PictureBox c in cItems)
                 {
                     c.Focus();
                     c.BringToFront();
                     _activeBox = c;
                 }
+                if (_activeBox != null)
+                    _activeBox.BackColor = Color.Red;
+            }
         }
 
         /// <summary>
@@ -480,15 +552,34 @@ namespace CSSSatyr.MyControls
         #endregion
 
         #region - 保存图片 -
+        public void SaveSingleImage(string path, long id = 0)
+        {
+            PictureBox pb = _activeBox;
+            if (id != 0)
+            {
+                Control[] cItems = Controls.Find(String.Format("pic{0}", id), false);
+                if (cItems.Length > 0)
+                    pb = cItems[0] as PictureBox;
+            }
+
+            if (pb == null)
+                throw new NullReferenceException(CommonLib.GetLocalString("no_object"));
+
+            Image btn_image = pb.Image;
+            ImageItem tag = pb.Tag as ImageItem;
+
+            btn_image.Save(path);
+        }
+
+
         /// <summary>
         /// 保存图片
         /// </summary>
         /// <param name="path"></param>
         /// <param name="imgCodec"></param>
         /// <param name="encoderParames"></param>
-        public void SaveImage(string path, ImageCodecInfo imgCodec, EncoderParameters encoderParames)
+        public void SavePanelToImage(string path, ImageCodecInfo imgCodec, EncoderParameters encoderParames)
         {
-
             Image image = new Bitmap(DisplayRectangle.Width, DisplayRectangle.Height);
             Graphics graphics = Graphics.FromImage(image);
             graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -501,7 +592,7 @@ namespace CSSSatyr.MyControls
                 if (btn_image == null || tag == null)
                     continue;
 
-                graphics.DrawImage(btn_image, tag.X, tag.Y, tag.ShowWidth, tag.ShowHeight);
+                graphics.DrawImage(btn_image, tag.X, tag.Y, tag.Width, tag.Height);
             }
             graphics.Save();
             graphics.Dispose();
