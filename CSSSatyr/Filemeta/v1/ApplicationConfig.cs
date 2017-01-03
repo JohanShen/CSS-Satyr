@@ -30,6 +30,14 @@ namespace CSSSatyr.Models
         #endregion
 
 
+        #region - 2017/1/3 新增 -
+        /// <summary>
+        /// 最近打开的项目
+        /// </summary>
+        public List<string> LastProjects = new List<string>();
+        #endregion
+
+
         public static ApplicationConfig ReadFromBytes(byte[] buffer)
         {
             ApplicationConfig ac = new ApplicationConfig();
@@ -55,6 +63,17 @@ namespace CSSSatyr.Models
                 ac.GridStyleName = FilemetaCommon.ReadString(br);//网格样式名称
                 ac.GridBgColor = br.ReadInt32();//网格背景颜色
                 ac.GridLineColor = br.ReadInt32();//网格线条颜色
+
+                //2017-1-3
+                int lastprojectsCount = br.ReadInt32();
+                if (ac.LastProjects == null)
+                    ac.LastProjects = new List<string>();
+
+                for (int i = 0; i < lastprojectsCount; i++)
+                {
+                    string path = FilemetaCommon.ReadString(br);
+                    ac.LastProjects.Add(path);
+                }
             }
             return ac;
         }
@@ -79,6 +98,12 @@ namespace CSSSatyr.Models
                 FilemetaCommon.WriteString(bw, GridStyleName);//网格样式名称
                 bw.Write(GridBgColor);//网格背景颜色
                 bw.Write(GridLineColor);//网格线条颜色
+                //2017-1-3
+                bw.Write(LastProjects.Count);
+                foreach (string path in LastProjects)
+                {
+                    FilemetaCommon.WriteString(bw, path);
+                }
 
                 bw.Flush();
                 result = ms.ToArray();
