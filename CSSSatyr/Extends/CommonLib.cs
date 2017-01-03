@@ -4,25 +4,28 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace CSSSatyr.Extends
 {
     public static partial class CommonLib
     {
-        private static Dictionary<ImageFormat, ImageType> _imageTypes = new Dictionary<ImageFormat, ImageType>();
-        private static ImageCodecInfo[] _codecInfo = ImageCodecInfo.GetImageEncoders();
-        private static string[] _mimes = { "Image/Png", "Image/Jpg", "Image/Gif", "Image/Bmp", "Image/X-Icon" };
+        private static Dictionary<ImageFormat, ImageType> imageTypes = new Dictionary<ImageFormat, ImageType>();
+        private static ImageCodecInfo[] codecInfos = ImageCodecInfo.GetImageEncoders();
+        private static string[] mimes = { "Image/Png", "Image/Jpg", "Image/Gif", "Image/Bmp", "Image/X-Icon" };
         private static Dictionary<string, GridStyle> _gridStyles = new Dictionary<string, GridStyle>();
+        private static Regex checkClassName = new Regex("^[a-zA-Z][\\w-_]*$", RegexOptions.Compiled | RegexOptions.Singleline);
+        private static string[] allowExtension = { ".jpg", ".jpeg", ".gif", ".bmp", ".ico", ".png" };
 
         static CommonLib()
         {
             InitLanguage();
 
-            _imageTypes[ImageFormat.Bmp] = new ImageType() { Format = ImageFormat.Bmp, MimeType = "Image/Bmp", ExtName = ".bmp", ImageIndex = 0 };
-            _imageTypes[ImageFormat.Jpeg] = new ImageType() { Format = ImageFormat.Jpeg, MimeType = "Image/Jpeg", ExtName = ".jpg", ImageIndex = 1 };
-            _imageTypes[ImageFormat.Gif] = new ImageType() { Format = ImageFormat.Gif, MimeType = "Image/Gif", ExtName = ".gif", ImageIndex = 2 };
-            _imageTypes[ImageFormat.Png] = new ImageType() { Format = ImageFormat.Png, MimeType = "Image/Png", ExtName = ".png", ImageIndex = 3 };
-            _imageTypes[ImageFormat.Icon] = new ImageType() { Format = ImageFormat.Icon, MimeType = "Image/X-Icon", ExtName = ".ico", ImageIndex = 4 };
+            imageTypes[ImageFormat.Bmp] = new ImageType() { Format = ImageFormat.Bmp, MimeType = "Image/Bmp", ExtName = ".bmp", ImageIndex = 0 };
+            imageTypes[ImageFormat.Jpeg] = new ImageType() { Format = ImageFormat.Jpeg, MimeType = "Image/Jpeg", ExtName = ".jpg", ImageIndex = 1 };
+            imageTypes[ImageFormat.Gif] = new ImageType() { Format = ImageFormat.Gif, MimeType = "Image/Gif", ExtName = ".gif", ImageIndex = 2 };
+            imageTypes[ImageFormat.Png] = new ImageType() { Format = ImageFormat.Png, MimeType = "Image/Png", ExtName = ".png", ImageIndex = 3 };
+            imageTypes[ImageFormat.Icon] = new ImageType() { Format = ImageFormat.Icon, MimeType = "Image/X-Icon", ExtName = ".ico", ImageIndex = 4 };
 
             _gridStyles["default"] = new GridStyle() { BgColor = Color.White, ShowGrid = true, LineColor = Color.Silver, LineWidth = 1, Name = "White(Default)" };
             _gridStyles["gray"] = new GridStyle() { BgColor = Color.Gray, ShowGrid = true, LineColor = Color.Silver, LineWidth = 1, Name = "Gray" };
@@ -53,7 +56,7 @@ namespace CSSSatyr.Extends
             if (String.IsNullOrEmpty(mimeType))
                 return null;
 
-            foreach (ImageCodecInfo ici in _codecInfo)
+            foreach (ImageCodecInfo ici in codecInfos)
             {
                 if (String.Compare(ici.MimeType, mimeType, false) == 0)
                     return ici;
@@ -74,8 +77,8 @@ namespace CSSSatyr.Extends
         /// <returns></returns>
         public static ImageType GetImageType(ImageFormat imageFormat)
         {
-            if (_imageTypes.ContainsKey(imageFormat))
-                return _imageTypes[imageFormat];
+            if (imageTypes.ContainsKey(imageFormat))
+                return imageTypes[imageFormat];
             return null;
         }
 
@@ -164,15 +167,14 @@ namespace CSSSatyr.Extends
 
         public static int GetImageMimeTypeIndex(string imageMime)
         {
-            return Array.IndexOf(_mimes, imageMime);
+            return Array.IndexOf(mimes, imageMime);
         }
 
         public static string GetImageMimeTypeFromIndex(int index)
         {
-            return _mimes[index];
+            return mimes[index];
         }
 
-        private static string[] _allowExtension = { ".jpg", ".jpeg", ".gif", ".bmp", ".ico", ".png" };
         /// <summary>
         /// 是否允许的扩展名
         /// </summary>
@@ -180,7 +182,7 @@ namespace CSSSatyr.Extends
         /// <returns></returns>
         public static bool IsAllowExtension(string extension)
         {
-            return Array.IndexOf(_allowExtension, extension) >= 0;
+            return Array.IndexOf(allowExtension, extension) >= 0;
         }
 
         /// <summary>
@@ -215,15 +217,35 @@ namespace CSSSatyr.Extends
             return r.ToArray();
         }
 
-
+        /// <summary>
+        /// 颜色转成INT
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public static int ColorToInt(Color c)
         {
             return c.ToArgb();
         }
 
+        /// <summary>
+        /// INT 转颜色
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
         public static Color IntToColor(int color)
         {
             return Color.FromArgb(color & 0x0000ff, (color & 0x00ff00) >> 8, (color & 0xff0000) >> 16);
+        }
+
+        /// <summary>
+        /// 是否是CLASS名称
+        /// 目前限制 字母开头 字母数字-_
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static bool IsClassName(string name)
+        {
+            return checkClassName.Match(name).Success;
         }
     }
 }

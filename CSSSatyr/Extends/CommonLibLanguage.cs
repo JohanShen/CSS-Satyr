@@ -26,9 +26,8 @@ namespace CSSSatyr.Extends
         /// 获取本地话语言
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="upperlowerCase"></param>
         /// <returns></returns>
-        public static string GetLocalString(string key, bool upperlowerCase = false)
+        public static string GetLocalString(string key, params string[] paramters)
         {
             string local = Global.Lang;
             string _key = key.ToLower();
@@ -36,7 +35,10 @@ namespace CSSSatyr.Extends
             {
                 Dictionary<string, string> lang = langDic[local];
                 if (lang.ContainsKey(_key))
-                    return lang[_key];
+                {
+                    string str = String.Format(lang[_key], paramters);
+                    return str;
+                }
             }
             return key;
         }

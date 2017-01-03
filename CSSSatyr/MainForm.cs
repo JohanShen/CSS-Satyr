@@ -31,7 +31,7 @@ namespace CSSSatyr
             Global.ProjectSaved = true;
             ReWriteTitle();
 
-            this.MainPictureBox.ImageChanged += new ImageChangeHandler<ImageArgs>(MainPictureBox_ImageSelected);
+            this.MainPictureBox.ImageChanged += new ChangedEventHandler<ImageArgs>(MainPictureBox_ImageSelected);
         }
 
         private void ReWriteTitle()
@@ -372,14 +372,50 @@ namespace CSSSatyr
             if (openfileDialog.ShowDialog() == DialogResult.OK)
             {
                 //TODO: 添加打开错误异常
-                byte[] buffer;
-                using (FileStream fs = new FileStream(openfileDialog.FileName, FileMode.Open, FileAccess.Read, FileShare.None))
+                byte[] buffer = null;
+                try
                 {
-                    buffer = new byte[fs.Length];
-                    fs.Read(buffer, 0, (int)fs.Length);
-                    fs.Close();
+                    using (FileStream fs = new FileStream(openfileDialog.FileName, FileMode.Open, FileAccess.Read, FileShare.None))
+                    {
+                        buffer = new byte[fs.Length];
+                        fs.Read(buffer, 0, (int)fs.Length);
+                        fs.Close();
+                    }
                 }
-                Project p = Project.ReadFromBytes(buffer);
+                catch(Exception ex)
+                {
+                    //将文件读取到流出错
+                    MessageBox.Show(CommonLib.GetLocalString("open_project_file_error_exception", ex.Message), 
+                        CommonLib.GetLocalString("alert_windows_title"), 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                if (buffer == null)
+                {
+                    //
+                    MessageBox.Show(CommonLib.GetLocalString("open_project_file_error_buffer_null"), 
+                        CommonLib.GetLocalString("alert_windows_title"), 
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                Project p = null;
+                try
+                {
+                    p = Project.ReadFromBytes(buffer);
+                }
+                catch (Exception ex)
+                {
+                    //从流读取项目信息出错
+                    MessageBox.Show(CommonLib.GetLocalString("open_project_format_error", ex.Message),
+                        CommonLib.GetLocalString("alert_windows_title"),
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
 
                 _defaultGroup = CommonLib.CreateNewProject(listView1, p.Name);
 

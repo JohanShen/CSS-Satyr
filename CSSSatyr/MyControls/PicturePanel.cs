@@ -17,21 +17,21 @@ namespace CSSSatyr.MyControls
     /// <typeparam name="T"></typeparam>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    public delegate void ImageChangeHandler<T>(object sender, T e) where T : ImageArgs;
+    public delegate void ChangedEventHandler<T>(object sender, T e) where T : EventArgs;
     /// <summary>
     /// PicturePanel 控件
     /// </summary>
     public class PicturePanel : Panel
     {
-        private int _padding = 1;
-        private List<ImageItem> _items = new List<ImageItem>();
-        private Point _minPoint = new Point(0, 0);
-        private Point _maxPoint = new Point(0, 0);
-        private Point _nextLocation = new Point(0, 0);
-        private Point _mouseOffset = new Point(0, 0);
-        private Point _mouseLastPoint = new Point(0, 0);
-        private PictureBox _activeBox = null;
-        private GridStyle _gridStyle = CommonLib.GetGridStyle();
+        private int padding = 1;
+        private List<ImageItem> imageCollection = new List<ImageItem>();
+        private Point minPoint = new Point(0, 0);
+        private Point maxPoint = new Point(0, 0);
+        private Point nextLocation = new Point(0, 0);
+        private Point mouseOffset = new Point(0, 0);
+        private Point mouseLastPoint = new Point(0, 0);
+        private PictureBox activeBox = null;
+        private GridStyle gridStyle = CommonLib.GetGridStyle();
 
         public PicturePanel()
         {
@@ -58,7 +58,7 @@ namespace CSSSatyr.MyControls
             get
             {
                 ArrayList xList = new ArrayList(), yList = new ArrayList();
-                foreach (ImageItem item in _items)
+                foreach (ImageItem item in imageCollection)
                 {
                     xList.Add(item.X);
                     xList.Add(item.X + item.Width);
@@ -79,7 +79,7 @@ namespace CSSSatyr.MyControls
         /// </summary>
         public PictureBox ActiveControl
         {
-            get { return _activeBox; }
+            get { return activeBox; }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace CSSSatyr.MyControls
         {
             get
             {
-                return _activeBox?.Tag as ImageItem;
+                return activeBox?.Tag as ImageItem;
             }
         }
 
@@ -106,7 +106,7 @@ namespace CSSSatyr.MyControls
         /// <param name="e"></param>
         private void PicturePanel_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            var button = _activeBox;
+            var button = activeBox;
             int x = 0, y = 0;
             if (button == null || e.Alt || e.Shift)
                 return;
@@ -172,7 +172,7 @@ namespace CSSSatyr.MyControls
                     {
                         Controls.Remove(button);
                         ImageChange(new ImageArgs(button, OperationAction.Removed, MouseClickType.None));
-                        _activeBox = null;
+                        activeBox = null;
                         return;
                     }
                 default:
@@ -184,10 +184,10 @@ namespace CSSSatyr.MyControls
 
         private void PicturePanel_MouseDown(object sender, MouseEventArgs e)
         {
-            if (_activeBox != null)
+            if (activeBox != null)
             {
                 if (MouseButtons.Right == e.Button)
-                    _activeBox.BackColor = Color.Red;
+                    activeBox.BackColor = Color.Red;
             }
         }
 
@@ -219,18 +219,18 @@ namespace CSSSatyr.MyControls
             var button = sender as PictureBox;
             if (button != null && MouseButtons.Left == e.Button)
             {
-                _mouseOffset = new Point(-e.X, -e.Y);
+                mouseOffset = new Point(-e.X, -e.Y);
                 button.BackColor = Color.Red;
                 button.Focus();
                 button.BringToFront();
 
-                if (_activeBox != null)
-                    _activeBox.BackColor = Color.Transparent;
+                if (activeBox != null)
+                    activeBox.BackColor = Color.Transparent;
                 //button.Focus();
             }
-            else if (_activeBox != null && MouseButtons.Right == e.Button)
+            else if (activeBox != null && MouseButtons.Right == e.Button)
             {
-                _activeBox.BackColor = Color.Red;
+                activeBox.BackColor = Color.Red;
             }
         }
 
@@ -239,7 +239,7 @@ namespace CSSSatyr.MyControls
             var button = sender as PictureBox;
             if (button != null && MouseButtons.Left == e.Button)
             {
-                _activeBox = button;
+                activeBox = button;
                 //this.propertyGrid1.SelectedObject = button.Tag;
                 ImageChange(new ImageArgs(button, OperationAction.Selected, MouseClickType.MouseLeftUp));
                 button.BackColor = Color.Transparent;
@@ -261,7 +261,7 @@ namespace CSSSatyr.MyControls
             if (button != null && MouseButtons.Left == e.Button)
             {
                 Point mousePosition = MousePosition;
-                mousePosition.Offset(_mouseOffset);
+                mousePosition.Offset(mouseOffset);
                 Point point = this.PointToClient(mousePosition);
 
 
@@ -295,7 +295,7 @@ namespace CSSSatyr.MyControls
                     point.Y = 0;
                 }
 
-                if (point.Equals(_mouseLastPoint))
+                if (point.Equals(mouseLastPoint))
                     return;
 
                 ImageItem image = button.Tag as ImageItem;
@@ -303,7 +303,7 @@ namespace CSSSatyr.MyControls
                 //button.SuspendLayout();
                 button.Location = point;
                 //button.ResumeLayout(false);
-                _mouseLastPoint = point;
+                mouseLastPoint = point;
                 //Console.WriteLine(String.Format("move({0},{1})", point.X, point.Y));
                 //button.Invalidate();
             }
@@ -354,15 +354,15 @@ namespace CSSSatyr.MyControls
         private void PicturePanel_ControlRemoved(object sender, ControlEventArgs e)
         {
             ImageItem ii = e.Control.Tag as ImageItem;
-            if (ii != null && _items.Count > 0)
+            if (ii != null && imageCollection.Count > 0)
             {
                 if (ii.IsBindEvent())
                 {
                     ii.ValueChanged -= Ii_ValueChanged;
                 }
-                _items.Remove(ii);
-                if (e.Control.Equals(_activeBox))
-                    _activeBox = null;
+                imageCollection.Remove(ii);
+                if (e.Control.Equals(activeBox))
+                    activeBox = null;
 
                 //TODO: 重新计算最新值的坐标 _nextPoint
             }
@@ -409,7 +409,7 @@ namespace CSSSatyr.MyControls
                     if (diffY > 0)
                     {
                         diffHeight = sNum - diffY;
-                        e.Graphics.FillRectangle(CommonLib.DrawRectangle(sNum, diffHeight, _gridStyle), new Rectangle(0, 0, boxW, diffHeight));
+                        e.Graphics.FillRectangle(CommonLib.DrawRectangle(sNum, diffHeight, gridStyle), new Rectangle(0, 0, boxW, diffHeight));
                     }
                 }
                 if (boxX < 0)
@@ -418,10 +418,10 @@ namespace CSSSatyr.MyControls
                     if (diffX > 0)
                     {
                         diffWidth = sNum - diffX;
-                        e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, sNum, _gridStyle), new Rectangle(0, 0, diffWidth, boxH));
+                        e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, sNum, gridStyle), new Rectangle(0, 0, diffWidth, boxH));
                     }
                 }
-                e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, diffHeight, sNum, sNum, _gridStyle), r);
+                e.Graphics.FillRectangle(CommonLib.DrawRectangle(diffWidth, diffHeight, sNum, sNum, gridStyle), r);
 
             }
         }
@@ -430,7 +430,7 @@ namespace CSSSatyr.MyControls
 
         #region - 输出事件 -
 
-        public event ImageChangeHandler<ImageArgs> ImageChanged;
+        public event ChangedEventHandler<ImageArgs> ImageChanged;
         /// <summary>
         /// 图片发生变化
         /// </summary>
@@ -459,15 +459,15 @@ namespace CSSSatyr.MyControls
 
         public void InsertImage(Image image, string clsName = null, int x = 0, int y = 0, string mark = null, long id = 0)
         {
-            _nextLocation = (x > 0 || y > 0) ? new Point(x, y) : _nextLocation;
-            //TODO: ImageItem.ClassName 要做排它处理
-            ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat, id)
+            nextLocation = (x > 0 || y > 0) ? new Point(x, y) : nextLocation;
+            ImageItem ii = new ImageItem(image.Width, image.Height, nextLocation.X, nextLocation.Y, image.RawFormat, id)
             {
-                ClassName = clsName == null ? String.Format("c{0}", _items.Count + 1) : clsName,
+                ClassName = clsName == null ? String.Format("c{0}", imageCollection.Count + 1) : clsName,
                 Mark = mark
             };
-            ii.ValueChanged += Ii_ValueChanged;
-            _items.Add(ii);
+            ii.ValueChanged += new ChangedEventHandler<ValueChangedArgs>(Ii_ValueChanged);
+            ii.SetParentCollection(imageCollection);
+            imageCollection.Add(ii);
             PictureBox pic = new PictureBox();
             pic.Image = image;
             pic.SendToBack();
@@ -475,19 +475,19 @@ namespace CSSSatyr.MyControls
             pic.Tag = ii;
             pic.Name = String.Format("pic{0}", ii.Id);
             pic.Parent = this;
-            //button.BackColor = Color.White;
+            //pic.BackColor = Color.White;
             pic.ForeColor = Color.Transparent;
             pic.Size = new Size(image.Width, image.Height);
             pic.SizeMode = PictureBoxSizeMode.CenterImage;
-            pic.Location = _nextLocation;
+            pic.Location = nextLocation;
             pic.Margin = new Padding(0);
-            pic.Padding = new Padding(_padding);
+            pic.Padding = new Padding(padding);
             pic.Width = pic.Image.Width + pic.Padding.Left + pic.Padding.Right;
             pic.Height = pic.Image.Height + pic.Padding.Top + pic.Padding.Bottom;
             pic.MouseDown += new MouseEventHandler(this.pic_MouseDown);
             pic.MouseUp += new MouseEventHandler(this.pic_MouseUp);
             pic.MouseMove += new MouseEventHandler(this.pic_MouseMove);
-            //button.PreviewKeyDown += new PreviewKeyDownEventHandler(this.pic_PreviewKeyDown);
+            //pic.PreviewKeyDown += new PreviewKeyDownEventHandler(this.pic_PreviewKeyDown);
 
             pic.LocationChanged += new EventHandler(this.pic_LocationChanged);
 
@@ -499,10 +499,10 @@ namespace CSSSatyr.MyControls
             ImageChange(new ImageArgs(pic, OperationAction.Added, MouseClickType.MouseLeftUp));
 
 
-            _nextLocation = new Point(_nextLocation.X + pic.Width, _nextLocation.Y);
-            if (_nextLocation.X > this.Width)
+            nextLocation = new Point(nextLocation.X + pic.Width, nextLocation.Y);
+            if (nextLocation.X > this.Width)
             {
-                _nextLocation = new Point(0, _nextLocation.Y + pic.Height);
+                nextLocation = new Point(0, nextLocation.Y + pic.Height);
             }
 
         }
@@ -516,7 +516,7 @@ namespace CSSSatyr.MyControls
                 ImageChange(new ImageArgs()
                 {
                     Action = OperationAction.EditTag,
-                    Control = _activeBox,
+                    Control = activeBox,
                     MouseClickType = MouseClickType.None
                 });
             }
@@ -530,7 +530,7 @@ namespace CSSSatyr.MyControls
         /// </summary>
         public void ChangeColor(GridStyle gridStyle)
         {
-            _gridStyle = gridStyle;
+            this.gridStyle = gridStyle;
             Invalidate();
         }
 
@@ -548,16 +548,16 @@ namespace CSSSatyr.MyControls
             Control[] cItems = Controls.Find(String.Format("pic{0}", id), false);
             if (cItems != null)
             {
-                if (_activeBox != null)
-                    _activeBox.BackColor = Color.Transparent;
+                if (activeBox != null)
+                    activeBox.BackColor = Color.Transparent;
                 foreach (PictureBox c in cItems)
                 {
                     c.Focus();
                     c.BringToFront();
-                    _activeBox = c;
+                    activeBox = c;
                 }
-                if (_activeBox != null)
-                    _activeBox.BackColor = Color.Red;
+                if (activeBox != null)
+                    activeBox.BackColor = Color.Red;
             }
         }
 
@@ -566,7 +566,7 @@ namespace CSSSatyr.MyControls
         /// </summary>
         public void Clear()
         {
-            _items.Clear();
+            imageCollection.Clear();
             Controls.Clear();
         }
 
@@ -575,7 +575,7 @@ namespace CSSSatyr.MyControls
         #region - 保存图片 -
         public void SaveSingleImage(string path, long id = 0)
         {
-            PictureBox pb = _activeBox;
+            PictureBox pb = activeBox;
             if (id != 0)
             {
                 Control[] cItems = Controls.Find(String.Format("pic{0}", id), false);
