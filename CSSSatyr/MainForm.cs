@@ -70,6 +70,18 @@ namespace CSSSatyr
                         listView1.Items.RemoveByKey(imgItem.Id.ToString());
                         break;
                     }
+                case OperationAction.EditTag:
+                    {
+                        ListViewItem[] lvis = listView1.Items.Find(imgItem.Id.ToString(), true);
+                        if (lvis.Length > 0)
+                        {
+                            foreach(ListViewItem lvi in lvis)
+                            {
+                                lvi.Text = imgItem.ClassName;
+                            }
+                        }
+                        break;
+                    }
                 case OperationAction.Added:
                     {
                         ListViewItem lvi = new ListViewItem();

@@ -356,6 +356,10 @@ namespace CSSSatyr.MyControls
             ImageItem ii = e.Control.Tag as ImageItem;
             if (ii != null && _items.Count > 0)
             {
+                if (ii.IsBindEvent())
+                {
+                    ii.ValueChanged -= Ii_ValueChanged;
+                }
                 _items.Remove(ii);
                 if (e.Control.Equals(_activeBox))
                     _activeBox = null;
@@ -456,11 +460,13 @@ namespace CSSSatyr.MyControls
         public void InsertImage(Image image, string clsName = null, int x = 0, int y = 0, string mark = null, long id = 0)
         {
             _nextLocation = (x > 0 || y > 0) ? new Point(x, y) : _nextLocation;
+            //TODO: ImageItem.ClassName 要做排它处理
             ImageItem ii = new ImageItem(image.Width, image.Height, _nextLocation.X, _nextLocation.Y, image.RawFormat, id)
             {
                 ClassName = clsName == null ? String.Format("c{0}", _items.Count + 1) : clsName,
                 Mark = mark
             };
+            ii.ValueChanged += Ii_ValueChanged;
             _items.Add(ii);
             PictureBox pic = new PictureBox();
             pic.Image = image;
@@ -499,6 +505,21 @@ namespace CSSSatyr.MyControls
                 _nextLocation = new Point(0, _nextLocation.Y + pic.Height);
             }
 
+        }
+
+        private void Ii_ValueChanged(object sender, ValueChangedArgs e)
+        {
+            ImageItem ii = sender as ImageItem;
+            if (ii != null)
+            {
+                //触发了值被修改的事件
+                ImageChange(new ImageArgs()
+                {
+                    Action = OperationAction.EditTag,
+                    Control = _activeBox,
+                    MouseClickType = MouseClickType.None
+                });
+            }
         }
 
         #endregion
@@ -651,6 +672,10 @@ namespace CSSSatyr.MyControls
         /// 选中
         /// </summary>
         Selected = 4,
+        /// <summary>
+        /// 修改
+        /// </summary>
+        EditTag = 5,
     }
 
     /// <summary>
