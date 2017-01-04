@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace CSSSatyr
 {
-    partial class AboutBox : Form
+    partial class frmAbout : Form
     {
-        public AboutBox()
+        public frmAbout()
         {
             InitializeComponent();
             this.Text = String.Format("关于 {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("版本 {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            //this.labelProductName.Text = AssemblyProduct;
+            //this.labelVersion.Text = String.Format("版本 {0}", AssemblyVersion);
+            //this.labelCopyright.Text = AssemblyCopyright;
+            //this.labelCompanyName.Text = AssemblyCompany;
+            //this.textBoxDescription.Text = AssemblyDescription;
         }
 
         #region 程序集特性访问器
@@ -100,14 +100,6 @@ namespace CSSSatyr
         }
         #endregion
 
-        private void easyTrackBar1_ValueChanged(MyControls.EasyTrackBarValueChangedArgs e)
-        {
-            Text = String.Format("old {0} new {1} p {2}", e.OldValue, e.NewValue, e.Percent);
-        }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            easyTrackBar1.Value = 15;
-        }
     }
 }

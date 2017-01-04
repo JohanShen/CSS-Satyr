@@ -325,7 +325,14 @@ namespace CSSSatyr.MyControls
                     this.SuspendLayout();
                     foreach (object o in al)
                     {
-                        InsertImage(o.ToString());
+                        try
+                        {
+                            InsertImage(o.ToString());
+                        }
+                        catch (Exception ex)
+                        {
+                            //TODO: 将添加失败的一次性显示出来
+                        }
                     }
                     this.ResumeLayout(true);
                 }

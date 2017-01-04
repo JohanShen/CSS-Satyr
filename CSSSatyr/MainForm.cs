@@ -192,6 +192,8 @@ namespace CSSSatyr
 
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmSetting setting = new frmSetting();
+            setting.ShowDialog(this);
             Global.Lang = Global.Lang == "zh-CN" ? "en-US" : "zh-CN";
             changeLanguage();
         }
@@ -247,7 +249,10 @@ namespace CSSSatyr
             {
                 Global.GridSizeNum = e.NewValue;
                 tsslGridSize.Text = String.Format("网格大小:{0}", e.NewValue);
-                MainPictureBox.Invalidate();
+                if (Global.GridStyle.ShowGrid)
+                {
+                    MainPictureBox.Invalidate();
+                }
             }
         }
 
@@ -371,7 +376,6 @@ namespace CSSSatyr
 
             if (openfileDialog.ShowDialog() == DialogResult.OK)
             {
-                //TODO: 添加打开错误异常
                 byte[] buffer = null;
                 try
                 {
@@ -393,7 +397,7 @@ namespace CSSSatyr
                 }
                 if (buffer == null)
                 {
-                    //
+                    //加载的流文件为空
                     MessageBox.Show(CommonLib.GetLocalString("open_project_file_error_buffer_null"), 
                         CommonLib.GetLocalString("alert_windows_title"), 
                         MessageBoxButtons.OK,
@@ -421,6 +425,8 @@ namespace CSSSatyr
 
                 MainPictureBox.Clear();
                 easyTrackBar1.Value = Global.GridSizeNum = p.GridSizeNum;
+
+                //TODO: InsertImage 判断出错
                 foreach (ImagePanel panel in p.Panels)
                     foreach (ImageObj io in panel.Images)
                         MainPictureBox.InsertImage(io.Content, io.CssName, io.X, io.Y, io.Mark, io.Key);
@@ -555,6 +561,11 @@ namespace CSSSatyr
         {
             Application.Exit();
         }
-        
+
+        private void copyrightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAbout about = new frmAbout();
+            about.ShowDialog(this);
+        }
     }
 }
