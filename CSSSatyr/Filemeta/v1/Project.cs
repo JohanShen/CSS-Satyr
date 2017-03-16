@@ -35,6 +35,17 @@ namespace CSSSatyr.Filemeta.v1
         public int GridLineWidth { get; set; }
         #endregion
 
+        #region - 2017/3/16 新增-
+        /// <summary>
+        /// 生成的圖片格式
+        /// </summary>
+        public string ImageFormat { get; set; }
+        /// <summary>
+        /// 生成的图片质量
+        /// </summary>
+        public short ImageQuality { get; set; }
+        #endregion
+
         private List<ExtendInfo> _extendInfos = new List<ExtendInfo>();
         /// <summary>
         /// 扩展信息
@@ -77,6 +88,8 @@ namespace CSSSatyr.Filemeta.v1
                 p.GridBgColor = br.ReadInt32();//网格背景颜色
                 p.GridLineColor = br.ReadInt32();//网格线条颜色
                 p.GridLineWidth = br.ReadInt32();//网格线条大小
+                p.ImageFormat = FilemetaCommon.ReadString(br);//保存的图片格式
+                p.ImageQuality = br.ReadInt16();
 
                 int extCount = br.ReadInt32();
                 for (int i = 0; i < extCount; i++)
@@ -144,6 +157,9 @@ namespace CSSSatyr.Filemeta.v1
                 bw.Write(GridBgColor);//网格背景颜色
                 bw.Write(GridLineColor);//网格线条颜色
                 bw.Write(GridLineWidth);//网格线条宽
+                FilemetaCommon.WriteString(bw, ImageFormat);//图片格式
+                bw.Write(ImageQuality);//图片质量
+
                 //写入扩展信息
                 bw.Write(_extendInfos.Count);
                 foreach (ExtendInfo ei in _extendInfos)
