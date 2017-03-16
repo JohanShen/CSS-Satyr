@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,7 +15,11 @@ namespace CSSSatyr
         public frmSetting()
         {
             InitializeComponent();
-            
+
+            comboBoxExportFormat.Items.Add(CommonLib.GetImageType(ImageFormat.Png));
+            comboBoxExportFormat.Items.Add(CommonLib.GetImageType(ImageFormat.Jpeg));
+            comboBoxExportFormat.Items.Add(CommonLib.GetImageType(ImageFormat.Gif));
+            comboBoxExportFormat.DisplayMember = "MimeType";
 
             ChangeLanguage();
         }

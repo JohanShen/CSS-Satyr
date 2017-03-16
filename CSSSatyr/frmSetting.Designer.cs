@@ -215,10 +215,6 @@
             this.comboBoxExportFormat.Dock = System.Windows.Forms.DockStyle.Left;
             this.comboBoxExportFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxExportFormat.FormattingEnabled = true;
-            this.comboBoxExportFormat.Items.AddRange(new object[] {
-            "PNG",
-            "JPEG",
-            "GIF"});
             this.comboBoxExportFormat.Location = new System.Drawing.Point(172, 154);
             this.comboBoxExportFormat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxExportFormat.Name = "comboBoxExportFormat";
