@@ -396,6 +396,7 @@
             this.howToUseToolStripMenuItem.Name = "howToUseToolStripMenuItem";
             this.howToUseToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.howToUseToolStripMenuItem.Text = "HowToUse";
+            this.howToUseToolStripMenuItem.Click += new System.EventHandler(this.howToUseToolStripMenuItem_Click);
             // 
             // checkVersionToolStripMenuItem
             // 
@@ -404,6 +405,7 @@
             this.checkVersionToolStripMenuItem.Name = "checkVersionToolStripMenuItem";
             this.checkVersionToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.checkVersionToolStripMenuItem.Text = "CheckVersion";
+            this.checkVersionToolStripMenuItem.Click += new System.EventHandler(this.checkVersionToolStripMenuItem_Click);
             // 
             // submitSuggestToolStripMenuItem
             // 
@@ -412,6 +414,7 @@
             this.submitSuggestToolStripMenuItem.Name = "submitSuggestToolStripMenuItem";
             this.submitSuggestToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.submitSuggestToolStripMenuItem.Text = "SubmitSuggest";
+            this.submitSuggestToolStripMenuItem.Click += new System.EventHandler(this.submitSuggestToolStripMenuItem_Click);
             // 
             // copyrightToolStripMenuItem
             // 
@@ -429,6 +432,7 @@
             this.homepageToolStripMenuItem.Name = "homepageToolStripMenuItem";
             this.homepageToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.homepageToolStripMenuItem.Text = "Homepage";
+            this.homepageToolStripMenuItem.Click += new System.EventHandler(this.homepageToolStripMenuItem_Click);
             // 
             // BodyContainer
             // 
@@ -477,7 +481,7 @@
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 274;
+            this.LeftSplitContainer.SplitterDistance = 280;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -490,7 +494,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 266);
+            this.listView1.Size = new System.Drawing.Size(242, 272);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -504,7 +508,7 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 120);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 114);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
@@ -729,7 +733,7 @@
             // tsslSpaceLabel
             // 
             this.tsslSpaceLabel.Name = "tsslSpaceLabel";
-            this.tsslSpaceLabel.Size = new System.Drawing.Size(494, 20);
+            this.tsslSpaceLabel.Size = new System.Drawing.Size(533, 20);
             this.tsslSpaceLabel.Spring = true;
             this.tsslSpaceLabel.Text = "toolStripStatusLabel1";
             // 

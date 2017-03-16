@@ -361,6 +361,24 @@ namespace CSSSatyr.Properties {
         }
         
         /// <summary>
+        ///   查找类似 http://shen.li/CSS-Satyr/ 的本地化字符串。
+        /// </summary>
+        internal static string URL_HomePage {
+            get {
+                return ResourceManager.GetString("URL_HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 https://github.com/JohanShen/CSS-Satyr/issues 的本地化字符串。
+        /// </summary>
+        internal static string URL_Suggest {
+            get {
+                return ResourceManager.GetString("URL_Suggest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap view_choose_321 {

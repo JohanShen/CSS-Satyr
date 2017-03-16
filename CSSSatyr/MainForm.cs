@@ -227,8 +227,6 @@ namespace CSSSatyr
         {
             frmSetting setting = new frmSetting();
             setting.ShowDialog(this);
-            Global.Lang = Global.Lang == "zh-CN" ? "en-US" : "zh-CN";
-            changeLanguage();
         }
         private void changeLanguage()
         {
@@ -635,6 +633,27 @@ namespace CSSSatyr
         {
             changeLanguage();
             ReWriteTitle();
+        }
+
+        private void homepageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Properties.Resources.URL_HomePage);
+        }
+
+        private void submitSuggestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Properties.Resources.URL_Suggest);
+            
+        }
+
+        private void howToUseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkVersionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

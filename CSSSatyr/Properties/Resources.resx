@@ -218,4 +218,12 @@
   <data name="zh_CN" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\zh-CN.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
+  <data name="URL_HomePage" xml:space="preserve">
+    <value>http://shen.li/CSS-Satyr/</value>
+    <comment>主页网址</comment>
+  </data>
+  <data name="URL_Suggest" xml:space="preserve">
+    <value>https://github.com/JohanShen/CSS-Satyr/issues</value>
+    <comment>建议网址</comment>
+  </data>
 </root>
