@@ -51,7 +51,6 @@
             this.showSiderTreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.choiceLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.defaultLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -340,23 +339,11 @@
             // 
             // choiceLanguageToolStripMenuItem
             // 
-            this.choiceLanguageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.defaultLanguageToolStripMenuItem});
             this.choiceLanguageToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.china_16;
             this.choiceLanguageToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.choiceLanguageToolStripMenuItem.Name = "choiceLanguageToolStripMenuItem";
             this.choiceLanguageToolStripMenuItem.Size = new System.Drawing.Size(314, 26);
             this.choiceLanguageToolStripMenuItem.Text = "ChoiceLanguage";
-            // 
-            // defaultLanguageToolStripMenuItem
-            // 
-            this.defaultLanguageToolStripMenuItem.Checked = true;
-            this.defaultLanguageToolStripMenuItem.CheckOnClick = true;
-            this.defaultLanguageToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.defaultLanguageToolStripMenuItem.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.defaultLanguageToolStripMenuItem.Name = "defaultLanguageToolStripMenuItem";
-            this.defaultLanguageToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
-            this.defaultLanguageToolStripMenuItem.Text = "DefaultLanguage";
             // 
             // settingToolStripMenuItem
             // 
@@ -490,7 +477,7 @@
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 262;
+            this.LeftSplitContainer.SplitterDistance = 264;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -503,7 +490,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 254);
+            this.listView1.Size = new System.Drawing.Size(242, 256);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -517,7 +504,7 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 132);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 130);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
@@ -829,7 +816,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem choiceLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel tsStatusNewVersionLabel;
-        private System.Windows.Forms.ToolStripMenuItem defaultLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportImagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel tsStatusAutoSorption;
         protected internal System.Windows.Forms.ImageList imageList1;

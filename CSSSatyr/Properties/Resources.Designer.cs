@@ -191,6 +191,37 @@ namespace CSSSatyr.Properties {
         }
         
         /// <summary>
+        ///   查找类似 ; Language Package
+        ///; Please using UTF-8 encoding
+        ///lang_name = English
+        ///author = Johan Shen
+        ///author_mail = johanshen@126.com
+        ///author_www = http://shen.li
+        ///
+        ///; #Root Menu
+        ///; key = value
+        ///; the key case-insensitive
+        ///; {0}, {1}, {2} etc. are parameters 
+        ///menu_file = File(&amp;F)
+        ///menu_view = View(&amp;V)
+        ///menu_setting = Setting(&amp;S)
+        ///menu_create = Create(&amp;C)
+        ///menu_help = Help(&amp;H)
+        ///
+        ///; #Sub Menu
+        ///; menu_file
+        ///menu_file_add_images = Add Images
+        ///menu_file_export_image = Export Image
+        ///menu_file_new_project = New Project
+        ///m [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string en_US {
+            get {
+                return ResourceManager.GetString("en_US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap export_16 {

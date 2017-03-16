@@ -31,7 +31,39 @@ namespace CSSSatyr
             Global.ProjectSaved = true;
             ReWriteTitle();
 
+            //defaultLanguageToolStripMenuItem;
+
+            foreach (var item in CommonLib.LangList)
+            {
+                var tsmi = new ToolStripMenuItem();
+                tsmi.AutoSize = true;
+                //tsmi.Size = new Size(200, 26);
+                tsmi.TextAlign = ContentAlignment.MiddleCenter;
+                tsmi.Text = item.Value;
+                tsmi.Tag = item.Key;
+                tsmi.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular);
+                tsmi.Click += new EventHandler(Tsmi_Click);
+                choiceLanguageToolStripMenuItem.DropDownItems.Add(tsmi);
+            }
+
             this.MainPictureBox.ImageChanged += new ChangedEventHandler<ImageArgs>(MainPictureBox_ImageSelected);
+        }
+
+        private void Tsmi_Click(object sender, EventArgs e)
+        {
+            //Console.WriteLine(sender);
+            var c = sender as ToolStripMenuItem;
+            if (c != null && c.Tag != null)
+            {
+                foreach (ToolStripMenuItem item in choiceLanguageToolStripMenuItem.DropDownItems)
+                {
+                    item.Checked = false;
+                }
+                c.Checked = true;
+                Global.Lang = c.Tag.ToString();
+                //Console.WriteLine(Global.Lang);
+                changeLanguage();
+            }
         }
 
         private void ReWriteTitle()
@@ -199,13 +231,13 @@ namespace CSSSatyr
         }
         private void changeLanguage()
         {
-            fileToolStripMenuItem.Text = CommonLib.GetLocalString("file");
-            addImagesToolStripMenuItem.Text = CommonLib.GetLocalString("add_images");
-            viewToolStripMenuItem.Text = CommonLib.GetLocalString("view");
-            exitToolStripMenuItem.Text = CommonLib.GetLocalString("exit");
-            helpToolStripMenuItem.Text = CommonLib.GetLocalString("help");
-            createToolStripMenuItem.Text = CommonLib.GetLocalString("create");
-            settingToolStripMenuItem.Text = CommonLib.GetLocalString("setting");
+            fileToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file");
+            addImagesToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file_add_images");
+            viewToolStripMenuItem.Text = CommonLib.GetLocalString("menu_view");
+            exitToolStripMenuItem.Text = CommonLib.GetLocalString("menu_exit");
+            helpToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help");
+            createToolStripMenuItem.Text = CommonLib.GetLocalString("menu_create");
+            settingToolStripMenuItem.Text = CommonLib.GetLocalString("menu_setting");
 
             propertyGrid1.Refresh();
         }
