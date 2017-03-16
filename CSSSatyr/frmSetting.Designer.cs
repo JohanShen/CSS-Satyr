@@ -39,13 +39,13 @@
             this.labProjectAuthor = new System.Windows.Forms.Label();
             this.labClassNamePrefix = new System.Windows.Forms.Label();
             this.txtProjectName = new System.Windows.Forms.TextBox();
+            this.trackImageQuality = new CSSSatyr.MyControls.EasyTrackBar();
             this.comboBoxExportFormat = new System.Windows.Forms.ComboBox();
             this.labCreateTime = new System.Windows.Forms.Label();
             this.labelProjectCreateTime = new System.Windows.Forms.Label();
             this.labCreateImageFormat = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
             this.labImageQuality = new System.Windows.Forms.Label();
-            this.trackImageQuality = new CSSSatyr.MyControls.EasyTrackBar();
+            this.btnOK = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageProject.SuspendLayout();
@@ -210,6 +210,33 @@
             this.txtProjectName.Size = new System.Drawing.Size(320, 27);
             this.txtProjectName.TabIndex = 13;
             // 
+            // trackImageQuality
+            // 
+            this.trackImageQuality.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.trackImageQuality.BarBorderColor = System.Drawing.SystemColors.HotTrack;
+            this.trackImageQuality.BarBorderWidth = false;
+            this.trackImageQuality.BarClickColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.trackImageQuality.BarColor = System.Drawing.SystemColors.HotTrack;
+            this.trackImageQuality.BarWidth = 7;
+            this.trackImageQuality.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.trackImageQuality.BorderWidth = false;
+            this.trackImageQuality.Dock = System.Windows.Forms.DockStyle.Left;
+            this.trackImageQuality.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
+            this.trackImageQuality.Location = new System.Drawing.Point(172, 194);
+            this.trackImageQuality.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.trackImageQuality.MaxValue = 100;
+            this.trackImageQuality.MinValue = 20;
+            this.trackImageQuality.Name = "trackImageQuality";
+            this.trackImageQuality.ProgressBarBackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.trackImageQuality.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.trackImageQuality.ProgressBarBorderWidth = true;
+            this.trackImageQuality.ShowValue = true;
+            this.trackImageQuality.Size = new System.Drawing.Size(201, 32);
+            this.trackImageQuality.TabIndex = 19;
+            this.trackImageQuality.Text = null;
+            this.trackImageQuality.Value = 100;
+            this.trackImageQuality.ValueChanged += new CSSSatyr.MyControls.ValueChangeHandler<CSSSatyr.MyControls.EasyTrackBarValueChangedArgs>(this.trackImageQuality_ValueChanged);
+            // 
             // comboBoxExportFormat
             // 
             this.comboBoxExportFormat.Dock = System.Windows.Forms.DockStyle.Left;
@@ -220,6 +247,7 @@
             this.comboBoxExportFormat.Name = "comboBoxExportFormat";
             this.comboBoxExportFormat.Size = new System.Drawing.Size(201, 28);
             this.comboBoxExportFormat.TabIndex = 20;
+            this.comboBoxExportFormat.SelectionChangeCommitted += new System.EventHandler(this.comboBoxExportFormat_SelectionChangeCommitted);
             // 
             // labCreateTime
             // 
@@ -251,16 +279,6 @@
             this.labCreateImageFormat.Text = "Create Image Format";
             this.labCreateImageFormat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(312, 361);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(15, 13, 15, 0);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 37);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "Ok";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
             // labImageQuality
             // 
             this.labImageQuality.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -271,31 +289,16 @@
             this.labImageQuality.Text = "ImageQuality";
             this.labImageQuality.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // trackImageQuality
+            // btnOK
             // 
-            this.trackImageQuality.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.trackImageQuality.BarBorderColor = System.Drawing.SystemColors.HotTrack;
-            this.trackImageQuality.BarBorderWidth = false;
-            this.trackImageQuality.BarClickColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.trackImageQuality.BarColor = System.Drawing.SystemColors.HotTrack;
-            this.trackImageQuality.BarWidth = 7;
-            this.trackImageQuality.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.trackImageQuality.BorderWidth = false;
-            this.trackImageQuality.Dock = System.Windows.Forms.DockStyle.Left;
-            this.trackImageQuality.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
-            this.trackImageQuality.Location = new System.Drawing.Point(172, 194);
-            this.trackImageQuality.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.trackImageQuality.MaxValue = 100;
-            this.trackImageQuality.MinValue = 50;
-            this.trackImageQuality.Name = "trackImageQuality";
-            this.trackImageQuality.ProgressBarBackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.trackImageQuality.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.trackImageQuality.ProgressBarBorderWidth = true;
-            this.trackImageQuality.ShowValue = true;
-            this.trackImageQuality.Size = new System.Drawing.Size(201, 32);
-            this.trackImageQuality.TabIndex = 19;
-            this.trackImageQuality.Text = null;
-            this.trackImageQuality.Value = 76;
+            this.btnOK.Location = new System.Drawing.Point(312, 361);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(15, 13, 15, 0);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 37);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "Ok";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // frmSetting
             // 

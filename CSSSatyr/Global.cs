@@ -6,6 +6,7 @@ using CSSSatyr.Models;
 using CSSSatyr.Extends;
 using System.Windows.Forms;
 using System.Reflection;
+using CSSSatyr.Filemeta.v1;
 
 namespace CSSSatyr
 {
@@ -35,6 +36,32 @@ namespace CSSSatyr
         {
             get { return _gridStyle; }
             set { _gridStyle = value; }
+        }
+
+
+        private static Project currentProject = null;
+        /// <summary>
+        /// 当前项目
+        /// </summary>
+        internal static Project CurrentProject
+        {
+            get
+            {
+                if (currentProject == null)
+                {
+                    currentProject = new Project() { Name = CommonLib.GetLocalString("main_default_project_name"), CreateTime = CommonLib.ToUnixTime(DateTime.Now) };
+
+                }
+                return currentProject;
+            }
+        }
+        /// <summary>
+        /// 设置当前项目
+        /// </summary>
+        /// <param name="project"></param>
+        internal static void SetCurrentProject(Project project)
+        {
+            currentProject = project;
         }
 
         /// <summary>

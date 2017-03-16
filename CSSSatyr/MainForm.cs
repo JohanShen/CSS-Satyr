@@ -70,6 +70,7 @@ namespace CSSSatyr
 
         private void ReWriteTitle()
         {
+            _defaultGroup.Header = Global.CurrentProject?.Name;
             this.Text = String.Format("{3}{0} {4} - {1} v2.0 beta", _defaultGroup.Header, Global.ProductName, Global.ProductVersion, Global.ProjectSaved ? "" : "*", Global.SavedPath);
         }
 
@@ -352,27 +353,24 @@ namespace CSSSatyr
             }
             if (String.IsNullOrEmpty(Global.SavedPath) == false)
             {
-                Project p = new Project();
-                p.Author = "沈秋寒";
-                p.AutoSorption = true;
-                p.CompressType = 1;
-                p.CreateTime = CommonLib.ToUnixTime(DateTime.Now);
-                p.DefaultCssName = "csss_";
+                Project p = Global.CurrentProject;
+
                 p.GridSizeNum = Global.GridSizeNum;
-                p.Language = "zh-cn";
+                p.Language = Global.Lang.ToLower();
                 p.LastTime = CommonLib.ToUnixTime(DateTime.Now);
-                p.Name = _defaultGroup.Header;
-                p.ShowGrid = true;
-                p.ShowSider = true;
+                p.AutoSorption = tsbtnAutoSorption.Checked;
+                p.CompressType = 1;
+                p.ShowGrid = tsbtnShowGrid.Checked;
+                p.ShowSider = tsbShowLeftTree.Checked;
                 p.SorptionNum = Global.AutoAlignSpaceNum;
                 p.GridStyleName = Global.GridStyle.Name;
                 p.GridBgColor = CommonLib.ColorToInt(Global.GridStyle.BgColor);
                 p.GridLineColor = CommonLib.ColorToInt(Global.GridStyle.LineColor);
                 p.GridLineWidth = Global.GridStyle.LineWidth;
 
-                p.ExtendInfos.Add(new ExtendInfo() { Name = "TestA", Value = "ValueA" });
-                p.ExtendInfos.Add(new ExtendInfo() { Name = "测试B", Value = "值B" });
-
+                //p.ExtendInfos.Add(new ExtendInfo() { Name = "TestA", Value = "ValueA" });
+                //p.ExtendInfos.Add(new ExtendInfo() { Name = "测试B", Value = "值B" });
+                p.Panels.Clear();
                 ImagePanel ip = new ImagePanel();
                 ip.Name = "Default Panel";
                 foreach (PictureBox c in MainPictureBox.Controls)
@@ -514,6 +512,7 @@ namespace CSSSatyr
 
                 Global.SavedPath = openfileDialog.FileName;
                 Global.ProjectSaved = true;
+                Global.SetCurrentProject(p);
                 ReWriteTitle();
             }
 
@@ -628,6 +627,8 @@ namespace CSSSatyr
         {
             frmAbout about = new frmAbout();
             about.ShowDialog(this);
+            Global.ProjectSaved = false;
+            ReWriteTitle();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)

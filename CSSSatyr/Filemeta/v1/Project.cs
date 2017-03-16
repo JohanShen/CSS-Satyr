@@ -43,7 +43,7 @@ namespace CSSSatyr.Filemeta.v1
         /// <summary>
         /// 生成的图片质量
         /// </summary>
-        public short ImageQuality { get; set; }
+        public short ImageQuality { get; set; } = 100;
         #endregion
 
         private List<ExtendInfo> _extendInfos = new List<ExtendInfo>();
