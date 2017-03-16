@@ -101,6 +101,15 @@ namespace CSSSatyr.Models
         [ReadOnly(true), PropertyAttibute("类型", "图片类型")]
         public ImageType ImageType { get { return imageType; } }
 
+        [ReadOnly(false), PropertyAttibute("显示宽度", "显示宽度")]
+        public int ShowWidth { get; set; }
+
+        [ReadOnly(false), PropertyAttibute("显示高度", "显示高度")]
+        public int ShowHeight { get; set; }
+
+        [ReadOnly(false), PropertyAttibute("显示模式", "Contain: 保护, Cover: 拉伸")]
+        public ImageShowModel ShowModel { get; set; } = ImageShowModel.Contain;
+
         private int width;
         /// <summary>
         /// 实际宽度
@@ -195,5 +204,11 @@ namespace CSSSatyr.Models
         public string Property;
         public object OldValue;
         public object NewValue;
+    }
+
+    public enum ImageShowModel
+    {
+        Cover = 0,
+        Contain = 1
     }
 }

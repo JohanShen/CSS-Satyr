@@ -70,6 +70,9 @@
             this.txtProjectClassName = new System.Windows.Forms.TextBox();
             this.easyTrackBar1 = new CSSSatyr.MyControls.EasyTrackBar();
             this.trackGridNum = new CSSSatyr.MyControls.EasyTrackBar();
+            this.label13 = new System.Windows.Forms.Label();
+            this.trackExportLevel = new CSSSatyr.MyControls.EasyTrackBar();
+            this.comboBoxExportFormat = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPageProject.SuspendLayout();
             this.tabPageApplication.SuspendLayout();
@@ -93,7 +96,7 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(370, 251);
+            this.tabControl1.Size = new System.Drawing.Size(370, 318);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPageProject
@@ -103,7 +106,7 @@
             this.tabPageProject.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageProject.Name = "tabPageProject";
             this.tabPageProject.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPageProject.Size = new System.Drawing.Size(362, 222);
+            this.tabPageProject.Size = new System.Drawing.Size(362, 289);
             this.tabPageProject.TabIndex = 0;
             this.tabPageProject.Text = "项目设置";
             this.tabPageProject.UseVisualStyleBackColor = true;
@@ -115,7 +118,7 @@
             this.tabPageApplication.Margin = new System.Windows.Forms.Padding(0);
             this.tabPageApplication.Name = "tabPageApplication";
             this.tabPageApplication.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPageApplication.Size = new System.Drawing.Size(362, 222);
+            this.tabPageApplication.Size = new System.Drawing.Size(362, 289);
             this.tabPageApplication.TabIndex = 1;
             this.tabPageApplication.Text = "程序设置";
             this.tabPageApplication.UseVisualStyleBackColor = true;
@@ -136,14 +139,14 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 311);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 378);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(100, 266);
+            this.btnCancel.Location = new System.Drawing.Point(100, 333);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(15, 10, 15, 0);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 28);
@@ -153,7 +156,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(205, 266);
+            this.btnOK.Location = new System.Drawing.Point(205, 333);
             this.btnOK.Margin = new System.Windows.Forms.Padding(15, 10, 15, 0);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 28);
@@ -191,7 +194,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(352, 212);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(352, 279);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label1
@@ -415,10 +418,15 @@
             this.tableLayoutPanel3.Controls.Add(this.txtProjectName, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.easyTrackBar1, 1, 4);
             this.tableLayoutPanel3.Controls.Add(this.labelProjectCreateTime, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.label13, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.trackExportLevel, 1, 8);
+            this.tableLayoutPanel3.Controls.Add(this.comboBoxExportFormat, 1, 7);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(5, 5);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 8;
+            this.tableLayoutPanel3.RowCount = 10;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -427,7 +435,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(352, 212);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(352, 279);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // label5
@@ -634,6 +642,50 @@
             this.trackGridNum.Text = "网格大小";
             this.trackGridNum.Value = 10;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Location = new System.Drawing.Point(3, 210);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(99, 30);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "导出图片:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // trackExportLevel
+            // 
+            this.trackExportLevel.BarBorderColor = System.Drawing.SystemColors.HotTrack;
+            this.trackExportLevel.BarBorderWidth = false;
+            this.trackExportLevel.BarClickColor = System.Drawing.SystemColors.ControlDark;
+            this.trackExportLevel.BarColor = System.Drawing.SystemColors.HotTrack;
+            this.trackExportLevel.BarWidth = 7;
+            this.trackExportLevel.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.trackExportLevel.BorderWidth = false;
+            this.trackExportLevel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.trackExportLevel.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
+            this.trackExportLevel.Location = new System.Drawing.Point(108, 243);
+            this.trackExportLevel.MaxValue = 100;
+            this.trackExportLevel.MinValue = 50;
+            this.trackExportLevel.Name = "trackExportLevel";
+            this.trackExportLevel.ProgressBarBackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.trackExportLevel.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.trackExportLevel.ProgressBarBorderWidth = true;
+            this.trackExportLevel.ShowValue = true;
+            this.trackExportLevel.Size = new System.Drawing.Size(158, 24);
+            this.trackExportLevel.TabIndex = 19;
+            this.trackExportLevel.Text = "图片质量";
+            this.trackExportLevel.Value = 76;
+            // 
+            // comboBoxExportFormat
+            // 
+            this.comboBoxExportFormat.Dock = System.Windows.Forms.DockStyle.Left;
+            this.comboBoxExportFormat.FormattingEnabled = true;
+            this.comboBoxExportFormat.Location = new System.Drawing.Point(108, 213);
+            this.comboBoxExportFormat.Name = "comboBoxExportFormat";
+            this.comboBoxExportFormat.Size = new System.Drawing.Size(158, 23);
+            this.comboBoxExportFormat.TabIndex = 20;
+            // 
             // frmSetting
             // 
             this.AcceptButton = this.btnOK;
@@ -641,7 +693,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(386, 332);
+            this.ClientSize = new System.Drawing.Size(386, 399);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
@@ -717,5 +769,8 @@
         private System.Windows.Forms.TextBox txtProjectClassName;
         private System.Windows.Forms.TextBox txtProjectAuthor;
         private System.Windows.Forms.Label labelProjectCreateTime;
+        private System.Windows.Forms.Label label13;
+        private MyControls.EasyTrackBar trackExportLevel;
+        private System.Windows.Forms.ComboBox comboBoxExportFormat;
     }
 }
