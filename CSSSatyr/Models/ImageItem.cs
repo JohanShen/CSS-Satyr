@@ -26,7 +26,7 @@ namespace CSSSatyr.Models
         }
 
         private long id = 0;
-        [PropertyAttibute("ID", "唯一ID")]
+        [PropertyAttibute("image_item_id", "image_item_id_desc")]
         public long Id
         {
             get
@@ -44,7 +44,7 @@ namespace CSSSatyr.Models
         /// <summary>
         /// 类名
         /// </summary>
-        [PropertyAttibute("Class", "定义调用的类名")]
+        [PropertyAttibute("image_item_class", "image_item_class_desc")]
         public string ClassName
         {
             get { return className; }
@@ -79,7 +79,7 @@ namespace CSSSatyr.Models
         /// <summary>
         /// 备注
         /// </summary>
-        [ReadOnly(false), PropertyAttibute("备注", "可以给图片添加备注")]
+        [ReadOnly(false), PropertyAttibute("image_item_mark", "image_item_mark_desc")]
         public string Mark
         {
             get { return mark; }
@@ -98,44 +98,83 @@ namespace CSSSatyr.Models
         /// <summary>
         /// 图片类型
         /// </summary>
-        [ReadOnly(true), PropertyAttibute("类型", "图片类型")]
+        [ReadOnly(true), PropertyAttibute("image_item_imageType", "image_item_imageType_desc")]
         public ImageType ImageType { get { return imageType; } }
 
-        [ReadOnly(false), PropertyAttibute("显示宽度", "显示宽度")]
-        public int ShowWidth { get; set; }
+        private int showWidth = 0;
+        [ReadOnly(false), PropertyAttibute("image_item_showWidth", "image_item_showWidth_desc")]
+        public int ShowWidth
+        {
+            get { return showWidth; }
+            set
+            {
+                if (showWidth != value)
+                {
+                    int oldValue = showWidth;
+                    showWidth = value;
+                    OnChanged("ShowWidth", oldValue, showWidth);
+                }
+            }
+        }
 
-        [ReadOnly(false), PropertyAttibute("显示高度", "显示高度")]
-        public int ShowHeight { get; set; }
+        private int showHeight = 0;
+        [ReadOnly(false), PropertyAttibute("image_item_showHeight", "image_item_showHeight_desc")]
+        public int ShowHeight
+        {
+            get { return showHeight; }
+            set
+            {
+                if (showHeight != value)
+                {
+                    int oldValue = showHeight;
+                    showHeight = value;
+                    OnChanged("ShowWidth", oldValue, showHeight);
+                }
+            }
+        }
 
-        [ReadOnly(false), PropertyAttibute("显示模式", "Contain: 保护, Cover: 拉伸")]
-        public ImageShowModel ShowModel { get; set; } = ImageShowModel.Contain;
+        private ImageShowModel showModel = ImageShowModel.Contain;
+        [ReadOnly(false), PropertyAttibute("image_item_showModel", "image_item_showModel_desc")]
+        public ImageShowModel ShowModel
+        {
+            get { return showModel; }
+            set
+            {
+                if (showModel != value)
+                {
+                    ImageShowModel oldValue = showModel;
+                    showModel = value;
+                    OnChanged("ShowWidth", oldValue, showModel);
+                }
+            }
+        }
 
         private int width;
         /// <summary>
         /// 实际宽度
         /// </summary>
-        [ReadOnly(true), PropertyAttibute("实际宽", "图片的实际宽度")]
+        [ReadOnly(true), PropertyAttibute("image_item_width", "image_item_width_desc")]
         public int Width { get { return width; } }
 
         private int height;
         /// <summary>
         /// 实际高度
         /// </summary>
-        [ReadOnly(true), PropertyAttibute("实际高", "图片的实际高度")]
+        [ReadOnly(true), PropertyAttibute("image_item_height", "image_item_height_desc")]
         public int Height { get { return height; } }
 
         private int x;
         /// <summary>
         /// 在面板中的X坐标
         /// </summary>
-        [ReadOnly(true), PropertyAttibute("X", "X 坐标点，可以通过移动图片改变改值。")]
+        [ReadOnly(true), PropertyAttibute("image_item_x", "image_item_x_desc")]
         public int X { get { return x; } }
 
         private int y;
         /// <summary>
         /// 在面板中的Y坐标
         /// </summary>
-        [ReadOnly(true), PropertyAttibute("Y", "Y 坐标点，可以通过移动图片改变改值。")]
+        [ReadOnly(true), PropertyAttibute("image_item_x", "image_item_x_desc")]
         public int Y { get { return y; } }
 
 
