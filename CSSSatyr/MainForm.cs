@@ -23,11 +23,12 @@ namespace CSSSatyr
 
         public MainForm()
         {
+            Global.Lang = System.Globalization.CultureInfo.CurrentCulture.Name;
             InitializeComponent();
             tsslSpaceLabel.Text = "";
-            easyTrackBar1.Value = Global.GridSizeNum;
-            _defaultGroup = CommonLib.CreateNewProject(listView1);
-            tsStatusNewVersionLabel.Text = String.Format("当前版本:{0}", Global.ProductVersion);
+            etbGridSize.Value = Global.GridSizeNum;
+            _defaultGroup = CommonLib.CreateNewProject(listView1, CommonLib.GetLocalString("main_default_project_name"));
+            tsStatusNewVersionLabel.Text = String.Format(CommonLib.GetLocalString("status_now_version"), Global.ProductVersion);
             Global.ProjectSaved = true;
             ReWriteTitle();
 
@@ -45,7 +46,6 @@ namespace CSSSatyr
                 tsmi.Click += new EventHandler(Tsmi_Click);
                 choiceLanguageToolStripMenuItem.DropDownItems.Add(tsmi);
             }
-
             this.MainPictureBox.ImageChanged += new ChangedEventHandler<ImageArgs>(MainPictureBox_ImageSelected);
         }
 
@@ -182,7 +182,7 @@ namespace CSSSatyr
             {
                 Global.AlignMode = item.Checked ? AlignMode.AutoAlign : AlignMode.FreeAlign;
                 tsbtnAutoSorption.Checked = item.Checked;
-                tsStatusAutoSorption.Text = String.Format("对齐模式：{0}", item.Checked ? "吸附模式" : "自由模式");
+                tsStatusAutoSorption.Text = CommonLib.GetLocalString("status_auto_sorption", item.Checked ? CommonLib.GetLocalString("status_sorption_model_auto") : CommonLib.GetLocalString("status_sorption_model_free"));
             }
         }
 
@@ -233,11 +233,41 @@ namespace CSSSatyr
         {
             fileToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file");
             addImagesToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file_add_images");
+            exportImagesToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file_export_image");
+            newProjectToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file_new_project");
+            openProjectToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file_open_project");
+            saveProjectToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file_save_project");
+            exitToolStripMenuItem.Text = CommonLib.GetLocalString("menu_file_exit");
+
             viewToolStripMenuItem.Text = CommonLib.GetLocalString("menu_view");
-            exitToolStripMenuItem.Text = CommonLib.GetLocalString("menu_exit");
-            helpToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help");
-            createToolStripMenuItem.Text = CommonLib.GetLocalString("menu_create");
+            reOrderImagesToolStripMenuItem.Text = CommonLib.GetLocalString("menu_view_reorder");
+            showGridToolStripMenuItem.Text = CommonLib.GetLocalString("menu_view_show_grid");
+            autoSorptionGridToolStripMenuItem.Text = CommonLib.GetLocalString("menu_view_auto_sorption");
+            showSiderTreeToolStripMenuItem.Text = CommonLib.GetLocalString("menu_view_sider_tree");
+            choiceLanguageToolStripMenuItem.Text = CommonLib.GetLocalString("menu_view_choice_language");
+
             settingToolStripMenuItem.Text = CommonLib.GetLocalString("menu_setting");
+
+            createToolStripMenuItem.Text = CommonLib.GetLocalString("menu_create");
+
+            helpToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help");
+            howToUseToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_howto");
+            checkVersionToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_check_version");
+            submitSuggestToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_suggest");
+            copyrightToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_copyright");
+            homepageToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_homepage");
+
+
+            etbGridSize.Text = CommonLib.GetLocalString("main_bar_grid_size");
+            tsbtnAutoSorption.Text = CommonLib.GetLocalString("main_btn_auto_sorption");
+            tsbtnColorChange.Text = CommonLib.GetLocalString("main_btn_grid_style");
+            tsbtnReOrder.Text = CommonLib.GetLocalString("main_btn_reorder");
+            tsbtnShowGrid.Text = CommonLib.GetLocalString("main_btn_show_grid");
+            tsbShowLeftTree.Text = CommonLib.GetLocalString("main_btn_show_sidertree");
+
+            tsStatusNewVersionLabel.Text = CommonLib.GetLocalString("status_now_version", Global.ProductVersion);
+            tsStatusAutoSorption.Text = CommonLib.GetLocalString("status_sorption_model", autoSorptionGridToolStripMenuItem.Checked ? CommonLib.GetLocalString("status_sorption_model_auto") : CommonLib.GetLocalString("status_sorption_model_free"));
+            tsslStatusGridSize.Text =CommonLib.GetLocalString("status_grid_size", Global.GridSizeNum.ToString());
 
             propertyGrid1.Refresh();
         }
@@ -280,7 +310,7 @@ namespace CSSSatyr
             if (e.OldValue != e.NewValue)
             {
                 Global.GridSizeNum = e.NewValue;
-                tsslGridSize.Text = String.Format("网格大小:{0}", e.NewValue);
+                tsslStatusGridSize.Text = CommonLib.GetLocalString("status_grid_size", e.NewValue.ToString());
                 if (Global.GridStyle.ShowGrid)
                 {
                     MainPictureBox.Invalidate();
@@ -456,7 +486,7 @@ namespace CSSSatyr
                 _defaultGroup = CommonLib.CreateNewProject(listView1, p.Name);
 
                 MainPictureBox.Clear();
-                easyTrackBar1.Value = Global.GridSizeNum = p.GridSizeNum;
+                etbGridSize.Value = Global.GridSizeNum = p.GridSizeNum;
 
                 //TODO: InsertImage 判断出错
                 foreach (ImagePanel panel in p.Panels)
@@ -598,6 +628,11 @@ namespace CSSSatyr
         {
             frmAbout about = new frmAbout();
             about.ShowDialog(this);
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            changeLanguage();
         }
     }
 }

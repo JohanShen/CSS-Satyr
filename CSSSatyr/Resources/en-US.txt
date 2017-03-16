@@ -28,6 +28,7 @@ menu_file_exit = Exit
 ;
 menu_view_reorder = Reorder Images
 menu_view_auto_sorption = Auto Sorption
+menu_view_show_grid = Show Grid
 menu_view_sider_tree = Show Sider-Tree
 menu_view_choice_language = Choice Language
 menu_view_default_language = Default Language {0}
@@ -46,10 +47,25 @@ menu_help_suggest = Suggest
 menu_help_copyright = Copyright
 menu_help_homepage = Homepage
 
+; #Main panel
+;
+main_btn_show_sidertree = Sider tree
+main_btn_reorder = ReOrder
+main_btn_show_grid = Grid
+main_btn_auto_sorption = Auto Sorption
+main_btn_grid_style = Grid Style
+main_bar_grid_size = Grid Size
+main_default_project_name = New Project
+
 ; #Status
 ; 
-status_current_language = Current Language : {0}
-status_auto_sorption = Auto Sorption : {0}
+status_now_version = Now Version : {0}
+status_new_version = Last Version : {0}
+status_sorption_model = Sorption Model : {0}
+status_grid_size = Grid Size : {0}
+status_sorption_model_auto = Sorption
+status_sorption_model_free = Free
+
 
 ; #Project
 ; new_project

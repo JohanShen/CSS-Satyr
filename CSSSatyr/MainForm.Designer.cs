@@ -64,7 +64,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.easyTrackBar1 = new CSSSatyr.MyControls.EasyTrackBar();
+            this.etbGridSize = new CSSSatyr.MyControls.EasyTrackBar();
             this.MainPictureBox = new CSSSatyr.MyControls.PicturePanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbShowLeftTree = new System.Windows.Forms.ToolStripButton();
@@ -79,7 +79,7 @@
             this.tsStatusNewVersionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslSpaceLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsStatusAutoSorption = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsslGridSize = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslStatusGridSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.MainSplitContainer.Panel1.SuspendLayout();
             this.MainSplitContainer.Panel2.SuspendLayout();
@@ -477,7 +477,7 @@
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 264;
+            this.LeftSplitContainer.SplitterDistance = 274;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -490,7 +490,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 256);
+            this.listView1.Size = new System.Drawing.Size(242, 266);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -504,7 +504,7 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 130);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 120);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
@@ -514,7 +514,7 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel2.Controls.Add(this.easyTrackBar1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.etbGridSize, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.MainPictureBox, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.toolStrip1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -527,33 +527,33 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(592, 404);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // easyTrackBar1
+            // etbGridSize
             // 
-            this.easyTrackBar1.BackColor = System.Drawing.SystemColors.Control;
-            this.easyTrackBar1.BarBorderColor = System.Drawing.SystemColors.HotTrack;
-            this.easyTrackBar1.BarBorderWidth = false;
-            this.easyTrackBar1.BarClickColor = System.Drawing.SystemColors.ControlDark;
-            this.easyTrackBar1.BarColor = System.Drawing.SystemColors.HotTrack;
-            this.easyTrackBar1.BarWidth = 8;
-            this.easyTrackBar1.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.easyTrackBar1.BorderWidth = false;
-            this.easyTrackBar1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.easyTrackBar1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.easyTrackBar1.Location = new System.Drawing.Point(472, 0);
-            this.easyTrackBar1.Margin = new System.Windows.Forms.Padding(0);
-            this.easyTrackBar1.MaxValue = 50;
-            this.easyTrackBar1.MinValue = 10;
-            this.easyTrackBar1.Name = "easyTrackBar1";
-            this.easyTrackBar1.ProgressBarBackColor = System.Drawing.SystemColors.ControlLight;
-            this.easyTrackBar1.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.easyTrackBar1.ProgressBarBorderWidth = true;
-            this.easyTrackBar1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.easyTrackBar1.ShowValue = false;
-            this.easyTrackBar1.Size = new System.Drawing.Size(120, 22);
-            this.easyTrackBar1.TabIndex = 0;
-            this.easyTrackBar1.Text = "网格大小";
-            this.easyTrackBar1.Value = 10;
-            this.easyTrackBar1.ValueChanged += new CSSSatyr.MyControls.ValueChangeHandler<CSSSatyr.MyControls.EasyTrackBarValueChangedArgs>(this.easyTrackBar1_ValueChanged);
+            this.etbGridSize.BackColor = System.Drawing.SystemColors.Control;
+            this.etbGridSize.BarBorderColor = System.Drawing.SystemColors.HotTrack;
+            this.etbGridSize.BarBorderWidth = false;
+            this.etbGridSize.BarClickColor = System.Drawing.SystemColors.ControlDark;
+            this.etbGridSize.BarColor = System.Drawing.SystemColors.HotTrack;
+            this.etbGridSize.BarWidth = 8;
+            this.etbGridSize.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.etbGridSize.BorderWidth = false;
+            this.etbGridSize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.etbGridSize.Font = new System.Drawing.Font("Microsoft YaHei UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.etbGridSize.Location = new System.Drawing.Point(472, 0);
+            this.etbGridSize.Margin = new System.Windows.Forms.Padding(0);
+            this.etbGridSize.MaxValue = 50;
+            this.etbGridSize.MinValue = 10;
+            this.etbGridSize.Name = "etbGridSize";
+            this.etbGridSize.ProgressBarBackColor = System.Drawing.SystemColors.ControlLight;
+            this.etbGridSize.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDark;
+            this.etbGridSize.ProgressBarBorderWidth = true;
+            this.etbGridSize.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.etbGridSize.ShowValue = false;
+            this.etbGridSize.Size = new System.Drawing.Size(120, 22);
+            this.etbGridSize.TabIndex = 0;
+            this.etbGridSize.Text = "GridSize";
+            this.etbGridSize.Value = 10;
+            this.etbGridSize.ValueChanged += new CSSSatyr.MyControls.ValueChangeHandler<CSSSatyr.MyControls.EasyTrackBarValueChangedArgs>(this.easyTrackBar1_ValueChanged);
             // 
             // MainPictureBox
             // 
@@ -710,7 +710,7 @@
             this.tsStatusNewVersionLabel,
             this.tsslSpaceLabel,
             this.tsStatusAutoSorption,
-            this.tsslGridSize});
+            this.tsslStatusGridSize});
             this.sslAutoSorption.Location = new System.Drawing.Point(0, 476);
             this.sslAutoSorption.Name = "sslAutoSorption";
             this.sslAutoSorption.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
@@ -729,7 +729,7 @@
             // tsslSpaceLabel
             // 
             this.tsslSpaceLabel.Name = "tsslSpaceLabel";
-            this.tsslSpaceLabel.Size = new System.Drawing.Size(533, 20);
+            this.tsslSpaceLabel.Size = new System.Drawing.Size(494, 20);
             this.tsslSpaceLabel.Spring = true;
             this.tsslSpaceLabel.Text = "toolStripStatusLabel1";
             // 
@@ -739,11 +739,11 @@
             this.tsStatusAutoSorption.Size = new System.Drawing.Size(109, 20);
             this.tsStatusAutoSorption.Text = "AutoSorption";
             // 
-            // tsslGridSize
+            // tsslStatusGridSize
             // 
-            this.tsslGridSize.Name = "tsslGridSize";
-            this.tsslGridSize.Size = new System.Drawing.Size(69, 20);
-            this.tsslGridSize.Text = "GridSize";
+            this.tsslStatusGridSize.Name = "tsslStatusGridSize";
+            this.tsslStatusGridSize.Size = new System.Drawing.Size(69, 20);
+            this.tsslStatusGridSize.Text = "GridSize";
             // 
             // MainForm
             // 
@@ -758,6 +758,7 @@
             this.Text = "CSS Satyr v2.0 beta";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.MainSplitContainer.Panel1.ResumeLayout(false);
@@ -821,9 +822,9 @@
         protected internal System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripMenuItem showGridToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.ToolStripStatusLabel tsslGridSize;
+        private System.Windows.Forms.ToolStripStatusLabel tsslStatusGridSize;
         private System.Windows.Forms.ToolStripStatusLabel tsslSpaceLabel;
-        private MyControls.EasyTrackBar easyTrackBar1;
+        private MyControls.EasyTrackBar etbGridSize;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbtnShowGrid;
         private System.Windows.Forms.ToolStripButton tsbtnAutoSorption;

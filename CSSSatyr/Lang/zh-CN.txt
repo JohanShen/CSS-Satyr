@@ -26,10 +26,11 @@ menu_file_exit = 退出
 
 ; menu_view
 ;
-menu_view_reorder = Reorder Images
-menu_view_auto_sorption = Auto Sorption
-menu_view_sider_tree = Show Sider-Tree
-menu_view_choice_language = Choice Language
+menu_view_reorder = 重新排序
+menu_view_auto_sorption = 自动停靠
+menu_view_show_grid = 显示网格
+menu_view_sider_tree = 显示边树
+menu_view_choice_language = 选择语言
 menu_view_default_language = Default Language {0}
 
 ; menu_setting
@@ -40,16 +41,33 @@ menu_view_default_language = Default Language {0}
 
 ; menu_help
 ;
-menu_help_howto = How to Use
-menu_help_check_version = Check Version
-menu_help_suggest = Suggest
-menu_help_copyright = Copyright
-menu_help_homepage = Homepage
+menu_help_howto = 使用指南
+menu_help_check_version = 更新检测
+menu_help_suggest = 建议或意见
+menu_help_copyright = 版权申明
+menu_help_homepage = 软件主页
+
+; #Main panel
+;
+main_btn_show_sidertree = 左侧
+main_btn_reorder = 重新排列
+main_btn_show_grid = 网格
+main_btn_auto_sorption = 自动靠近
+main_btn_grid_style = 样式
+main_bar_grid_size = 大小
+main_default_project_name = 新项目
+
 
 ; #Status
 ; 
-status_current_language = Current Language : {0}
-status_auto_sorption = Auto Sorption : {0}
+status_now_version = 当前版本 : {0}
+status_new_version = 最新版本 : {0}
+status_sorption_model = 停靠模式 : {0}
+status_grid_size = 网格大小 : {0}
+status_sorption_model_auto = 吸附
+status_sorption_model_free = 自由
+
+
 
 ; #Project
 ; new_project
@@ -69,13 +87,13 @@ save_project_filename = File Name
 
 ; # Image item
 ;
-image_item_class = ClassName
-image_item_mark = Mark
-image_item_imagetype = ImageType
-image_item_width = Width
-image_item_height = Height
-image_item_showwidth = ShowWidth
-image_item_showheight = ShowHeight
+image_item_class = 调用名
+image_item_mark = 备注
+image_item_imagetype = 图片格式
+image_item_width = 图片宽
+image_item_height = 图片高
+image_item_showwidth = 显示宽
+image_item_showheight = 显示高
 image_item_x = X
 image_item_y = Y
 

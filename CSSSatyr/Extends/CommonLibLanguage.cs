@@ -10,6 +10,7 @@ namespace CSSSatyr.Extends
     {
         private static Dictionary<string, Dictionary<string, string>> langDic = new Dictionary<string, Dictionary<string, string>>();
         public static Dictionary<string, string> LangList = new Dictionary<string, string>();
+        private static string defaultLang = Properties.Resources.Default_Language.ToLower();
         private static void InitLanguage()
         {
             /*从资源加载*/
@@ -54,13 +55,13 @@ namespace CSSSatyr.Extends
             var matchs = langRegex.Matches(body);
             foreach (Match m in matchs)
             {
-                string key = m.Groups["key"].Value;
+                string key = m.Groups["key"].Value.ToLower();
                 string val = m.Groups["val"].Value.Trim().Replace("\r", "").Replace("\n", "").Replace("\t", "");
                 dic[key] = val;
             }
 
-            LangList[langCode] = dic["lang_name"] ?? "UNKNOW";
-            langDic[langCode] = dic;
+            LangList[langCode.ToLower()] = dic["lang_name"] ?? "UNKNOW";
+            langDic[langCode.ToLower()] = dic;
 
         }
 
@@ -72,15 +73,29 @@ namespace CSSSatyr.Extends
         /// <returns></returns>
         public static string GetLocalString(string key, params string[] paramters)
         {
-            string local = Global.Lang;
+            string local = Global.Lang.ToLower();
             string _key = key.ToLower();
+            if (langDic.ContainsKey(local) == false)
+            {
+                local = defaultLang;
+            }
+
             if (langDic.ContainsKey(local))
             {
                 Dictionary<string, string> lang = langDic[local];
+                if (local.Equals(defaultLang) == false && lang.ContainsKey(_key) == false)
+                    lang = langDic[defaultLang];
+
                 if (lang.ContainsKey(_key))
                 {
-                    string str = String.Format(lang[_key], paramters);
-                    return str;
+                    try
+                    {
+                        string str = String.Format(lang[_key], paramters);
+                        return str;
+                    }
+                    catch {
+                        return key;
+                    }
                 }
             }
             return key;

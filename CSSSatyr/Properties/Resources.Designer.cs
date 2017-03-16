@@ -191,6 +191,15 @@ namespace CSSSatyr.Properties {
         }
         
         /// <summary>
+        ///   查找类似 en-US 的本地化字符串。
+        /// </summary>
+        internal static string Default_Language {
+            get {
+                return ResourceManager.GetString("Default_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 ; Language Package
         ///; Please using UTF-8 encoding
         ///lang_name = English

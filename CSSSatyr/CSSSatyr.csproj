@@ -172,7 +172,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="APP.ico" />
-    <Content Include="Lang\en-US.txt" />
     <Content Include="Lang\zh-CN.txt" />
     <None Include="Resources\en-US.txt" />
     <None Include="Resources\information_16px.ico" />
@@ -196,6 +195,9 @@
     <Folder Include="docs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /r /e /y $(ProjectDir)lang  $(TargetDir)lang\</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

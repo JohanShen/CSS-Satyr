@@ -211,4 +211,8 @@
   <data name="en_US" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\en-US.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
+  <data name="Default_Language" xml:space="preserve">
+    <value>en-US</value>
+    <comment>默认语言</comment>
+  </data>
 </root>
