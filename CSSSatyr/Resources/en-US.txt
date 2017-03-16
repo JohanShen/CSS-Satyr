@@ -81,7 +81,13 @@ save_project_filename = File Name
 
 ; #Setting
 ;
-
+setting_project = Setting Project
+setting_project_name = Project Name
+setting_project_author = Project Author
+setting_project_class_prefix = Class Name Prefix
+setting_project_image_create_format = Create Image Format
+setting_project_image_quailty = Image quailty
+setting_project_created_time = Create Time
 
 ; # Image item
 ;
@@ -106,18 +112,19 @@ image_item_y = Y
 ; image_item_class_desc = The name of Class in CSS.
 ; image_item_mark_desc = Mark this image.
 
-; # Alter
+; # alert
 ;
 no_object = No object selected.
 alert_windows_title = Message
-alter_yes = Yes
-alter_no = No
-alter_save = Save
-alter_cancnel = Cancnel
-alter_save_exit = Save & Exit
-alter_cancnel_exit = Cancnel & Exit
-alter_str_badtype = This file-type is not for support.
-alter_str_badsize = Thie image width or height is more than maximum.
+alert_yes = Yes
+alert_no = No
+alert_save = Save
+alert_ok = OK
+alert_cancel = Cancnel
+alert_save_exit = Save & Exit
+alert_cancel_exit = Cancnel & Exit
+alert_str_badtype = This file-type is not for support.
+alert_str_badsize = Thie image width or height is more than maximum.
 menu_file_exit_confirm = Are sure exit application?
 menu_file_exit_confirm_without_save = This project without save.\nAre you want save before exit?
 open_project_format_error = This is a invalid project file.

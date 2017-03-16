@@ -25,6 +25,7 @@ namespace CSSSatyr
         {
             Global.Lang = System.Globalization.CultureInfo.CurrentCulture.Name;
             InitializeComponent();
+
             tsslSpaceLabel.Text = "";
             etbGridSize.Value = Global.GridSizeNum;
             _defaultGroup = CommonLib.CreateNewProject(listView1, CommonLib.GetLocalString("main_default_project_name"));

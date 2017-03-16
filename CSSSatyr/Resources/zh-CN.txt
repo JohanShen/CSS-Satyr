@@ -83,6 +83,14 @@ save_project_filename = File Name
 
 ; #Setting
 ;
+setting_project = 项目设置
+setting_project_name = 项目名称
+setting_project_author = 作者
+setting_project_class_prefix = CSS引用名前缀
+setting_project_image_create_format = 生成图片格式
+setting_project_image_quailty = 图片质量
+setting_project_created_time = 创建时间
+
 
 
 ; # Image item
@@ -108,18 +116,19 @@ image_item_y = Y
 ; image_item_class_desc = The name of Class in CSS.
 ; image_item_mark_desc = Mark this image.
 
-; # Alter
+; # alert
 ;
-alert_windows_title = Message
-alter_confirm_title = Confirm you operation!
-alter_yes = Yes
-alter_no = No
-alter_save = Save
-alter_cancnel = Cancnel
-alter_save_exit = Save & Exit
-alter_cancnel_exit = Cancnel & Exit
-alter_str_badtype = This file-type is not for support.
-alter_str_badsize = Thie image width or height is more than maximum.
+alert_windows_title = 提示信息：
+alert_confirm_title = 确认您的操作!
+alert_yes = 是
+alert_no = 否
+alert_save = 保存
+alert_ok = 确定
+alert_cancel = 取消
+alert_save_exit = 保存且退出
+alert_cancel_exit = 取消且退出
+alert_str_badtype = This file-type is not for support.
+alert_str_badsize = Thie image width or height is more than maximum.
 menu_file_exit_confirm = Are sure exit application?
 menu_file_exit_confirm_without_save = This project without save.\nAre you want save before exit?
 
