@@ -17,7 +17,13 @@ namespace CSSSatyr.Extends
             langDic["zh-CN"]["create"] = "生成(&C)";
             langDic["zh-CN"]["exit"] = "退出(&F4)";
             langDic["zh-CN"]["help"] = "帮助(&H)";
-            langDic["zh-CN"]["class"] = "类";
+            langDic["zh-CN"]["image_item_id"] = "ID";
+            langDic["zh-CN"]["image_item_class"] = "类";
+            langDic["zh-CN"]["image_item_mark"] = "类";
+            langDic["zh-CN"]["image_item_class"] = "类";
+            langDic["zh-CN"]["image_item_class"] = "类";
+            langDic["zh-CN"]["image_item_class"] = "类";
+            langDic["zh-CN"]["image_item_class"] = "类";
             langDic["zh-CN"]["add_images"] = "添加图片";
         }
 

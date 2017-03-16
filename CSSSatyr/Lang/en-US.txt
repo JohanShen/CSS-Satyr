@@ -1,5 +1,5 @@
 ﻿; Language Package
-; Please used UTF-8 encoding
+; Please using UTF-8 encoding
 lang_name = English
 author = Johan Shen
 author_mail = johanshen@126.com
@@ -69,28 +69,26 @@ save_project_filename = File Name
 
 ; # Image item
 ;
-image_item_classname = ClassName
-image_item_classname_desc = The name of Class in CSS.
-image_item_filename = FileName
-image_item_filename_desc = The image's Name.
-image_item_filepath = FilePath
-image_item_filepath_desc = The image's path on computer.
+image_item_class = ClassName
 image_item_mark = Mark
-image_item_mark_desc = Mark this image.
 image_item_imagetype = ImageType
-image_item_imagetype_desc = The image's file-type.
 image_item_width = Width
-image_item_width_desc = The image's real width.
 image_item_height = Height
-image_item_height_desc = The image's real height.
 image_item_showwidth = ShowWidth
-image_item_showwidth_desc = The image's width show in the panel.
 image_item_showheight = ShowHeight
-image_item_showheight_desc = The image's height show in the panel.
 image_item_x = X
-image_item_x_desc = The X panel of image.
 image_item_y = Y
-image_item_y_desc = The X the panel of image.
+
+; 
+; image_item_y_desc = The X the panel of image.
+; image_item_x_desc = The X panel of image.
+; image_item_showheight_desc = The image's height show in the panel.
+; image_item_showwidth_desc = The image's width show in the panel.
+; image_item_height_desc = The image's real height.
+; image_item_width_desc = The image's real width.
+; image_item_imagetype_desc = The image's file-type.
+; image_item_class_desc = The name of Class in CSS.
+; image_item_mark_desc = Mark this image.
 
 ; # Alter
 ;
