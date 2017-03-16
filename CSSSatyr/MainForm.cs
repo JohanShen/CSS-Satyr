@@ -30,7 +30,6 @@ namespace CSSSatyr
             _defaultGroup = CommonLib.CreateNewProject(listView1, CommonLib.GetLocalString("main_default_project_name"));
             tsStatusNewVersionLabel.Text = String.Format(CommonLib.GetLocalString("status_now_version"), Global.ProductVersion);
             Global.ProjectSaved = true;
-            ReWriteTitle();
 
             //defaultLanguageToolStripMenuItem;
 
@@ -44,6 +43,8 @@ namespace CSSSatyr
                 tsmi.Tag = item.Key;
                 tsmi.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular);
                 tsmi.Click += new EventHandler(Tsmi_Click);
+                tsmi.Checked = item.Key.Equals(Global.Lang, StringComparison.CurrentCultureIgnoreCase);
+
                 choiceLanguageToolStripMenuItem.DropDownItems.Add(tsmi);
             }
             this.MainPictureBox.ImageChanged += new ChangedEventHandler<ImageArgs>(MainPictureBox_ImageSelected);
@@ -182,7 +183,7 @@ namespace CSSSatyr
             {
                 Global.AlignMode = item.Checked ? AlignMode.AutoAlign : AlignMode.FreeAlign;
                 tsbtnAutoSorption.Checked = item.Checked;
-                tsStatusAutoSorption.Text = CommonLib.GetLocalString("status_auto_sorption", item.Checked ? CommonLib.GetLocalString("status_sorption_model_auto") : CommonLib.GetLocalString("status_sorption_model_free"));
+                tsStatusAutoSorption.Text = CommonLib.GetLocalString("status_sorption_model", item.Checked ? CommonLib.GetLocalString("status_sorption_model_auto") : CommonLib.GetLocalString("status_sorption_model_free"));
             }
         }
 
@@ -633,6 +634,7 @@ namespace CSSSatyr
         private void MainForm_Shown(object sender, EventArgs e)
         {
             changeLanguage();
+            ReWriteTitle();
         }
     }
 }

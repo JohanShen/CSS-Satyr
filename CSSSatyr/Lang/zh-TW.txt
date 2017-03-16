@@ -1,0 +1,126 @@
+﻿; Language Package
+; Please using UTF-8 encoding
+lang_name = 繁體中文
+author = Johan Shen
+author_mail = johanshen@126.com
+author_www = http://shen.li
+
+; #Root Menu
+; key = value
+; the key case-insensitive
+; {0}, {1}, {2} etc. are parameters 
+menu_file = 文件(&F)
+menu_view = 視圖(&V)
+menu_setting = 設置(&S)
+menu_create = 生成(&C)
+menu_help = 幫助(&H)
+
+; #Sub Menu
+; menu_file
+menu_file_add_images = 添加文件
+menu_file_export_image = 導出圖片
+menu_file_new_project = 新建項目
+menu_file_open_project = 打開項目
+menu_file_save_project = 保存
+menu_file_exit = 退出
+
+; menu_view
+;
+menu_view_reorder = 重新排序
+menu_view_auto_sorption = 自動吸附
+menu_view_show_grid = 顯示網格
+menu_view_sider_tree = 顯示邊樹
+menu_view_choice_language = 選擇語言
+
+; menu_setting
+;
+
+; menu_create
+;
+
+; menu_help
+;
+menu_help_howto = 使用指南
+menu_help_check_version = 更新檢測
+menu_help_suggest = 建議或意見
+menu_help_copyright = 版權申明
+menu_help_homepage = 軟件主頁
+
+; #Main panel
+;
+main_btn_show_sidertree = 左側
+main_btn_reorder = 重新排列
+main_btn_show_grid = 網格
+main_btn_auto_sorption = 自動吸附
+main_btn_grid_style = 樣式
+main_bar_grid_size = 大小
+main_default_project_name = 新項目
+
+
+; #Status
+; 
+status_now_version = 當前版本 : {0}
+status_new_version = 最新版本 : {0}
+status_sorption_model = 停靠模式 : {0}
+status_grid_size = 網格大小 : {0}
+status_sorption_model_auto = 吸附
+status_sorption_model_free = 自由
+
+
+
+; #Project
+; new_project
+new_project_name = Project Name
+
+
+; save_project
+save_project_filename = File Name
+
+
+; open_project
+
+
+; #Setting
+;
+
+
+; # Image item
+;
+image_item_class = 引用名
+image_item_mark = 備註
+image_item_imagetype = 圖片格式
+image_item_width = 圖片寬
+image_item_height = 圖片高
+image_item_showwidth = 顯示寬
+image_item_showheight = 顯示高
+image_item_x = X
+image_item_y = Y
+
+; 
+; image_item_y_desc = The X the panel of image.
+; image_item_x_desc = The X panel of image.
+; image_item_showheight_desc = The image's height show in the panel.
+; image_item_showwidth_desc = The image's width show in the panel.
+; image_item_height_desc = The image's real height.
+; image_item_width_desc = The image's real width.
+; image_item_imagetype_desc = The image's file-type.
+; image_item_class_desc = The name of Class in CSS.
+; image_item_mark_desc = Mark this image.
+
+; # Alter
+;
+alert_windows_title = 提示信息
+alter_confirm_title = 確認您的操作!
+alter_yes = 是
+alter_no = 否
+alter_save = 保存
+alter_cancnel = 取消
+alter_save_exit = 保存且退出
+alter_cancnel_exit = 取消且退出
+alter_str_badtype = 暫不支持該文件格式.
+alter_str_badsize = 圖片的寬或高像素太大，無法導入.
+menu_file_exit_confirm = 確定要退出嗎?
+menu_file_exit_confirm_without_save = 項目尚未保存.\n您希望在退出之前保存項目嗎?
+
+
+

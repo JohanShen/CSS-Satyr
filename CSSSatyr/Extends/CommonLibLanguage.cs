@@ -13,9 +13,6 @@ namespace CSSSatyr.Extends
         private static string defaultLang = Properties.Resources.Default_Language.ToLower();
         private static void InitLanguage()
         {
-            /*从资源加载*/
-            LoadLangFromString("en-US", CSSSatyr.Properties.Resources.en_US);
-
             //从目录加载
             var dir =  String.Format("{0}Lang\\", System.AppDomain.CurrentDomain.BaseDirectory);
             if (Directory.Exists(dir))
@@ -26,6 +23,9 @@ namespace CSSSatyr.Extends
                     LandLangFromTxtFile(file);
                 }
             }
+            /*从资源加载*/
+            LoadLangFromString("en-US", CSSSatyr.Properties.Resources.en_US);
+            LoadLangFromString("zh-CN", CSSSatyr.Properties.Resources.zh_CN);
         }
 
         private static void LandLangFromTxtFile(string filePath)

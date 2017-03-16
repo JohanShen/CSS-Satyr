@@ -399,5 +399,37 @@ namespace CSSSatyr.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查找类似 ; Language Package
+        ///; Please using UTF-8 encoding
+        ///lang_name = 简体中文
+        ///author = Johan Shen
+        ///author_mail = johanshen@126.com
+        ///author_www = http://shen.li
+        ///
+        ///; #Root Menu
+        ///; key = value
+        ///; the key case-insensitive
+        ///; {0}, {1}, {2} etc. are parameters 
+        ///menu_file = 文件(&amp;F)
+        ///menu_view = 视图(&amp;V)
+        ///menu_setting = 设置(&amp;S)
+        ///menu_create = 生成(&amp;C)
+        ///menu_help = 帮助(&amp;H)
+        ///
+        ///; #Sub Menu
+        ///; menu_file
+        ///menu_file_add_images = 添加文件
+        ///menu_file_export_image = 导出图片
+        ///menu_file_new_project = 新建项目
+        ///menu_file_open_project = 打开项目
+        ///menu_file [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string zh_CN {
+            get {
+                return ResourceManager.GetString("zh_CN", resourceCulture);
+            }
+        }
     }
 }

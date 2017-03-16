@@ -1,6 +1,6 @@
-ï»¿; Language Package
+; Language Package
 ; Please using UTF-8 encoding
-lang_name = ç®€ä½“ä¸­æ–‡
+lang_name = ¼òÌåÖĞÎÄ
 author = Johan Shen
 author_mail = johanshen@126.com
 author_www = http://shen.li
@@ -9,28 +9,28 @@ author_www = http://shen.li
 ; key = value
 ; the key case-insensitive
 ; {0}, {1}, {2} etc. are parameters 
-menu_file = æ–‡ä»¶(&F)
-menu_view = è§†å›¾(&V)
-menu_setting = è®¾ç½®(&S)
-menu_create = ç”Ÿæˆ(&C)
-menu_help = å¸®åŠ©(&H)
+menu_file = ÎÄ¼ş(&F)
+menu_view = ÊÓÍ¼(&V)
+menu_setting = ÉèÖÃ(&S)
+menu_create = Éú³É(&C)
+menu_help = °ïÖú(&H)
 
 ; #Sub Menu
 ; menu_file
-menu_file_add_images = æ·»åŠ æ–‡ä»¶
-menu_file_export_image = å¯¼å‡ºå›¾ç‰‡
-menu_file_new_project = æ–°å»ºé¡¹ç›®
-menu_file_open_project = æ‰“å¼€é¡¹ç›®
-menu_file_save_project = ä¿å­˜ 
-menu_file_exit = é€€å‡º
+menu_file_add_images = Ìí¼ÓÎÄ¼ş
+menu_file_export_image = µ¼³öÍ¼Æ¬
+menu_file_new_project = ĞÂ½¨ÏîÄ¿
+menu_file_open_project = ´ò¿ªÏîÄ¿
+menu_file_save_project = ±£´æ 
+menu_file_exit = ÍË³ö
 
 ; menu_view
 ;
-menu_view_reorder = é‡æ–°æ’åº
-menu_view_auto_sorption = è‡ªåŠ¨åœé 
-menu_view_show_grid = æ˜¾ç¤ºç½‘æ ¼
-menu_view_sider_tree = æ˜¾ç¤ºè¾¹æ ‘
-menu_view_choice_language = é€‰æ‹©è¯­è¨€
+menu_view_reorder = ÖØĞÂÅÅĞò
+menu_view_auto_sorption = ×Ô¶¯Í£¿¿
+menu_view_show_grid = ÏÔÊ¾Íø¸ñ
+menu_view_sider_tree = ÏÔÊ¾±ßÊ÷
+menu_view_choice_language = Ñ¡ÔñÓïÑÔ
 menu_view_default_language = Default Language {0}
 
 ; menu_setting
@@ -41,31 +41,31 @@ menu_view_default_language = Default Language {0}
 
 ; menu_help
 ;
-menu_help_howto = ä½¿ç”¨æŒ‡å—
-menu_help_check_version = æ›´æ–°æ£€æµ‹
-menu_help_suggest = å»ºè®®æˆ–æ„è§
-menu_help_copyright = ç‰ˆæƒç”³æ˜
-menu_help_homepage = è½¯ä»¶ä¸»é¡µ
+menu_help_howto = Ê¹ÓÃÖ¸ÄÏ
+menu_help_check_version = ¸üĞÂ¼ì²â
+menu_help_suggest = ½¨Òé»òÒâ¼û
+menu_help_copyright = °æÈ¨ÉêÃ÷
+menu_help_homepage = Èí¼şÖ÷Ò³
 
 ; #Main panel
 ;
-main_btn_show_sidertree = å·¦ä¾§
-main_btn_reorder = é‡æ–°æ’åˆ—
-main_btn_show_grid = ç½‘æ ¼
-main_btn_auto_sorption = è‡ªåŠ¨é è¿‘
-main_btn_grid_style = æ ·å¼
-main_bar_grid_size = å¤§å°
-main_default_project_name = æ–°é¡¹ç›®
+main_btn_show_sidertree = ×ó²à
+main_btn_reorder = ÖØĞÂÅÅÁĞ
+main_btn_show_grid = Íø¸ñ
+main_btn_auto_sorption = ×Ô¶¯¿¿½ü
+main_btn_grid_style = ÑùÊ½
+main_bar_grid_size = ´óĞ¡
+main_default_project_name = ĞÂÏîÄ¿
 
 
 ; #Status
 ; 
-status_now_version = å½“å‰ç‰ˆæœ¬ : {0}
-status_new_version = æœ€æ–°ç‰ˆæœ¬ : {0}
-status_sorption_model = åœé æ¨¡å¼ : {0}
-status_grid_size = ç½‘æ ¼å¤§å° : {0}
-status_sorption_model_auto = å¸é™„
-status_sorption_model_free = è‡ªç”±
+status_now_version = µ±Ç°°æ±¾ : {0}
+status_new_version = ×îĞÂ°æ±¾ : {0}
+status_sorption_model = Í£¿¿Ä£Ê½ : {0}
+status_grid_size = Íø¸ñ´óĞ¡ : {0}
+status_sorption_model_auto = Îü¸½
+status_sorption_model_free = ×ÔÓÉ
 
 
 
@@ -87,13 +87,13 @@ save_project_filename = File Name
 
 ; # Image item
 ;
-image_item_class = è°ƒç”¨å
-image_item_mark = å¤‡æ³¨
-image_item_imagetype = å›¾ç‰‡æ ¼å¼
-image_item_width = å›¾ç‰‡å®½
-image_item_height = å›¾ç‰‡é«˜
-image_item_showwidth = æ˜¾ç¤ºå®½
-image_item_showheight = æ˜¾ç¤ºé«˜
+image_item_class = µ÷ÓÃÃû
+image_item_mark = ±¸×¢
+image_item_imagetype = Í¼Æ¬¸ñÊ½
+image_item_width = Í¼Æ¬¿í
+image_item_height = Í¼Æ¬¸ß
+image_item_showwidth = ÏÔÊ¾¿í
+image_item_showheight = ÏÔÊ¾¸ß
 image_item_x = X
 image_item_y = Y
 
@@ -110,7 +110,7 @@ image_item_y = Y
 
 ; # Alter
 ;
-alter_title = Message
+alert_windows_title = Message
 alter_confirm_title = Confirm you operation!
 alter_yes = Yes
 alter_no = No

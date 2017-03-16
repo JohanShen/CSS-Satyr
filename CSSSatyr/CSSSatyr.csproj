@@ -172,7 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="APP.ico" />
-    <Content Include="Lang\zh-CN.txt" />
+    <Content Include="Lang\zh-TW.txt" />
+    <None Include="Resources\zh-CN.txt" />
     <None Include="Resources\en-US.txt" />
     <None Include="Resources\information_16px.ico" />
     <None Include="Resources\alert_information_16px.ico" />
