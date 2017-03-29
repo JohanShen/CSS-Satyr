@@ -657,5 +657,10 @@ namespace CSSSatyr
         {
 
         }
+
+        private void tsbtnExportImage_Click(object sender, EventArgs e)
+        {
+            exportImagesToolStripMenuItem_Click(sender, e);
+        }
     }
 }

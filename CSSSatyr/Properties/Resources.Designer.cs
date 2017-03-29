@@ -206,6 +206,7 @@ namespace CSSSatyr.Properties {
         ///author = Johan Shen
         ///author_mail = johanshen@126.com
         ///author_www = http://shen.li
+        ///project_file_format_2017 = CSS-Satry Project File
         ///
         ///; #Root Menu
         ///; key = value
@@ -220,9 +221,7 @@ namespace CSSSatyr.Properties {
         ///; #Sub Menu
         ///; menu_file
         ///menu_file_add_images = Add Images
-        ///menu_file_export_image = Export Image
-        ///menu_file_new_project = New Project
-        ///m [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///menu_file_export_image = E [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string en_US {
             get {
@@ -303,6 +302,26 @@ namespace CSSSatyr.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap image_add_16px_534764_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("image_add_16px_534764_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap image_next_16px_534760_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("image_next_16px_534760_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap infomation_32 {
             get {
                 object obj = ResourceManager.GetObject("infomation_32", resourceCulture);
@@ -346,6 +365,16 @@ namespace CSSSatyr.Properties {
         internal static System.Drawing.Bitmap picture_add_16 {
             get {
                 object obj = ResourceManager.GetObject("picture_add_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Picture_Save_16px_530232_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("Picture_Save_16px_530232_easyicon.net", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -425,6 +454,7 @@ namespace CSSSatyr.Properties {
         ///author = Johan Shen
         ///author_mail = johanshen@126.com
         ///author_www = http://shen.li
+        ///project_file_format_2017 = 项目文件
         ///
         ///; #Root Menu
         ///; key = value
@@ -441,8 +471,7 @@ namespace CSSSatyr.Properties {
         ///menu_file_add_images = 添加文件
         ///menu_file_export_image = 导出图片
         ///menu_file_new_project = 新建项目
-        ///menu_file_open_project = 打开项目
-        ///menu_file [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///menu_fi [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string zh_CN {
             get {

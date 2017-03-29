@@ -75,6 +75,7 @@
             this.grayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbtnAutoSorption = new System.Windows.Forms.ToolStripButton();
             this.tsbtnShowGrid = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnExportImage = new System.Windows.Forms.ToolStripButton();
             this.sslAutoSorption = new System.Windows.Forms.StatusStrip();
             this.tsStatusNewVersionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslSpaceLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -189,7 +190,7 @@
             // 
             // addImagesToolStripMenuItem
             // 
-            this.addImagesToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.picture_add_16;
+            this.addImagesToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.image_add_16px_534764_easyicon_net;
             this.addImagesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.addImagesToolStripMenuItem.Name = "addImagesToolStripMenuItem";
             this.addImagesToolStripMenuItem.ShortcutKeyDisplayString = "";
@@ -199,7 +200,7 @@
             // 
             // exportImagesToolStripMenuItem
             // 
-            this.exportImagesToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.export_16;
+            this.exportImagesToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.Picture_Save_16px_530232_easyicon_net;
             this.exportImagesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportImagesToolStripMenuItem.Name = "exportImagesToolStripMenuItem";
             this.exportImagesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
@@ -481,7 +482,7 @@
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 280;
+            this.LeftSplitContainer.SplitterDistance = 286;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -494,7 +495,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 272);
+            this.listView1.Size = new System.Drawing.Size(242, 278);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -508,7 +509,7 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 114);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 108);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
@@ -589,7 +590,8 @@
             this.tsbtnReOrder,
             this.tsbtnColorChange,
             this.tsbtnAutoSorption,
-            this.tsbtnShowGrid});
+            this.tsbtnShowGrid,
+            this.tsbtnExportImage});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -706,6 +708,18 @@
             this.tsbtnShowGrid.Size = new System.Drawing.Size(84, 21);
             this.tsbtnShowGrid.Text = "ShowGrid";
             this.tsbtnShowGrid.Click += new System.EventHandler(this.tsbtnShowGrid_Click);
+            // 
+            // tsbtnExportImage
+            // 
+            this.tsbtnExportImage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtnExportImage.Image = global::CSSSatyr.Properties.Resources.Picture_Save_16px_530232_easyicon_net;
+            this.tsbtnExportImage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbtnExportImage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnExportImage.Margin = new System.Windows.Forms.Padding(0, 0, 5, 1);
+            this.tsbtnExportImage.Name = "tsbtnExportImage";
+            this.tsbtnExportImage.Size = new System.Drawing.Size(23, 21);
+            this.tsbtnExportImage.Text = "Export image";
+            this.tsbtnExportImage.Click += new System.EventHandler(this.tsbtnExportImage_Click);
             // 
             // sslAutoSorption
             // 
@@ -838,6 +852,7 @@
         private System.Windows.Forms.ToolStripMenuItem blackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grayToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tsbShowLeftTree;
+        private System.Windows.Forms.ToolStripButton tsbtnExportImage;
     }
 }
 
