@@ -4,6 +4,7 @@ lang_name = 简体中文
 author = Johan Shen
 author_mail = johanshen@126.com
 author_www = http://shen.li
+project_file_format_2017 = 项目文件
 
 ; #Root Menu
 ; key = value
@@ -95,6 +96,7 @@ setting_project_created_time = 创建时间
 
 ; # Image item
 ;
+image_item_id = ID
 image_item_class = 调用名
 image_item_mark = 备注
 image_item_imagetype = 图片格式
@@ -102,6 +104,7 @@ image_item_width = 图片宽
 image_item_height = 图片高
 image_item_showwidth = 显示宽
 image_item_showheight = 显示高
+image_item_showmodel = 显示模式
 image_item_x = X
 image_item_y = Y
 

@@ -134,7 +134,7 @@ namespace CSSSatyr.Models
         }
 
         private ImageShowModel showModel = ImageShowModel.Contain;
-        [ReadOnly(false), PropertyAttibute("image_item_showModel", "image_item_showModel_desc")]
+        [ReadOnly(false), PropertyAttibute("image_item_showmodel", "image_item_showModel_desc")]
         public ImageShowModel ShowModel
         {
             get { return showModel; }

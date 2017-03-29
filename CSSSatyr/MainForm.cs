@@ -337,7 +337,7 @@ namespace CSSSatyr
         private void saveProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MainPictureBox.Controls.Count == 0
-                && MessageBox.Show("项目为空，确定要保存工程吗？", "空项目", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                && MessageBox.Show(CommonLib.GetLocalString("save_empty_project"), CommonLib.GetLocalString("alert_windows_title"), MessageBoxButtons.OKCancel) == DialogResult.Cancel)
             {
                 return;
             }
@@ -346,7 +346,7 @@ namespace CSSSatyr
             saveFileDialog.AddExtension = true;
             saveFileDialog.CheckFileExists = false;
             saveFileDialog.SupportMultiDottedExtensions = false;
-            saveFileDialog.Filter = "CSS-Satry Project File(2016)|*.cssp";
+            saveFileDialog.Filter = String.Format( "{0}(2017)|*.cssp", CommonLib.GetLocalString("project_file_format_2017"));
             if (String.IsNullOrEmpty(Global.SavedPath) && saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 Global.SavedPath = saveFileDialog.FileName;
@@ -432,7 +432,7 @@ namespace CSSSatyr
             openfileDialog.AddExtension = true;
             openfileDialog.CheckFileExists = true;
             openfileDialog.Multiselect = false;
-            openfileDialog.Filter = "CSS-Satry Project File(2016)|*.cssp";
+            openfileDialog.Filter = String.Format("{0}(2017)|*.cssp", CommonLib.GetLocalString("project_file_format_2017"));
 
             if (openfileDialog.ShowDialog() == DialogResult.OK)
             {
