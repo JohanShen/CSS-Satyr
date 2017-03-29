@@ -18,6 +18,9 @@ namespace CSSSatyr
         private static AlignMode _alignMode = AlignMode.FreeAlign;
         private static string _lang = "en-US";
         private static GridStyle _gridStyle = CommonLib.GetGridStyle();
+        private static ApplicationConfig _ac = ApplicationConfig.Load() ?? new ApplicationConfig() { Language = null };
+
+        public static ApplicationConfig Config { get { return _ac; } }
 
         /// <summary>
         /// 软件名

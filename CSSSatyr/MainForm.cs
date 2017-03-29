@@ -23,7 +23,7 @@ namespace CSSSatyr
 
         public MainForm()
         {
-            Global.Lang = System.Globalization.CultureInfo.CurrentCulture.Name;
+            Global.Lang = Global.Config.Language ?? System.Globalization.CultureInfo.CurrentCulture.Name;
             InitializeComponent();
 
             tsslSpaceLabel.Text = "";
@@ -62,7 +62,8 @@ namespace CSSSatyr
                     item.Checked = false;
                 }
                 c.Checked = true;
-                Global.Lang = c.Tag.ToString();
+                Global.Config.Language = Global.Lang = c.Tag.ToString();
+                Global.Config.Save();
                 //Console.WriteLine(Global.Lang);
                 changeLanguage();
             }
