@@ -9,7 +9,7 @@ namespace CSSSatyr.Models
     /// <summary>
     /// 程序配置 文件结构
     /// </summary>
-    internal class ApplicationConfig
+    public class ApplicationConfig
     {
         public static readonly byte[] Header = new byte[] { (byte)'C', (byte)'S', (byte)'S', (byte)'C' };
         public static readonly byte Version = 0x01;
@@ -124,13 +124,13 @@ namespace CSSSatyr.Models
         /// 保存配置文件
         /// </summary>
         /// <param name="ac"></param>
-        public static void Save(ApplicationConfig ac)
+        public void Save()
         {
             if (Directory.Exists(configPath) == false)
                 Directory.CreateDirectory(configPath);
 
             string filePath = Path.Combine(configPath, configFileName);
-            ac.SaveToFile(filePath, true);
+            SaveToFile(filePath, true);
         }
 
         public static ApplicationConfig Load()
