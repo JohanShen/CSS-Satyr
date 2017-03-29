@@ -125,7 +125,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAM
-        OgAAAk1TRnQBSQFMAgEBBQEAAfABAwHwAQMBGAEAARgBAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFg
+        OgAAAk1TRnQBSQFMAgEBBQEAAQgBBAEIAQQBGAEAARgBAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFg
         AwABMAMAAQEBAAEgBgABSC4AAzIBUANRAaADXwHgAZkBAAGZAf8BmQEAAZkB/wGZAQABmQH/AZkBAAGZ
         Af8DXwHgA1EBoAMyAVD/AFEAAyoBQANfAeABmQEAAZkB/wGZAQABmQH/AZkBAAGZAf8BmQEAAZkB/wGZ
         AQABmQH/AZkBAAGZAf8BmQEAAZkB/wGZAQABmQH/AZkBAAGZAf8BmQEAAZkB/wNfAeADKgFA/wBFAAFM
@@ -385,7 +385,7 @@
     <value>372, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>59</value>
+    <value>67</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

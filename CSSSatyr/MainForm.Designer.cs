@@ -55,10 +55,9 @@
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.howToUseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.submitSuggestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyrightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.homepageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyrightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BodyContainer = new System.Windows.Forms.SplitContainer();
             this.LeftSplitContainer = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -377,10 +376,9 @@
             this.helpToolStripMenuItem.AutoSize = false;
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.howToUseToolStripMenuItem,
-            this.checkVersionToolStripMenuItem,
             this.submitSuggestToolStripMenuItem,
-            this.copyrightToolStripMenuItem,
-            this.homepageToolStripMenuItem});
+            this.homepageToolStripMenuItem,
+            this.copyrightToolStripMenuItem});
             this.helpToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.infomation_32;
             this.helpToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.helpToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
@@ -399,15 +397,6 @@
             this.howToUseToolStripMenuItem.Text = "HowToUse";
             this.howToUseToolStripMenuItem.Click += new System.EventHandler(this.howToUseToolStripMenuItem_Click);
             // 
-            // checkVersionToolStripMenuItem
-            // 
-            this.checkVersionToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.database_refresh_16;
-            this.checkVersionToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.checkVersionToolStripMenuItem.Name = "checkVersionToolStripMenuItem";
-            this.checkVersionToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
-            this.checkVersionToolStripMenuItem.Text = "CheckVersion";
-            this.checkVersionToolStripMenuItem.Click += new System.EventHandler(this.checkVersionToolStripMenuItem_Click);
-            // 
             // submitSuggestToolStripMenuItem
             // 
             this.submitSuggestToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.application_edit_16;
@@ -417,15 +406,6 @@
             this.submitSuggestToolStripMenuItem.Text = "SubmitSuggest";
             this.submitSuggestToolStripMenuItem.Click += new System.EventHandler(this.submitSuggestToolStripMenuItem_Click);
             // 
-            // copyrightToolStripMenuItem
-            // 
-            this.copyrightToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.bullet_error_16;
-            this.copyrightToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.copyrightToolStripMenuItem.Name = "copyrightToolStripMenuItem";
-            this.copyrightToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
-            this.copyrightToolStripMenuItem.Text = "Copyright";
-            this.copyrightToolStripMenuItem.Click += new System.EventHandler(this.copyrightToolStripMenuItem_Click);
-            // 
             // homepageToolStripMenuItem
             // 
             this.homepageToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.world_link_16;
@@ -434,6 +414,15 @@
             this.homepageToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.homepageToolStripMenuItem.Text = "Homepage";
             this.homepageToolStripMenuItem.Click += new System.EventHandler(this.homepageToolStripMenuItem_Click);
+            // 
+            // copyrightToolStripMenuItem
+            // 
+            this.copyrightToolStripMenuItem.Image = global::CSSSatyr.Properties.Resources.csssatyr;
+            this.copyrightToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.copyrightToolStripMenuItem.Name = "copyrightToolStripMenuItem";
+            this.copyrightToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.copyrightToolStripMenuItem.Text = "Copyright";
+            this.copyrightToolStripMenuItem.Click += new System.EventHandler(this.copyrightToolStripMenuItem_Click);
             // 
             // BodyContainer
             // 
@@ -482,7 +471,7 @@
             this.LeftSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.LeftSplitContainer.Size = new System.Drawing.Size(250, 404);
-            this.LeftSplitContainer.SplitterDistance = 286;
+            this.LeftSplitContainer.SplitterDistance = 292;
             this.LeftSplitContainer.SplitterWidth = 2;
             this.LeftSplitContainer.TabIndex = 0;
             // 
@@ -495,7 +484,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(242, 278);
+            this.listView1.Size = new System.Drawing.Size(242, 284);
             this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -509,7 +498,7 @@
             this.propertyGrid1.Margin = new System.Windows.Forms.Padding(4);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propertyGrid1.Size = new System.Drawing.Size(242, 108);
+            this.propertyGrid1.Size = new System.Drawing.Size(242, 102);
             this.propertyGrid1.TabIndex = 0;
             this.propertyGrid1.ToolbarVisible = false;
             this.propertyGrid1.UseCompatibleTextRendering = true;
@@ -821,7 +810,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem howToUseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem checkVersionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem submitSuggestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyrightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem homepageToolStripMenuItem;

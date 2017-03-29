@@ -253,7 +253,7 @@ namespace CSSSatyr
 
             helpToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help");
             howToUseToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_howto");
-            checkVersionToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_check_version");
+            //checkVersionToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_check_version");
             submitSuggestToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_suggest");
             copyrightToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_copyright");
             homepageToolStripMenuItem.Text = CommonLib.GetLocalString("menu_help_homepage");
