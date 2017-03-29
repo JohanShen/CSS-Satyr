@@ -265,6 +265,7 @@ namespace CSSSatyr
             tsbtnReOrder.Text = CommonLib.GetLocalString("main_btn_reorder");
             tsbtnShowGrid.Text = CommonLib.GetLocalString("main_btn_show_grid");
             tsbShowLeftTree.Text = CommonLib.GetLocalString("main_btn_show_sidertree");
+            tsbtnExportImage.Text = CommonLib.GetLocalString("main_btn_show_export_image");
 
             tsStatusNewVersionLabel.Text = CommonLib.GetLocalString("status_now_version", Global.ProductVersion);
             tsStatusAutoSorption.Text = CommonLib.GetLocalString("status_sorption_model", autoSorptionGridToolStripMenuItem.Checked ? CommonLib.GetLocalString("status_sorption_model_auto") : CommonLib.GetLocalString("status_sorption_model_free"));

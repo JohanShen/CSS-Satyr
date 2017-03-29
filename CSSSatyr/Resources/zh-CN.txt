@@ -29,6 +29,7 @@ menu_file_exit = 退出
 ;
 menu_view_reorder = 重新排序
 menu_view_auto_sorption = 自动停靠
+main_btn_show_export_image = 导出选中图片
 menu_view_show_grid = 显示网格
 menu_view_sider_tree = 显示边树
 menu_view_choice_language = 选择语言

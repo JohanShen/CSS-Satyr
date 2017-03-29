@@ -52,6 +52,7 @@ menu_help_homepage = Homepage
 ;
 main_btn_show_sidertree = Sider tree
 main_btn_reorder = ReOrder
+main_btn_show_export_image = Export Selected Image
 main_btn_show_grid = Grid
 main_btn_auto_sorption = Auto Sorption
 main_btn_grid_style = Grid Style
