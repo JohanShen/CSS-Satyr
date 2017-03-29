@@ -45,11 +45,13 @@
             this.labelProjectCreateTime = new System.Windows.Forms.Label();
             this.labCreateImageFormat = new System.Windows.Forms.Label();
             this.labImageQuality = new System.Windows.Forms.Label();
+            this.numImageQuality = new System.Windows.Forms.NumericUpDown();
             this.btnOK = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageProject.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numImageQuality)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -111,9 +113,10 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel3.Controls.Add(this.txtProjectClassNamePrefix, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.txtProjectAuthor, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.labProjectName, 0, 1);
@@ -126,6 +129,7 @@
             this.tableLayoutPanel3.Controls.Add(this.labelProjectCreateTime, 1, 6);
             this.tableLayoutPanel3.Controls.Add(this.labCreateImageFormat, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.labImageQuality, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.numImageQuality, 2, 5);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(5, 7);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -148,7 +152,7 @@
             this.txtProjectClassNamePrefix.Location = new System.Drawing.Point(172, 114);
             this.txtProjectClassNamePrefix.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtProjectClassNamePrefix.Name = "txtProjectClassNamePrefix";
-            this.txtProjectClassNamePrefix.Size = new System.Drawing.Size(201, 27);
+            this.txtProjectClassNamePrefix.Size = new System.Drawing.Size(192, 27);
             this.txtProjectClassNamePrefix.TabIndex = 17;
             // 
             // txtProjectAuthor
@@ -158,7 +162,7 @@
             this.txtProjectAuthor.Location = new System.Drawing.Point(172, 74);
             this.txtProjectAuthor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtProjectAuthor.Name = "txtProjectAuthor";
-            this.txtProjectAuthor.Size = new System.Drawing.Size(201, 27);
+            this.txtProjectAuthor.Size = new System.Drawing.Size(192, 27);
             this.txtProjectAuthor.TabIndex = 16;
             // 
             // labProjectName
@@ -203,6 +207,7 @@
             // txtProjectName
             // 
             this.txtProjectName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutPanel3.SetColumnSpan(this.txtProjectName, 2);
             this.txtProjectName.Dock = System.Windows.Forms.DockStyle.Left;
             this.txtProjectName.Location = new System.Drawing.Point(172, 34);
             this.txtProjectName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -231,7 +236,7 @@
             this.trackImageQuality.ProgressBarBorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.trackImageQuality.ProgressBarBorderWidth = true;
             this.trackImageQuality.ShowValue = true;
-            this.trackImageQuality.Size = new System.Drawing.Size(201, 32);
+            this.trackImageQuality.Size = new System.Drawing.Size(192, 32);
             this.trackImageQuality.TabIndex = 19;
             this.trackImageQuality.Text = null;
             this.trackImageQuality.Value = 100;
@@ -245,7 +250,7 @@
             this.comboBoxExportFormat.Location = new System.Drawing.Point(172, 154);
             this.comboBoxExportFormat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxExportFormat.Name = "comboBoxExportFormat";
-            this.comboBoxExportFormat.Size = new System.Drawing.Size(201, 28);
+            this.comboBoxExportFormat.Size = new System.Drawing.Size(192, 28);
             this.comboBoxExportFormat.TabIndex = 20;
             this.comboBoxExportFormat.SelectionChangeCommitted += new System.EventHandler(this.comboBoxExportFormat_SelectionChangeCommitted);
             // 
@@ -264,7 +269,7 @@
             this.labelProjectCreateTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelProjectCreateTime.Location = new System.Drawing.Point(172, 230);
             this.labelProjectCreateTime.Name = "labelProjectCreateTime";
-            this.labelProjectCreateTime.Size = new System.Drawing.Size(391, 40);
+            this.labelProjectCreateTime.Size = new System.Drawing.Size(192, 40);
             this.labelProjectCreateTime.TabIndex = 15;
             this.labelProjectCreateTime.Text = "-";
             this.labelProjectCreateTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -288,6 +293,26 @@
             this.labImageQuality.TabIndex = 21;
             this.labImageQuality.Text = "ImageQuality";
             this.labImageQuality.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // numImageQuality
+            // 
+            this.numImageQuality.Location = new System.Drawing.Point(370, 197);
+            this.numImageQuality.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.numImageQuality.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numImageQuality.Name = "numImageQuality";
+            this.numImageQuality.Size = new System.Drawing.Size(70, 27);
+            this.numImageQuality.TabIndex = 22;
+            this.numImageQuality.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numImageQuality.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numImageQuality.ValueChanged += new System.EventHandler(this.numImageQuality_ValueChanged);
             // 
             // btnOK
             // 
@@ -326,6 +351,7 @@
             this.tabPageProject.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numImageQuality)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,5 +375,6 @@
         private System.Windows.Forms.Label labelProjectCreateTime;
         private System.Windows.Forms.Label labCreateImageFormat;
         private System.Windows.Forms.Label labImageQuality;
+        private System.Windows.Forms.NumericUpDown numImageQuality;
     }
 }

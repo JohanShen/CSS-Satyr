@@ -39,6 +39,7 @@ namespace CSSSatyr
             txtProjectAuthor.Text = Global.CurrentProject.Author;
             txtProjectClassNamePrefix.Text = Global.CurrentProject.DefaultCssName;
             txtProjectName.Text = Global.CurrentProject.Name;
+            numImageQuality.Value = Global.CurrentProject.ImageQuality;
 
             ChangeLanguage();
         }
@@ -72,10 +73,22 @@ namespace CSSSatyr
         }
 
         private void trackImageQuality_ValueChanged(MyControls.EasyTrackBarValueChangedArgs e)
-        {/*
+        {
             if (e.NewValue >= 0 && e.NewValue <= 100 && e.OldValue != e.NewValue)
-                Global.CurrentProject.ImageQuality = (short)e.NewValue;
-                */
+                numImageQuality.Value = e.NewValue;
+
+        }
+
+        private void numImageQuality_ValueChanged(object sender, EventArgs e)
+        {
+            if (numImageQuality.Value > 100)
+                numImageQuality.Value = 100;
+            else if (numImageQuality.Value < 20)
+                numImageQuality.Value = 20;
+            if (numImageQuality.Value != trackImageQuality.Value)
+            {
+                trackImageQuality.Value = (int)numImageQuality.Value;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
