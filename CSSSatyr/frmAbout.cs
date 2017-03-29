@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSSSatyr.Extends;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -9,6 +10,7 @@ namespace CSSSatyr
 {
     partial class frmAbout : Form
     {
+        string last_version_str = "";
         public frmAbout()
         {
             InitializeComponent();
@@ -18,6 +20,21 @@ namespace CSSSatyr
             //this.labelCopyright.Text = AssemblyCopyright;
             //this.labelCompanyName.Text = AssemblyCompany;
             //this.textBoxDescription.Text = AssemblyDescription;
+
+            ChangeLanguage();
+        }
+
+
+        public void ChangeLanguage()
+        {
+            tabPageAbout.Text = CommonLib.GetLocalString("about_tab_aboutsoftware");
+            tabPageCopyright.Text = CommonLib.GetLocalString("about_tab_copyright");
+
+            labNowVersion.Text = CommonLib.GetLocalString("about_label_now_version", AssemblyVersion);
+            labLastVersion.Text =  CommonLib.GetLocalString("about_label_last_checking");
+            last_version_str = CommonLib.GetLocalString("about_label_last_version");
+
+            btnOK.Text = CommonLib.GetLocalString("alert_ok");
         }
 
         #region 程序集特性访问器

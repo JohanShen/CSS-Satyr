@@ -93,6 +93,13 @@ setting_project_image_create_format = 生成图片格式
 setting_project_image_quailty = 图片质量
 setting_project_created_time = 创建时间
 
+; #About
+;
+about_tab_aboutsoftware = 关于软件
+about_tab_copyright = 版权申明
+about_label_now_version = 当前版本 : {0}
+about_label_last_version = 最新版本: {0}
+about_label_last_checking = 版本检测中...
 
 
 ; # Image item

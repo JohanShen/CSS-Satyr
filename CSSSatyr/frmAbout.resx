@@ -117,7 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox1.Text" xml:space="preserve">
+  <data name="txtAbout.Text" xml:space="preserve">
+    <value>Name : CSS Satyr
+Author : Li Shen
+Email : johanshen@126.com
+Project Page : http://shen.li/CSS-Satyr/
+
+Icon from easyicon(http://www.easyicon.net/).
+Source code on github (https://github.com/JohanShen/CSS-Satyr)
+
+Thanks for everyone who was given me some suggestion, fedback bugs or recommended this software to other.</value>
+  </data>
+  <data name="txtCopyright.Text" xml:space="preserve">
     <value>CSS Satyr （下文称本软件）遵照GPLv2协议开放源代码，在遵照下面的约束条件的前提下，您可以自由传播和修改。
 
 一.只要你在本软件开源软件的每一副本上明显和恰当地出版版权声明，保持此许可证的声明和没有担保的声明完整无损，并和程序一起给每个其他的程序接受者一份许可证的副本，你就可以用任何媒体复制和发布你收到的原始的程序的源代码。你也可以为转让副本的实际行动收取一定费用，但必须事先得到项目原始作者的同意。

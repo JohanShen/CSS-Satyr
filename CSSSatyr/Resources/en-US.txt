@@ -91,6 +91,14 @@ setting_project_image_create_format = Create Image Format
 setting_project_image_quailty = Image quailty
 setting_project_created_time = Create Time
 
+; #About
+;
+about_tab_aboutsoftware = About Software
+about_tab_copyright = Copyright
+about_label_now_version = Now Version : {0}
+about_label_last_version = Last Version : {0}
+about_label_last_checking = Last Checking...
+
 ; # Image item
 ;
 image_item_id = ID

@@ -382,6 +382,16 @@ namespace CSSSatyr.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Refresh_48px_522650_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("Refresh_48px_522650_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap table_refresh_16 {
             get {
                 object obj = ResourceManager.GetObject("table_refresh_16", resourceCulture);
@@ -395,6 +405,15 @@ namespace CSSSatyr.Properties {
         internal static string URL_HomePage {
             get {
                 return ResourceManager.GetString("URL_HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 http://shen.li/CSS-Satyr/how-to-use 的本地化字符串。
+        /// </summary>
+        internal static string URL_HowToUse {
+            get {
+                return ResourceManager.GetString("URL_HowToUse", resourceCulture);
             }
         }
         

@@ -652,6 +652,7 @@ namespace CSSSatyr
         private void howToUseToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+            Process.Start(Properties.Resources.URL_HowToUse);
         }
 
         private void checkVersionToolStripMenuItem_Click(object sender, EventArgs e)

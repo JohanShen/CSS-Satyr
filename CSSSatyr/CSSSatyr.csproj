@@ -173,6 +173,7 @@
   <ItemGroup>
     <Content Include="APP.ico" />
     <Content Include="Lang\zh-TW.txt" />
+    <None Include="Resources\Refresh_48px_522650_easyicon.net.png" />
     <None Include="Resources\Picture_Save_16px_530232_easyicon.net.ico" />
     <None Include="Resources\image_next_16px_534760_easyicon.net.ico" />
     <None Include="Resources\image_add_16px_534764_easyicon.net.ico" />
