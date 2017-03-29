@@ -56,7 +56,9 @@ namespace CSSSatyr.Extends
             foreach (Match m in matchs)
             {
                 string key = m.Groups["key"].Value.ToLower();
-                string val = m.Groups["val"].Value.Trim().Replace("\r", "").Replace("\n", "").Replace("\t", "");
+                string val = m.Groups["val"]?.Value?.Trim().Replace("\r", "").Replace("\n", "").Replace("\t", "") ??"";
+                if (val.IndexOf("[br]") > -1)
+                    val = val.Replace("[br]", "\r");
                 dic[key] = val;
             }
 

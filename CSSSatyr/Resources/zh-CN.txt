@@ -134,7 +134,7 @@ alert_cancel_exit = È¡ÏûÇÒÍË³ö
 alert_str_badtype = This file-type is not for support.
 alert_str_badsize = Thie image width or height is more than maximum.
 menu_file_exit_confirm = Are sure exit application?
-menu_file_exit_confirm_without_save = This project without save.\nAre you want save before exit?
+menu_file_exit_confirm_without_save = This project without save.[br]Are you want save before exit?
 
 
 

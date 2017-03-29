@@ -600,7 +600,7 @@ namespace CSSSatyr
             saveFileDialog.AddExtension = true;
             saveFileDialog.CheckFileExists = false;
             saveFileDialog.SupportMultiDottedExtensions = false;
-            //saveFileDialog.Filter = "CSS-Satry Project File(2016)|*.*";
+            saveFileDialog.Filter = String.Format("Image File|{0}", MainPictureBox.ActiveControlTag.ImageType.ExtName);
             saveFileDialog.FileName = String.Format( "{0}{1}", MainPictureBox.ActiveControlTag.ClassName, MainPictureBox.ActiveControlTag.ImageType.ExtName );
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
