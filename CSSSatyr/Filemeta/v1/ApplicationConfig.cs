@@ -117,5 +117,44 @@ namespace CSSSatyr.Models
             }
 
         }
+
+        private static string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CSS-SATYR");
+        private static string configFileName = "config.cssc";
+        /// <summary>
+        /// 保存配置文件
+        /// </summary>
+        /// <param name="ac"></param>
+        public static void Save(ApplicationConfig ac)
+        {
+            if (Directory.Exists(configPath) == false)
+                Directory.CreateDirectory(configPath);
+
+            string filePath = Path.Combine(configPath, configFileName);
+            ac.SaveToFile(filePath, true);
+        }
+
+        public static ApplicationConfig Load()
+        {
+            string filePath = Path.Combine(configPath, configFileName);
+            ApplicationConfig ac = null;
+            if (File.Exists(filePath))
+            {
+                byte[] buffer = null;
+                try
+                {
+                    using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        buffer = new byte[fs.Length];
+                        fs.Read(buffer, 0, (int)fs.Length);
+                        fs.Close();
+                    }
+                    ac = ReadFromBytes(buffer);
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            return ac;
+        }
     }
 }
