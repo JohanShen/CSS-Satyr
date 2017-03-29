@@ -266,7 +266,7 @@
             this.labelProjectCreateTime.Name = "labelProjectCreateTime";
             this.labelProjectCreateTime.Size = new System.Drawing.Size(391, 40);
             this.labelProjectCreateTime.TabIndex = 15;
-            this.labelProjectCreateTime.Text = "2016年10月14日 16:55:20";
+            this.labelProjectCreateTime.Text = "-";
             this.labelProjectCreateTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labCreateImageFormat

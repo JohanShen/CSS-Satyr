@@ -49,7 +49,7 @@ namespace CSSSatyr
             {
                 if (currentProject == null)
                 {
-                    currentProject = new Project() { Name = CommonLib.GetLocalString("main_default_project_name"), CreateTime = CommonLib.ToUnixTime(DateTime.Now) };
+                    currentProject = new Project() { Name = CommonLib.GetLocalString("main_default_project_name"), DefaultCssName = "cssr_", CreateTime = CommonLib.ToUnixTime(DateTime.Now) };
 
                 }
                 return currentProject;

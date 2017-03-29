@@ -134,7 +134,6 @@ open_project_format_error = This is a invalid project file.
 open_project_file_error_buffer_null = Project file is empty, Error exception:\r{0}.
 open_project_file_error_exception = Read project file get a error:\r{0}
 save_empty_project = This project is empty, are your sure save it?
- = CSS-Satry Project File
 
 ; #Confirm
 confirm_windows_title = Confirm your operation!
