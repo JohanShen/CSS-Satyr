@@ -7,6 +7,9 @@ CSS 赛特斯（CSS Satyr）是一款 CSS Sprites 小工具，主要提供给从
 如果你是新用户，请按照新手入门的里的操作演练。通常情况下，按照本文档完成了演练都会很轻松掌握软件的使用。
 自版本2.0开始开放源代码，并托管在GitHub上，希望更多人能一起将软件完善得更好。
 
+# 下载
+https://github.com/JohanShen/CSS-Satyr/releases
+
 # 运行环境
  - 开发环境
     .Net Framework 2.0 + Visual Studio Commuity 2015 + Windows 10
