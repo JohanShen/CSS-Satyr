@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageAbout = new System.Windows.Forms.TabPage();
+            this.llabDownUrl = new System.Windows.Forms.LinkLabel();
             this.labLastVersion = new System.Windows.Forms.Label();
             this.labNowVersion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -81,6 +82,7 @@
             // tabPageAbout
             // 
             this.tabPageAbout.BackColor = System.Drawing.Color.White;
+            this.tabPageAbout.Controls.Add(this.llabDownUrl);
             this.tabPageAbout.Controls.Add(this.labLastVersion);
             this.tabPageAbout.Controls.Add(this.labNowVersion);
             this.tabPageAbout.Controls.Add(this.pictureBox1);
@@ -91,6 +93,18 @@
             this.tabPageAbout.Size = new System.Drawing.Size(576, 309);
             this.tabPageAbout.TabIndex = 1;
             this.tabPageAbout.Text = "About software";
+            // 
+            // llabDownUrl
+            // 
+            this.llabDownUrl.AutoSize = true;
+            this.llabDownUrl.Location = new System.Drawing.Point(69, 280);
+            this.llabDownUrl.Name = "llabDownUrl";
+            this.llabDownUrl.Size = new System.Drawing.Size(82, 15);
+            this.llabDownUrl.TabIndex = 4;
+            this.llabDownUrl.TabStop = true;
+            this.llabDownUrl.Text = "下载最新版";
+            this.llabDownUrl.Visible = false;
+            this.llabDownUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llabDownUrl_LinkClicked);
             // 
             // labLastVersion
             // 
@@ -217,5 +231,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labLastVersion;
         private System.Windows.Forms.Label labNowVersion;
+        private System.Windows.Forms.LinkLabel llabDownUrl;
     }
 }

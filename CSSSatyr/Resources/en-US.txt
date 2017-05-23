@@ -98,6 +98,12 @@ about_tab_copyright = Copyright
 about_label_now_version = Now Version : {0}
 about_label_last_version = Last Version : {0}
 about_label_last_checking = Last Checking...
+about_label_last_none = None New version
+about_label_download = Download New Version
+
+; Check new Version
+check_exception = There is some exceptions : {0}
+check_no_new_version = There was no new version to updated.
 
 ; # Image item
 ;

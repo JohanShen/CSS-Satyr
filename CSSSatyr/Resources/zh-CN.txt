@@ -98,9 +98,14 @@ setting_project_created_time = 创建时间
 about_tab_aboutsoftware = 关于软件
 about_tab_copyright = 版权申明
 about_label_now_version = 当前版本 : {0}
-about_label_last_version = 最新版本: {0}
+about_label_last_version = 最新版本 : {0}
 about_label_last_checking = 版本检测中...
+about_label_last_none = 暂无新版本
+about_label_download = 下载新版本
 
+; Check new Version
+check_exception = 出现了一些错误 : {0}
+check_no_new_version = 暂时没有新版本
 
 ; # Image item
 ;
