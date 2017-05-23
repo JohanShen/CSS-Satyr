@@ -99,14 +99,22 @@ namespace CSSSatyr
 
 
             var val = comboBoxExportFormat.SelectedItem as Models.ImageType;
-            if (val != null)
+            if (val == null)
             {
-                Global.CurrentProject.ImageFormat = val.MimeType.ToLower();
+                MessageBox.Show(CommonLib.GetLocalString("not_exists_image_format"), CommonLib.GetLocalString("alert_windows_title"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (CommonLib.IsClassName(txtProjectClassNamePrefix.Text) == false)
+            {
+                MessageBox.Show(CommonLib.GetLocalString("the_classname_prxfix_value_vaild"), CommonLib.GetLocalString("alert_windows_title"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
+            Global.CurrentProject.ImageFormat = val.MimeType.ToLower();
             Global.CurrentProject.Author = txtProjectAuthor.Text;
             Global.CurrentProject.DefaultCssName = txtProjectClassNamePrefix.Text;
             Global.CurrentProject.Name = txtProjectName.Text;
+            Global.ProjectSaved = false;
 
             this.Close();
         }
