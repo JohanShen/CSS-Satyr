@@ -429,7 +429,7 @@ namespace CSSSatyr.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://shen.li/CSS-Satyr/how-to-use 的本地化字符串。
+        ///   查找类似 http://shen.li/CSS-Satyr/docs/how-to-use 的本地化字符串。
         /// </summary>
         internal static string URL_HowToUse {
             get {
