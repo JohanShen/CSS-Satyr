@@ -14,14 +14,11 @@ https://github.com/JohanShen/CSS-Satyr/releases
 
 # 运行环境
  - 开发环境
-    > .Net Framework 2.0 + Visual Studio Commuity 2015 + Windows 10
+    1. .Net Framework 2.0 
+    2. Visual Studio Commuity 2015 
+    3. Windows 10
  - 运行环境
-    ![](https://img.shields.io/badge/windows-xp-green.svg)
-    ![](https://img.shields.io/badge/windows-vista-green.svg)
-    ![](https://img.shields.io/badge/windows-7-green.svg)
-    ![](https://img.shields.io/badge/windows-8-green.svg)
-    ![](https://img.shields.io/badge/windows-10-green.svg)
-    ![](https://img.shields.io/badge/.Net%20Framework-2.0-green.svg)
+    > **Windows XP SP3+** and **.Net Framework 2.0**
     
 
 # 多语言支持
