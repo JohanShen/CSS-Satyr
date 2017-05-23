@@ -63,6 +63,12 @@
     <Compile Include="frmSetting.Designer.cs">
       <DependentUpon>frmSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="fromCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fromCreate.Designer.cs">
+      <DependentUpon>fromCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -90,11 +96,15 @@
     <Compile Include="MyControls\PropertyStub.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Thread\ChcekNewVersionThread.cs" />
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSetting.resx">
       <DependentUpon>frmSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fromCreate.resx">
+      <DependentUpon>fromCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -172,7 +182,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="APP.ico" />
+    <Content Include="check.last.xml" />
+    <Content Include="docs\how-to-use\index.html" />
+    <Content Include="docs\index.html" />
     <Content Include="Lang\zh-TW.txt" />
+    <None Include="Resources\create_template.txt" />
     <None Include="Resources\csssatyr.png" />
     <None Include="Resources\Refresh_48px_522650_easyicon.net.png" />
     <None Include="Resources\Picture_Save_16px_530232_easyicon.net.ico" />
@@ -197,9 +211,7 @@
     <None Include="Resources\Order_16.ico" />
     <None Include="Resources\china_16.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="docs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /r /e /y $(ProjectDir)lang  $(TargetDir)lang\</PostBuildEvent>
