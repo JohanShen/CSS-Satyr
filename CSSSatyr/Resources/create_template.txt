@@ -19,12 +19,14 @@ img.allinone {border: 1px solid #000;}
 </style>
 </head>
 <body>
+<h1>{#soft_name}</h1>
 {#create_html}
 <div>
 Author {#project_author} at {#project_createtime} - 
 Created by <a href="{#soft_homepage}" target="_blank">{#soft_name}</a>
 <p>
 <a href="https://en.wikipedia.org/wiki/Sprite_(computer_graphics)" target="_blank">1.What is CSS sprites;</a>
+ - 
 <a href="{#soft_homepage}" target="_blank">2.What is {#soft_name}.</a>
 </p>
 </div>
