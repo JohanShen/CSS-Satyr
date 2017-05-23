@@ -4,13 +4,18 @@
 
 如果你是老用户，我们建议你将本文档通读一边即可。因为在2.0版本中，提供了一些新的功能和特性。 如果你是新用户，请按照新手入门的里的操作演练。通常情况下，按照本文档完成了演练都会很轻松掌握软件的使用。 自版本2.0开始开放源代码，并托管在GitHub上，希望更多人能一起将软件完善得更好。
 
-[软件下载](https://github.com/JohanShen/CSS-Satyr/releases)
+- [软件下载](https://github.com/JohanShen/CSS-Satyr/releases)
+- 多语言支持(Multi-language)：简体中文，繁体中文，英语(English)
+
 
 ### 运行环境
 ```
 开发环境 .Net Framework 2.0 + Visual Studio Commuity 2015 + Windows 10
 运行环境    理论上：Windows XP SP3+ and .Net Framework 2.0
 ```
+
+### 截图
+![main](https://cloud.githubusercontent.com/assets/15073895/26368207/79664c82-4023-11e7-9f2b-0b0193eb1c04.png)
 
 ### 更新记录
  - v2.0
