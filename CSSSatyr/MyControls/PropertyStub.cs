@@ -1,10 +1,11 @@
 ﻿
 namespace CSSSatyr.MyControls
 {
-
+    using Extends;
     using System;
     using System.ComponentModel;
     using System.Reflection;
+    using System.Windows.Forms;
 
     public delegate void PropertyChanged(object Value);
 
@@ -40,7 +41,14 @@ namespace CSSSatyr.MyControls
 
         public override void SetValue(object component, object value)
         {
-            this.info.SetValue(component, value, null);
+            try
+            {
+                this.info.SetValue(component, value, null);
+            }
+            catch
+            {
+                MessageBox.Show(CommonLib.GetLocalString("the_value_vaild"), CommonLib.GetLocalString("alert_windows_title"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public override bool ShouldSerializeValue(object component)

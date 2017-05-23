@@ -55,10 +55,10 @@ namespace CSSSatyr.Extends
         {
             if (String.IsNullOrEmpty(mimeType))
                 return null;
-
+            
             foreach (ImageCodecInfo ici in codecInfos)
             {
-                if (String.Compare(ici.MimeType, mimeType, false) == 0)
+                if (String.Compare(ici.MimeType, mimeType, true) == 0)
                     return ici;
             }
             return null;

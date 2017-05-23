@@ -68,6 +68,9 @@ namespace CSSSatyr.MyControls
                 xList.Sort();
                 yList.Sort();
 
+                if (xList.Count == 0 || yList.Count == 0)
+                    return default(Rectangle);
+
                 int x = (int)xList[0], y = (int)yList[0];
                 int width = (int)xList[xList.Count - 1] - x, height = (int)yList[yList.Count - 1] - y;
                 return new Rectangle(x, y, width, height);
@@ -626,6 +629,10 @@ namespace CSSSatyr.MyControls
             graphics.Dispose();
 
             Rectangle r = Rectangle;
+            if(r==null || r.Width <1 || r.Height <1 || r.IsEmpty)
+            {
+                return;
+            }
             int width = r.Width;
             int height = r.Height;
             Bitmap bitmap = new Bitmap(width, height);

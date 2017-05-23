@@ -191,6 +191,26 @@ namespace CSSSatyr.Properties {
         }
         
         /// <summary>
+        ///   查找类似 &lt;!DOCTYPE html&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+        ///&lt;title&gt;{#project_name} CSS sprites&lt;/title&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;
+        ///body, ul, li {margin: 0; padding: 0; font-size: 14px;}
+        ///body {padding: 30px; background-color: #ccc;}
+        ///ul {margin: 5px 0 10px 0;}
+        ///ul li {list-style: none; display: block; margin: 5px 0;}
+        ///li.classname { font-weight: bold; height:35px; line-height:35px; }
+        ///pre {padding: 10px; border: 1px solid #999; d [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string create_template {
+            get {
+                return ResourceManager.GetString("create_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap csssatyr {
@@ -420,7 +440,7 @@ namespace CSSSatyr.Properties {
         }
         
         /// <summary>
-        ///   查找类似 http://shen.li/CSS-Satyr/ 的本地化字符串。
+        ///   查找类似 http://shen.li/CSS-Satyr 的本地化字符串。
         /// </summary>
         internal static string URL_HomePage {
             get {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{#project_name} CSS sprites</title>
+<style type="text/css">
+*{font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei; 
+font:normal 12px/0.75em Arial,'Times New Roman','Microsoft YaHei',SimHei; }
+body, ul, li {margin: 0; padding: 0; font-size: 14px;}
+body {padding: 30px; background-color: #ededed;}
+ul {margin: 5px 0 10px 0;}
+ul li {list-style: none; display: block; margin: 5px 0;}
+li.classname { font-weight: bold; height:35px; line-height:35px; }
+pre {padding: 10px; border: 1px solid #999; display: block; background-color: #fff; width: 100%; font-size: 12px; line-height: 200%;}
+li.classmark { font-size: 12px; margin: 5px; line-height: 160%;}
+img.allinone {border: 1px solid #000;}
+/*create by CSS satyr, see more: {#soft_homepage} */
+{#create_css}
+</style>
+</head>
+<body>
+{#create_html}
+<div>
+Author {#project_author} at {#project_createtime} - 
+Created by <a href="{#soft_homepage}" target="_blank">{#soft_name}</a>
+<p>
+<a href="https://en.wikipedia.org/wiki/Sprite_(computer_graphics)" target="_blank">1.What is CSS sprites;</a>
+<a href="{#soft_homepage}" target="_blank">2.What is {#soft_name}.</a>
+</p>
+</div>
+</body>
+</html>

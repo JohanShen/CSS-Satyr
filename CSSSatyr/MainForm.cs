@@ -216,12 +216,16 @@ namespace CSSSatyr
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*
+            //TODO: 导出图片判断
             EncoderParameters encoderParams = new EncoderParameters(2);
             encoderParams.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100);
             encoderParams.Param[1] = new EncoderParameter(System.Drawing.Imaging.Encoder.Compression, (long)EncoderValue.CompressionLZW);
             ImageCodecInfo codecInfo = CommonLib.GetCodecInfo("image/png");
 
             MainPictureBox.SavePanelToImage(String.Format("d:\\{0}.png", Guid.NewGuid().ToString()), codecInfo, encoderParams);
+            */
+            new fromCreate(MainPictureBox).ShowDialog();
         }
 
 
@@ -576,7 +580,7 @@ namespace CSSSatyr
         private void newProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //重新启动一个实例
-            Thread t = new Thread(new ParameterizedThreadStart(run));
+            var t = new System.Threading. Thread(new ParameterizedThreadStart(run));
             object appName = Application.ExecutablePath;
             t.Start(appName);
         }

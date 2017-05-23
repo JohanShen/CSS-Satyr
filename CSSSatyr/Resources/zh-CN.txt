@@ -98,9 +98,19 @@ setting_project_created_time = 创建时间
 about_tab_aboutsoftware = 关于软件
 about_tab_copyright = 版权申明
 about_label_now_version = 当前版本 : {0}
-about_label_last_version = 最新版本: {0}
+about_label_last_version = 最新版本 : {0}
 about_label_last_checking = 版本检测中...
+about_label_last_none = 暂无新版本
+about_label_download = 下载新版本
 
+; Check new Version
+check_exception = 出现了一些错误 : {0}
+check_no_new_version = 暂时没有新版本
+
+
+;# Create Form
+create_export_tab_title = 生产选项
+create_export_path = 导出目录
 
 ; # Image item
 ;
@@ -129,6 +139,7 @@ image_item_y = Y
 
 ; # alert
 ;
+no_object = 没有对象被选中
 alert_windows_title = 提示信息：
 alert_confirm_title = 确认您的操作!
 alert_yes = 是
@@ -138,10 +149,20 @@ alert_ok = 确定
 alert_cancel = 取消
 alert_save_exit = 保存且退出
 alert_cancel_exit = 取消且退出
-alert_str_badtype = This file-type is not for support.
-alert_str_badsize = Thie image width or height is more than maximum.
-menu_file_exit_confirm = Are sure exit application?
-menu_file_exit_confirm_without_save = This project without save.[br]Are you want save before exit?
+alert_str_badtype = 不支持的文件格式
+alert_str_badsize = 图片的高或宽太大
+menu_file_exit_confirm = 确定退出?
+menu_file_exit_confirm_without_save = 当前项目尚未保存.[br]是否在退出之前保存?
+not_exists_image_format = 未知的图片格式.
+not_exists_image_panel_object = PicturePanel对象为空.
+not_exists_export_path = 导出的路径不存在或没有权限访问改路径.
+not_exists_images = 没有图片.
+the_value_vaild = 设置的值无效.
+export_ok = 导出成功.
+the_classname_prxfix_value_vaild = CSS引用名前缀无效
 
 
+; #Confirm
+confirm_windows_title = 确认您的操作!
+project_no_saved = 当前项目尚未保存.[br]是否在退出之前保存?
 
