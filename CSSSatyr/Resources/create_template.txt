@@ -19,6 +19,7 @@ img.allinone {border: 1px solid #000;}
 </style>
 </head>
 <body>
+<h1>{#soft_name}</h1>
 {#create_html}
 <div>
 Author {#project_author} at {#project_createtime} - 
