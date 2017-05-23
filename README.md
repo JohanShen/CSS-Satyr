@@ -4,7 +4,9 @@ CSS 赛特斯（CSS Satyr）是一款 CSS Sprites 小工具，主要提供给从
 在使用本软件之前请先了解：本软件是一个免费开源软件，代表你可以无偿使用。同时意味着，软件的更新迭代可能不会那么及时。还意味着你在使用的过程中，数据可能会没有保障，因此建议在实际生产环境中做好数据备份。
 
 如果你是老用户，我们建议你将本文档通读一边即可。因为在2.0版本中，提供了一些新的功能和特性。
+
 如果你是新用户，请按照新手入门的里的操作演练。通常情况下，按照本文档完成了演练都会很轻松掌握软件的使用。
+
 自版本2.0开始开放源代码，并托管在GitHub上，希望更多人能一起将软件完善得更好。
 
 # 下载
@@ -15,6 +17,13 @@ https://github.com/JohanShen/CSS-Satyr/releases
     .Net Framework 2.0 + Visual Studio Commuity 2015 + Windows 10
  - 运行环境
     理论上：Windows XP SP3+ and .Net Framework 2.0
+
+# 多语言支持
+- **Languages: zh-CN, zh-TW, en**
+- 软件根目录下的LANG文件夹为语言包文件夹，按照里面的zh-TW.txt格式来编写其他语言，文件的存放编码为UTF-8
+
+# 截图
+![main](https://cloud.githubusercontent.com/assets/15073895/26368207/79664c82-4023-11e7-9f2b-0b0193eb1c04.png)
 
 # 更新记录
  - v2.0
