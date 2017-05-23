@@ -101,6 +101,11 @@ about_label_last_checking = Last Checking...
 about_label_last_none = None New version
 about_label_download = Download New Version
 
+
+;# Create Form
+create_export_tab_title = Create Option
+create_export_path = Export Path
+
 ; Check new Version
 check_exception = There is some exceptions : {0}
 check_no_new_version = There was no new version to updated.
@@ -149,6 +154,13 @@ open_project_format_error = This is a invalid project file.
 open_project_file_error_buffer_null = Project file is empty, Error exception:[br]{0}.
 open_project_file_error_exception = Read project file get a error:[br]{0}
 save_empty_project = This project is empty, are your sure save it?
+not_exists_image_format = Unknow this image format.
+not_exists_image_panel_object = PicturePanel is null.
+not_exists_export_path = Export path is not exists.
+not_exists_images = There was not image exists.
+the_value_vaild = The value is vaild.
+export_ok = Export is sucessfully.
+the_classname_prxfix_value_vaild = Class Name Prefix is vaild.
 
 ; #Confirm
 confirm_windows_title = Confirm your operation!
