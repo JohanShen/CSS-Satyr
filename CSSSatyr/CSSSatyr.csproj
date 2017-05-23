@@ -44,8 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extends\CommonLib.cs" />
     <Compile Include="Extends\CommonLibLanguage.cs" />
+    <Compile Include="Extends\CommonLibProject.cs" />
+    <Compile Include="Filemeta\FilemetaCommon.cs" />
+    <Compile Include="Filemeta\v1\ExtendInfo.cs" />
+    <Compile Include="Filemeta\v1\ImageObj.cs" />
+    <Compile Include="Filemeta\v1\ImagePanel.cs" />
+    <Compile Include="frmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetting.Designer.cs">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -54,8 +71,17 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AlignMode.cs" />
+    <Compile Include="Filemeta\v1\ApplicationConfig.cs" />
+    <Compile Include="Models\GridStyle.cs" />
     <Compile Include="Models\ImageItem.cs" />
     <Compile Include="Models\ImageType.cs" />
+    <Compile Include="Filemeta\v1\Project.cs" />
+    <Compile Include="MyControls\EasyTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyControls\ToolStripEasyTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MyControls\PicturePanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,6 +90,12 @@
     <Compile Include="MyControls\PropertyStub.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetting.resx">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,8 +172,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="APP.ico" />
-    <Content Include="Lang\en_US.txt" />
-    <Content Include="Lang\zh_CN.txt" />
+    <Content Include="Lang\zh-TW.txt" />
+    <None Include="Resources\csssatyr.png" />
+    <None Include="Resources\Refresh_48px_522650_easyicon.net.png" />
+    <None Include="Resources\Picture_Save_16px_530232_easyicon.net.ico" />
+    <None Include="Resources\image_next_16px_534760_easyicon.net.ico" />
+    <None Include="Resources\image_add_16px_534764_easyicon.net.ico" />
+    <None Include="Resources\zh-CN.txt" />
+    <None Include="Resources\en-US.txt" />
+    <None Include="Resources\information_16px.ico" />
+    <None Include="Resources\alert_information_16px.ico" />
+    <None Include="Resources\G_Letter_16px.ico" />
+    <None Include="Resources\B_Letter_16px.ico" />
+    <None Include="Resources\W_Letter_16px.ico" />
+    <None Include="Resources\table_refresh_16.ico" />
+    <None Include="Resources\color_swatches_16px.ico" />
+    <None Include="Resources\magnet_16px.ico" />
+    <None Include="Resources\Workspace_16px.ico" />
+    <None Include="Resources\Application_Side_Tree_16_1.ico" />
     <None Include="LICENSE" />
     <None Include="Resources\export_16.ico" />
     <None Include="Resources\close_16_2.ico" />
@@ -153,6 +201,9 @@
     <Folder Include="docs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /r /e /y $(ProjectDir)lang  $(TargetDir)lang\</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

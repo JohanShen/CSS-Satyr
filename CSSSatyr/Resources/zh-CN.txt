@@ -1,0 +1,147 @@
+; Language Package
+; Please using UTF-8 encoding
+lang_name = 简体中文
+author = Johan Shen
+author_mail = johanshen@126.com
+author_www = http://shen.li
+project_file_format_2017 = 项目文件
+
+; #Root Menu
+; key = value
+; the key case-insensitive
+; {0}, {1}, {2} etc. are parameters 
+menu_file = 文件(&F)
+menu_view = 视图(&V)
+menu_setting = 设置(&S)
+menu_create = 生成(&C)
+menu_help = 帮助(&H)
+
+; #Sub Menu
+; menu_file
+menu_file_add_images = 添加文件
+menu_file_export_image = 导出图片
+menu_file_new_project = 新建项目
+menu_file_open_project = 打开项目
+menu_file_save_project = 保存 
+menu_file_exit = 退出
+
+; menu_view
+;
+menu_view_reorder = 重新排序
+menu_view_auto_sorption = 自动停靠
+main_btn_show_export_image = 导出选中图片
+menu_view_show_grid = 显示网格
+menu_view_sider_tree = 显示边树
+menu_view_choice_language = 选择语言
+menu_view_default_language = Default Language {0}
+
+; menu_setting
+;
+
+; menu_create
+;
+
+; menu_help
+;
+menu_help_howto = 使用指南
+menu_help_check_version = 更新检测
+menu_help_suggest = 建议或意见
+menu_help_copyright = 版权申明
+menu_help_homepage = 软件主页
+
+; #Main panel
+;
+main_btn_show_sidertree = 左侧
+main_btn_reorder = 重新排列
+main_btn_show_grid = 网格
+main_btn_auto_sorption = 自动靠近
+main_btn_grid_style = 样式
+main_bar_grid_size = 大小
+main_default_project_name = 新项目
+
+
+; #Status
+; 
+status_now_version = 当前版本 : {0}
+status_new_version = 最新版本 : {0}
+status_sorption_model = 停靠模式 : {0}
+status_grid_size = 网格大小 : {0}
+status_sorption_model_auto = 吸附
+status_sorption_model_free = 自由
+
+
+
+; #Project
+; new_project
+new_project_name = Project Name
+
+
+; save_project
+save_project_filename = File Name
+
+
+; open_project
+
+
+; #Setting
+;
+setting_project = 项目设置
+setting_project_name = 项目名称
+setting_project_author = 作者
+setting_project_class_prefix = CSS引用名前缀
+setting_project_image_create_format = 生成图片格式
+setting_project_image_quailty = 图片质量
+setting_project_created_time = 创建时间
+
+; #About
+;
+about_tab_aboutsoftware = 关于软件
+about_tab_copyright = 版权申明
+about_label_now_version = 当前版本 : {0}
+about_label_last_version = 最新版本: {0}
+about_label_last_checking = 版本检测中...
+
+
+; # Image item
+;
+image_item_id = ID
+image_item_class = 调用名
+image_item_mark = 备注
+image_item_imagetype = 图片格式
+image_item_width = 图片宽
+image_item_height = 图片高
+image_item_showwidth = 显示宽
+image_item_showheight = 显示高
+image_item_showmodel = 显示模式
+image_item_x = X
+image_item_y = Y
+
+; 
+; image_item_y_desc = The X the panel of image.
+; image_item_x_desc = The X panel of image.
+; image_item_showheight_desc = The image's height show in the panel.
+; image_item_showwidth_desc = The image's width show in the panel.
+; image_item_height_desc = The image's real height.
+; image_item_width_desc = The image's real width.
+; image_item_imagetype_desc = The image's file-type.
+; image_item_class_desc = The name of Class in CSS.
+; image_item_mark_desc = Mark this image.
+
+; # alert
+;
+alert_windows_title = 提示信息：
+alert_confirm_title = 确认您的操作!
+alert_yes = 是
+alert_no = 否
+alert_save = 保存
+alert_ok = 确定
+alert_cancel = 取消
+alert_save_exit = 保存且退出
+alert_cancel_exit = 取消且退出
+alert_str_badtype = This file-type is not for support.
+alert_str_badsize = Thie image width or height is more than maximum.
+menu_file_exit_confirm = Are sure exit application?
+menu_file_exit_confirm_without_save = This project without save.[br]Are you want save before exit?
+
+
+

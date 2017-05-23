@@ -117,66 +117,135 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="china_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\china_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="view_choose_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\view_choose_321.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="folder_save_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\folder_save_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="application_side_expand_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\application_side_expand_32.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="folder_page_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\folder_page_32.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="bullet_error_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bullet_error_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="help_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\help_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="china_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\china_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="folder_add_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\folder_add_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="database_refresh_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\database_refresh_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="close_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\close_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="application_side_tree_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\application_side_tree_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="picture_add_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\picture_add_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Application_Side_Tree_16_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Application_Side_Tree_16_1.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cog_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cog_32.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="infomation_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\infomation_32.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="table_refresh_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table_refresh_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Order_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Order_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="world_link_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\world_link_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Refresh_48px_522650_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Refresh_48px_522650_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="close_16_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\close_16_2.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="magnet_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\magnet_16px.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="application_edit_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\application_edit_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Default_Language" xml:space="preserve">
+    <value>en-US</value>
+    <comment>默认语言</comment>
+  </data>
+  <data name="W_Letter_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\W_Letter_16px.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_side_tree_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application_side_tree_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="folder_open_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folder_open_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="color_swatches_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\color_swatches_16px.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="world_link_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\world_link_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="en_US" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en-US.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="URL_HowToUse" xml:space="preserve">
+    <value>http://shen.li/CSS-Satyr/docs/how-to-use</value>
+    <comment>使用指南</comment>
+  </data>
+  <data name="infomation_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\infomation_32.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image_add_16px_534764_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image_add_16px_534764_easyicon.net.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image_next_16px_534760_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\image_next_16px_534760_easyicon.net.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_add_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_add_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="help_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\help_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_save_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_save_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="URL_Suggest" xml:space="preserve">
+    <value>https://github.com/JohanShen/CSS-Satyr/issues</value>
+    <comment>建议网址</comment>
+  </data>
+  <data name="Workspace_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Workspace_16px.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="database_refresh_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\database_refresh_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="URL_HomePage" xml:space="preserve">
+    <value>http://shen.li/CSS-Satyr/</value>
+    <comment>主页网址</comment>
+  </data>
+  <data name="close_16_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_16_2.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="APP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\APP.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="alert_information_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\alert_information_16px.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="B_Letter_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\B_Letter_16px.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_edit_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application_edit_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="view_choose_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\view_choose_321.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="picture_add_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\picture_add_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Picture_Save_16px_530232_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Picture_Save_16px_530232_easyicon.net.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="export_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\export_16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="information_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\information_16px.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="application_side_expand_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\application_side_expand_32.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zh_CN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zh-CN.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
+  <data name="G_Letter_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\G_Letter_16px.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="folder_page_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_page_32.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="csssatyr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\csssatyr.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
