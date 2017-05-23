@@ -14,13 +14,19 @@ https://github.com/JohanShen/CSS-Satyr/releases
 
 # 运行环境
  - 开发环境
-    .Net Framework 2.0 + Visual Studio Commuity 2015 + Windows 10
+    > .Net Framework 2.0 + Visual Studio Commuity 2015 + Windows 10
  - 运行环境
-    理论上：Windows XP SP3+ and .Net Framework 2.0
+    ![](https://img.shields.io/badge/windows-xp-green.svg)
+    ![](https://img.shields.io/badge/windows-vista-green.svg)
+    ![](https://img.shields.io/badge/windows-7-green.svg)
+    ![](https://img.shields.io/badge/windows-8-green.svg)
+    ![](https://img.shields.io/badge/windows-10-green.svg)
+    ![](https://img.shields.io/badge/.Net%20Framework-2.0-green.svg)
+    
 
 # 多语言支持
-- **Languages: zh-CN, zh-TW, en**
-- 软件根目录下的LANG文件夹为语言包文件夹，按照里面的zh-TW.txt格式来编写其他语言，文件的存放编码为UTF-8
+- **Multi-Language: zh-CN, zh-TW, en-US**
+- 软件根目录下的LANG文件夹为语言包文件夹，按照里面的zh-TW.txt格式来编写其他语言，文件的存放编码为UTF-8。
 
 # 截图
 ![main](https://cloud.githubusercontent.com/assets/15073895/26368207/79664c82-4023-11e7-9f2b-0b0193eb1c04.png)
