@@ -9,6 +9,8 @@ CSS 赛特斯（CSS Satyr）是一款 CSS Sprites 小工具，主要提供给从
 
 自版本2.0开始开放源代码，并托管在GitHub上，希望更多人能一起将软件完善得更好。
 
+同时建立QQ交流群，供大家交流讨论：144631814，入群暗号 CSS Satyr 
+
 # 下载
 https://github.com/JohanShen/CSS-Satyr/releases
 
